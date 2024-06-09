@@ -1,0 +1,212 @@
+ [
+    {
+        "id": 1,
+        "nombre": "Artick Monkeys",
+        "tags": ["rock", "banda", "música"],
+        "categoria": "artickMonkeys",
+        "src": "../assets/AM1.png"
+    },
+    {
+        "id": 2,
+        "nombre": "Artick Monkeys",
+        "tags": ["rock", "banda", "música"],
+        "categoria": "artickMonkeys",
+        "src": "../assets/AM2.png"
+    },
+    {
+        "id": 3,
+        "nombre": "Artick Monkeys",
+        "tags": ["rock", "banda", "música"],
+        "categoria": "artickMonkeys",
+        "src": "../assets/AM3.png"
+    },
+    {
+        "id": 4,
+        "nombre": "Artick Monkeys",
+        "tags": ["rock", "banda", "música"],
+        "categoria": "artickMonkeys",
+        "src": "../assets/AM4.png"
+    },
+    {
+        "id": 5,
+        "nombre": "Artick Monkeys",
+        "tags": ["rock", "banda", "música"],
+        "categoria": "artickMonkeys",
+        "src": "../assets/AM5.png"
+    },
+    {
+        "id": 6,
+        "nombre": "Bad Bunny",
+        "tags": ["reggaeton", "trap", "música"],
+        "categoria": "badBunny",
+        "src": "../assets/BB1.png"
+    },
+    {
+        "id": 7,
+        "nombre": "Bad Bunny",
+        "tags": ["reggaeton", "trap", "música"],
+        "categoria": "badBunny",
+        "src": "../assets/BB2.png"
+    },
+    {
+        "id": 8,
+        "nombre": "Bad Bunny",
+        "tags": ["reggaeton", "trap", "música"],
+        "categoria": "badBunny",
+        "src": "../assets/BB3.png"
+    },
+    {
+        "id": 9,
+        "nombre": "Bad Bunny",
+        "tags": ["reggaeton", "trap", "música"],
+        "categoria": "badBunny",
+        "src": "../assets/BB4.png"
+    },
+    {
+        "id": 10,
+        "nombre": "Bad Bunny",
+        "tags": ["reggaeton", "trap", "música"],
+        "categoria": "badBunny",
+        "src": "../assets/BB5.png"
+    },
+    {
+        "id": 11,
+        "nombre": "Memes",
+        "tags": ["humor", "internet"],
+        "categoria": "memes",
+        "src": "../assets/MM1.png"
+    },
+    {
+        "id": 12,
+        "nombre": "Memes",
+        "tags": ["humor", "internet"],
+        "categoria": "memes",
+        "src": "../assets/MM2.png"
+    },
+    {
+        "id": 13,
+        "nombre": "Memes",
+        "tags": ["humor", "internet"],
+        "categoria": "memes",
+        "src": "../assets/MM3.png"
+    },
+    {
+        "id": 14,
+        "nombre": "Memes",
+        "tags": ["humor", "internet"],
+        "categoria": "memes",
+        "src": "../assets/MM4.png"
+    },
+    {
+        "id": 15,
+        "nombre": "Memes",
+        "tags": ["humor", "internet"],
+        "categoria": "memes",
+        "src": "../assets/MM5.png"
+    },
+    {
+        "id": 16,
+        "nombre": "Messi",
+        "tags": ["fútbol", "deporte"],
+        "categoria": "messi",
+        "src": "../assets/MESSI1.png"
+    },
+    {
+        "id": 17,
+        "nombre": "Messi",
+        "tags": ["fútbol", "deporte"],
+        "categoria": "messi",
+        "src": "../assets/MESSI2.png"
+    },
+    {
+        "id": 18,
+        "nombre": "Messi",
+        "tags": ["fútbol", "deporte"],
+        "categoria": "messi",
+        "src": "../assets/MESSI3.png"
+    },
+    {
+        "id": 19,
+        "nombre": "Messi",
+        "tags": ["fútbol", "deporte"],
+        "categoria": "messi",
+        "src": "../assets/MESSI4.png"
+    },
+    {
+        "id": 20,
+        "nombre": "Messi",
+        "tags": ["fútbol", "deporte"],
+        "categoria": "messi",
+        "src": "../assets/MESSI5.png"
+    },
+    {
+        "id": 21,
+        "nombre": "Rick and Morty",
+        "tags": ["animación", "comedia"],
+        "categoria": "rickyMorty",
+        "src": "../assets/RM1.png"
+    },
+    {
+        "id": 22,
+        "nombre": "Rick and Morty",
+        "tags": ["animación", "comedia"],
+        "categoria": "rickyMorty",
+        "src": "../assets/RM2.png"
+    },
+    {
+        "id": 23,
+        "nombre": "Rick and Morty",
+        "tags": ["animación", "comedia"],
+        "categoria": "rickyMorty",
+        "src": "../assets/RM3.png"
+    },
+    {
+        "id": 24,
+        "nombre": "Rick and Morty",
+        "tags": ["animación", "comedia"],
+        "categoria": "rickyMorty",
+        "src": "../assets/RM4.png"
+    },
+    {
+        "id": 25,
+        "nombre": "Rick and Morty",
+        "tags": ["animación", "comedia"],
+        "categoria": "rickyMorty",
+        "src": "../assets/RM5.png"
+    },
+    {
+        "id": 26,
+        "nombre": "Anime",
+        "tags": ["animación", "japonés"],
+        "categoria": "anime",
+        "src": "../assets/CSM1.png"
+    },
+    {
+        "id": 27,
+        "nombre": "Anime",
+        "tags": ["animación", "japonés"],
+        "categoria": "anime",
+        "src": "../assets/CSM2.png"
+    },
+    {
+        "id": 28,
+        "nombre": "Anime",
+        "tags": ["animación", "japonés"],
+        "categoria": "anime",
+        "src": "../assets/CSM3.png"
+    },
+    {
+        "id": 29,
+        "nombre": "Anime",
+        "tags": ["animación", "japonés"],
+        "categoria": "anime",
+        "src": "../assets/CSM4.png"
+    },
+    {
+        "id": 30,
+        "nombre": "Anime",
+        "tags": ["animación", "japonés"],
+        "categoria": "anime",
+        "src": "../assets/CSM5.png"
+    }
+]

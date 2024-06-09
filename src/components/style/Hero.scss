@@ -1,0 +1,43 @@
+.herobg{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    transition: background-image 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo-img{
+    width: 256px;
+    margin-bottom: -5rem;
+    margin-top: 2rem;
+  }
+  .img-sticker{
+    width: 400px;
+    position: absolute;
+    bottom: 50px;
+    left: 44px;
+  }
+  .img-sticker-left{
+    width: 400px;
+    position: absolute;
+    bottom: -4px;
+    right: 44px;
+  }
+  .subheading{
+    font-size: 2rem;
+    margin-top: 2rem;
+    color: #fff;
+  }
+  .bg{
+    z-index: 0;
+    top: o;
+    right: 0;
+    width: 100vw;
+  }
+  .arrow-video{
+    width: 50px;
+  }
