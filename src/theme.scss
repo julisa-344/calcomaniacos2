@@ -1,0 +1,82 @@
+:root {
+    --md-sys-color-primary: #5C8692;
+    --md-sys-color-on-primary: #ffffff;
+    --md-sys-color-on-primary: #ffffff;
+    --md-sys-color-on-primary-container: #1E2C30;
+  
+    --md-sys-color-secondary: #7A9CA5;
+    --md-sys-color-on-secondary: #1E2C30;
+    --md-sys-color-secondary-container: #ffffff;
+    --md-sys-color-on-secondary-container: #1E2C30;
+  
+    --md-sys-color-background: #ffffff;
+    --md-sys-color-on-background: #1E2C30;
+  
+    --md-sys-color-surface: #1E2C30;
+    --md-sys-color-on-surface: #7A9CA5;
+  
+    --md-sys-color-error: #b00020;
+    --md-sys-color-on-error: #ffffff;
+  }
+  :root {
+    --my-brand-font: 'Poppins';
+    --my-headline-font: 'Manrope';
+    --my-title-font: 'Manrope';
+    --my-plain-font: system-ui;
+  }
+
+
+    $color-primary: #5C8692;
+    $color-primary-200: #EBF3F5;
+    $color-secondary: #1E2C30;
+    $color-white: #ffffff;
+    $color-neutral-600: #141718;
+    $color-neutral-500: #6C7275;
+    $color-neutral-400: #9F9F9F;
+
+    $color-error: #b00020;
+    $color-on-error: #ffffff;
+
+    .tittle-main{
+        font-size: 48px;
+        color: $color-neutral-600;
+        font-family: 'Manrope';
+        font-weight: bold;
+        margin-bottom: 8px;
+        text-align: center;
+        color: $color-primary;
+    
+    }
+.title{
+        font-size: 24px;
+        font-weight: 500;
+        color: $color-neutral-600;
+        font-family: 'Manrope';
+        font-weight: bold;
+        margin-bottom: 8px;
+}
+    .sub-title{
+        font-size: 16px;
+        font-weight: 500;
+        color: $color-neutral-600;
+        font-family: 'Manrope';
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+    .text{
+        font-size: 14px;
+        font-weight: 400;
+        color: $color-neutral-500;
+        margin-bottom: 8px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+  .button-primary {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+  }
+  
+  .button-secondary {
+    background-color: var(--md-sys-color-secondary);
+    color: var(--md-sys-color-on-secondary);
+  }

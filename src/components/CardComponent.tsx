@@ -1,4 +1,4 @@
-import './componentStyles/card.scss';
+import './style/card.scss';
 import Button from './Button';
 import './../theme.scss';
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ function Card({ img, title, price }: CardProps) {
     let navigate = useNavigate();
 
     const handleNavigate = () => {
-        navigate("/detail_product");
+        navigate("/");
       };
   
     return (

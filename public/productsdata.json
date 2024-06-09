@@ -1,0 +1,35 @@
+[
+        {
+            "id": 1,
+        "name": "Sticker de gatito",
+            "tags": ["stickers", "cute"],
+            "category": "perro",
+            "img": "../assets/AM1.png",
+            "price": 2.99,
+            "sale": false,
+        "description": "Adorable sticker con diseño de gatito",
+        "brand": "Brand A"
+        },
+        {
+            "id": 2,
+        "name": "Sticker de emoji",
+            "tags": ["stickers", "funny"],
+            "category": "gato",
+            "img": "../assets/AM1.png",
+            "price": 1.99,
+            "sale": true,
+        "description": "Divertido sticker con diseño de emoji",
+        "brand": "Brand B"
+        },
+        {
+            "id": 3,
+        "name": "Sticker de calavera",
+            "tags": ["stickers", "cool"],
+            "category": "conejo",
+            "img": "../assets/AM1.png",
+            "price": 3.49,
+            "sale": false,
+        "description": "Sticker genial con diseño de calavera",
+        "brand": "Brand C"
+        }
+]

@@ -1,13 +1,10 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
 
-const Router = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<ShopPage />} />
-    </Routes>
-  </BrowserRouter>
-);
-
-export default Router;
+export default function Routes() {
+  return useRoutes([
+    { path: '/', element: <HomePage /> },
+    { path: '/shop', element: <ShopPage /> },
+  ]);
+}

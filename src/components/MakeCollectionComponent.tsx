@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import Button from './Button';
+import Header from './HeaderComponent';
 import './style/MakeCollection.scss';
 import { fabric } from 'fabric';
 
@@ -52,22 +53,24 @@ function MakeCollection() {
     };
 
     return (
-        <section className="container">
-            <div className="content-canvas">
-                <div className="action-canvas">
-                    <div className="color-picker-container">
-                        <label htmlFor="silhouette-type">Tipo de Silueta:</label>
-                        <select id="silhouette-type" className="color-picker">
-                            <option value="solid">Sólido</option>
-                            <option value="gradient">Degradado</option>
-                        </select>
-                        <input type="color" id="color-picker" className="color-picker" defaultValue="#ffffff" />
-                        <input type="color" id="gradient-color-picker" className="color-picker" defaultValue="#000000" style={{ display: "none" }} />
-                        <button id="update-silhouette-thickness-btn">Actualizar Grosor de Silueta</button>
+        <>
+        <Header />
+            <section className="container">
+                <div className="content-canvas">
+                    <div className="action-canvas">
+                        <div className="color-picker-container">
+                            <label htmlFor="silhouette-type">Tipo de Silueta:</label>
+                            <select id="silhouette-type" className="color-picker">
+                                <option value="solid">Sólido</option>
+                                <option value="gradient">Degradado</option>
+                            </select>
+                            <input type="color" id="color-picker" className="color-picker" defaultValue="#ffffff" />
+                            <input type="color" id="gradient-color-picker" className="color-picker" defaultValue="#000000" style={{ display: "none" }} />
+                            <button id="update-silhouette-thickness-btn">Actualizar Grosor de Silueta</button>
+                        </div>
                     </div>
+                    <canvas id="canvas" width="567" height="794"></canvas>
                 </div>
-                <canvas id="canvas" width="567" height="794"></canvas>
-            </div>
 
                 <div className="catalog-container">
                     <div className="catalog-categories"></div>
@@ -82,10 +85,10 @@ function MakeCollection() {
                             />
                         ))}
                     </div>
-                    <Button text="Descargar" onClick={() => { /* Lógica para eliminar imagen */ }} />
-
-                </div>    
-        </section>
+                    <Button text="Descargar" onClick={() => { }} />
+                </div>
+            </section>
+        </>
     );
 }
 

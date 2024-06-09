@@ -8,12 +8,9 @@ function Header() {
                 <h2 className="header-title">Calcomaniacos</h2>
             </div>
             <nav className="header-nav">
-                <ul>
-                    <li><Link to='#'>Crear tu colección</Link></li>
-                    <li><Link to='/shop'>Comprar stickers</Link></li>
-                    <li><Link to='#'>Galeria</Link></li>
-                    <li><Link to='#'>Contacto</Link></li>
-                </ul>
+                <Link className='link-title' to="/">Crear tu colección</Link>
+                <Link className='link-title' to="/shop">Shop</Link>
+                <Link className='link-title' to="/about">Mi cuenta</Link>
             </nav>
         </header>
     );

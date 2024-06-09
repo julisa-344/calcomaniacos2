@@ -1,0 +1,13 @@
+@import '../../theme.scss';
+
+.card{
+    width: 248px;
+    height: 377px;
+    background-color:  $color-white;
+    padding: 16px;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
+}
+.img-product{
+    height: 240px;
+    width: 216px;
+}

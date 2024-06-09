@@ -1,7 +1,6 @@
 import "../pages.scss";
 import "../theme.scss";
 import Card from "../components/CardComponent";
-import "firebase/firestore";
 import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import { Checkbox } from "@mui/material";
@@ -35,7 +34,7 @@ function ShopPage() {
 
     useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch("data.json");
+      const data = await fetch("productsdata.json");
       const products = await data.json();
       setProducts(products);
     };
@@ -78,7 +77,6 @@ function ShopPage() {
 
   return (
     <>
-
           <section className="p-4 contend-header">
         <section className="gallery-content">
           <aside>
@@ -148,7 +146,6 @@ function ShopPage() {
           </section>
         </section>
       </section>
-    
     </>
   );
 }

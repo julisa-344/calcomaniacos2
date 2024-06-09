@@ -1,0 +1,117 @@
+@import './theme.scss';
+
+.gallery-content{
+    display: flex;
+
+}
+.content-category{
+    display: flex;
+    flex-direction: column;
+    font-family: "Poppins", sans-serif;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.content-card {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+.contet-products{
+    width: 60%;
+    margin: 0 auto;
+}
+
+
+.hero{
+    height: calc(100vh - 80px);
+    width: 100vw;
+    background-color: #EBF3F5;
+    position: relative;
+    justify-content: end;
+    align-items: center;
+}
+.content-img{
+    width: 50%;
+    height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+  background-color: $color-secondary;
+}
+
+.img-hero{
+    position: absolute;
+    left: 47%;
+    box-shadow: 10x 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+.border-img{
+    border: 10px solid $color-white;
+    width: 418px;
+    padding: 50px;
+    height: 667px;
+}
+.title-hero{
+    font-size: 48px;
+    color: $color-neutral-600;
+    font-family: 'Manrope';
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.hero-info{
+    width: 400px;
+    z-index: 100;
+}
+.form-home{
+    background-color: $color-secondary;
+    padding: 3rem 4rem;
+}
+
+.input-search{
+    width: 70%;
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid $color-secondary;
+    border-radius: 8px;
+    padding: 0 16px;
+}
+
+.input-transparent{
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    color: $color-neutral-600;
+}
+.input-transparent:focus {
+    outline: none;
+    border: none;
+}
+
+.content-beneficios{
+    width: 100%;
+    margin: 16px 0;
+    padding: 16px;
+    background-color: $color-primary-200;
+    flex-wrap: wrap;
+}
+
+.icon-benefices{
+    width: 40px;
+    margin-right: 8px;
+}
+.additional-info{
+    width: 100vw;
+}
+.content-info{
+    width: 300px;
+}
+.contend-info-products{
+    width: 40%;
+}
+
+.product-detail{
+    height: 80vh;
+    align-items: center;
+}
