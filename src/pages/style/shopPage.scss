@@ -1,4 +1,4 @@
-@import './theme.scss';
+@import '../../theme.scss';
 
 .gallery-content{
     display: flex;
@@ -20,51 +20,6 @@
 .contet-products{
     width: 60%;
     margin: 0 auto;
-}
-
-
-.hero{
-    height: calc(100vh - 80px);
-    width: 100vw;
-    background-color: #EBF3F5;
-    position: relative;
-    justify-content: end;
-    align-items: center;
-}
-.content-img{
-    width: 50%;
-    height: calc(100vh - 80px);
-    display: flex;
-    align-items: center;
-  background-color: $color-secondary;
-}
-
-.img-hero{
-    position: absolute;
-    left: 47%;
-    box-shadow: 10x 10px 10px rgba(0, 0, 0, 0.25);
-}
-
-.border-img{
-    border: 10px solid $color-white;
-    width: 418px;
-    padding: 50px;
-    height: 667px;
-}
-.title-hero{
-    font-size: 48px;
-    color: $color-neutral-600;
-    font-family: 'Manrope';
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-.hero-info{
-    width: 400px;
-    z-index: 100;
-}
-.form-home{
-    background-color: $color-secondary;
-    padding: 3rem 4rem;
 }
 
 .input-search{

@@ -13,7 +13,7 @@ function Card({ img, title, price }: CardProps) {
     let navigate = useNavigate();
 
     const handleNavigate = () => {
-        navigate("/");
+        navigate("/detail-product");
       };
   
     return (

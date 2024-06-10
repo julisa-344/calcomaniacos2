@@ -1,4 +1,4 @@
-import "../pages.scss";
+import "./style/shopPage.scss";
 import "../theme.scss";
 import Card from "../components/CardComponent";
 import SearchIcon from "@mui/icons-material/Search";

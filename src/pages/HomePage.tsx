@@ -5,7 +5,6 @@ function HomePage() {
     return (
         <>
             <main className="bg-color">
-
                     <HeroComponent />
                     <MakeCollection />
             </main>

@@ -80,3 +80,10 @@ canvas {
   .irregular-image {
     filter: url(#outline);
   }
+
+  .action-canvas{
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    height: fit-content;
+  }
