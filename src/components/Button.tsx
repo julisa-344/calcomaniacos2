@@ -11,16 +11,27 @@ interface ButtonProps {
 }
 
 function ButtonComponent(props: ButtonProps) {
-  const { text, onClick, variant = "contained", color="primary", className } = props;
+  const { text, onClick, variant = "contained", color = "primary", className } = props;
+
+  // Define los estilos personalizados para la variante "outlined"
+  const outlinedStyles = {
+    borderColor: "#fff",
+    color: "#fff",
+  };
 
   return (
     <ThemeProvider theme={theme}>
-
-      <Button variant={variant} onClick={onClick} color={color} className={className}>
+      <div className={className}>
+      <Button
+        variant={variant}
+        onClick={onClick}
+        color={color}
+        style={variant === "outlined" ? outlinedStyles : undefined}
+      >
         {text}
       </Button>
+      </div>
     </ThemeProvider>
-
   );
 }
 

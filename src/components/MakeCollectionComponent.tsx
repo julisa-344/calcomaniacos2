@@ -119,9 +119,9 @@ function MakeCollection() {
                     <canvas id="canvas" width="567" height="794"></canvas>
                 </div>
 
-                <div className="catalog-container">
+                <div className="catalog-container text-center">
                     <div className="catalog-categories"></div>
-                    <div id="catalog" className="container_catalog-img">
+                    <div id="catalog" className="container_catalog-img m-b">
                         {images.map((image, index) => (
                             <img
                                 key={index}
@@ -132,7 +132,7 @@ function MakeCollection() {
                             />
                         ))}
                     </div>
-                    <Button text="Descargar" onClick={() => { }} />
+                    <Button  className="m-t"text="Descargar" onClick={() => { }} variant='outlined'/>
                 </div>
             </section>
         </>

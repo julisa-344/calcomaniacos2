@@ -1,13 +1,26 @@
 @import '../../theme.scss';
 
 .card{
-    width: 248px;
+    width: 27%;
     height: 377px;
-    background-color:  $color-white;
+    background-color: transparent;
     padding: 16px;
     box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
+  
+    backdrop-filter: blur(10px);
 }
 .img-product{
     height: 240px;
     width: 216px;
 }
+  
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    background: linear-gradient(140deg, rgb(119, 0, 255), rgb(107, 172, 216), rgb(140, 28, 221)) border-box;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }

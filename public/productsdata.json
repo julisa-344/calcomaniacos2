@@ -1,35 +1,198 @@
 [
-        {
-            "id": 1,
+    {
+        "id": 1,
         "name": "Sticker de gatito",
-            "tags": ["stickers", "cute"],
-            "category": "perro",
-            "img": "../assets/AM1.png",
-            "price": 2.99,
-            "sale": false,
+        "tags": [
+            "stickers",
+            "cute"
+        ],
+        "category": "perro",
+        "img": "../assets/AM1.png",
+        "price": 2.99,
+        "sale": false,
         "description": "Adorable sticker con diseño de gatito",
         "brand": "Brand A"
-        },
-        {
-            "id": 2,
+    },
+    {
+        "id": 2,
         "name": "Sticker de emoji",
-            "tags": ["stickers", "funny"],
-            "category": "gato",
-            "img": "../assets/AM1.png",
-            "price": 1.99,
-            "sale": true,
+        "tags": [
+            "stickers",
+            "funny"
+        ],
+        "category": "gato",
+        "img": "../assets/MM1.png",
+        "price": 1.99,
+        "sale": true,
         "description": "Divertido sticker con diseño de emoji",
         "brand": "Brand B"
-        },
-        {
-            "id": 3,
+    },
+    {
+        "id": 3,
         "name": "Sticker de calavera",
-            "tags": ["stickers", "cool"],
-            "category": "conejo",
-            "img": "../assets/AM1.png",
-            "price": 3.49,
-            "sale": false,
+        "tags": [
+            "stickers",
+            "cool"
+        ],
+        "category": "conejo",
+        "img": "../assets/MM2.png",
+        "price": 3.49,
+        "sale": false,
         "description": "Sticker genial con diseño de calavera",
         "brand": "Brand C"
-        }
+    },
+    {
+        "id": 4,
+        "name": "Sticker de corazón",
+        "tags": [
+            "stickers",
+            "love"
+        ],
+        "category": "perro",
+        "img": "../assets/MM3.png",
+        "price": 2.99,
+        "sale": false,
+        "description": "Hermoso sticker con diseño de corazón",
+        "brand": "Brand D"
+    },
+    {
+        "id": 5,
+        "name": "Sticker de estrella",
+        "tags": [
+            "stickers",
+            "sparkle"
+        ],
+        "category": "gato",
+        "img": "../assets/MM4.png",
+        "price": 1.99,
+        "sale": true,
+        "description": "Brillante sticker con diseño de estrella",
+        "brand": "Brand E"
+    },
+    {
+        "id": 6,
+        "name": "Sticker de fuego",
+        "tags": [
+            "stickers",
+            "hot"
+        ],
+        "category": "conejo",
+        "img": "../assets/BB1.png",
+        "price": 3.49,
+        "sale": false,
+        "description": "Increíble sticker con diseño de fuego",
+        "brand": "Brand F"
+    },
+    {
+        "id": 7,
+        "name": "Sticker de arcoíris",
+        "tags": [
+            "stickers",
+            "colorful"
+        ],
+        "category": "perro",
+        "img": "../assets/AM1.png",
+        "price": 2.99,
+        "sale": false,
+        "description": "Alegre sticker con diseño de arcoíris",
+        "brand": "Brand G"
+    },
+    {
+        "id": 8,
+        "name": "Sticker de nube",
+        "tags": [
+            "stickers",
+            "cloud"
+        ],
+        "category": "gato",
+        "img": "../assets/AM1.png",
+        "price": 1.99,
+        "sale": true,
+        "description": "Encantador sticker con diseño de nube",
+        "brand": "Brand H"
+    },
+    {
+        "id": 9,
+        "name": "Sticker de luna",
+        "tags": [
+            "stickers",
+            "moon"
+        ],
+        "category": "conejo",
+        "img": "../assets/AM1.png",
+        "price": 3.49,
+        "sale": false,
+        "description": "Místico sticker con diseño de luna",
+        "brand": "Brand I"
+    },
+    {
+        "id": 10,
+        "name": "Sticker de sol",
+        "tags": [
+            "stickers",
+            "sun"
+        ],
+        "category": "perro",
+        "img": "../assets/AM1.png",
+        "price": 2.99,
+        "sale": false,
+        "description": "Radiante sticker con diseño de sol",
+        "brand": "Brand J"
+    },
+    {
+        "id": 11,
+        "name": "Sticker de mariposa",
+        "tags": [
+            "stickers",
+            "butterfly"
+        ],
+        "category": "gato",
+        "img": "../assets/AM2.png",
+        "price": 1.99,
+        "sale": true,
+        "description": "Elegante sticker con diseño de mariposa",
+        "brand": "Brand K"
+    },
+    {
+        "id": 12,
+        "name": "Sticker de hoja",
+        "tags": [
+            "stickers",
+            "leaf"
+        ],
+        "category": "conejo",
+        "img": "../assets/AM3.png",
+        "price": 3.49,
+        "sale": false,
+        "description": "Natural sticker con diseño de hoja",
+        "brand": "Brand L"
+    },
+    {
+        "id": 13,
+        "name": "Sticker de corazón roto",
+        "tags": [
+            "stickers",
+            "sad"
+        ],
+        "category": "perro",
+        "img": "../assets/AM4.png",
+        "price": 2.99,
+        "sale": false,
+        "description": "Melancólico sticker con diseño de corazón roto",
+        "brand": "Brand M"
+    },
+    {
+        "id": 14,
+        "name": "Sticker de música",
+        "tags": [
+            "stickers",
+            "music"
+        ],
+        "category": "gato",
+        "img": "../assets/AM1.png",
+        "price": 1.99,
+        "sale": true,
+        "description": "Rítmico sticker con diseño de música",
+        "brand": "Brand N"
+    }
 ]

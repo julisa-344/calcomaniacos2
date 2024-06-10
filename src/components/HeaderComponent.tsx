@@ -13,17 +13,17 @@ function Header() {
             </div>
             <nav className="header-nav">
                 <Link to='/' aria-label='Home'>
-                    <IconButton>
+                <IconButton style={{ color: 'white' }}>
                         <HomeIcon />
                     </IconButton>
                 </Link>
                 <Link to='/shop' aria-label='Cart'>
-                    <IconButton>
+                <IconButton style={{ color: 'white' }}>
                         <ShoppingCartIcon />
                     </IconButton>
                 </Link>
                 <Link to='/LoginSignup' aria-label='Login'>
-                    <IconButton>
+                <IconButton style={{ color: 'white' }}>
                         <PersonIcon />
                     </IconButton>
                 </Link>

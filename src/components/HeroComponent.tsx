@@ -24,14 +24,14 @@ function HeroComponent() {
             <div className="m-height m-width relative p-4 herobg" style={{ backgroundImage: `url(${backgroundImageList[backgroundImageIndex]})` }}>
                 <div className="text-center">
                     <div className="mb-4">
-                        <h1 className="display-2 font-weight-bold mb-3">
+                        <h1 className="title-main ">
                             Calcomaniacos
                         </h1>
 
-                        <p className="subheading font-weight-regular">
+                        <p className="sub-title ">
                             Locos por los stickers
                         </p>
-                        <ButtonComponent text='Crea tu colecciòn' onClick={()=>{}} />
+                        <ButtonComponent text='Crea tu colecciòn' onClick={()=>{}} variant='outlined' />
                         <br />
                     </div>
                 </div>

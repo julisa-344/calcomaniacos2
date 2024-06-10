@@ -21,7 +21,7 @@ function Card({ img, title, price }: CardProps) {
             <img className='img-product' src={img} alt="producto" />
             <h3 className='sub-title'>{title}</h3>
             <p className='text'>{price}</p>
-            <Button onClick={handleNavigate} text="Comprar" />
+            <Button onClick={handleNavigate} text="Comprar" variant='outlined' />
         </div>
     );
 }

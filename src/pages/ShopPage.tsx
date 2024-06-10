@@ -4,7 +4,7 @@ import Card from "../components/CardComponent";
 import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import { Checkbox } from "@mui/material";
-
+import { IconButton } from "@mui/material";
 interface Product {
   id: string;
   name: string;
@@ -30,9 +30,9 @@ function ShopPage() {
     fetchData();
   }, []); */
 
-//   as we currently do not have the firebase database, we will use a mock data (data.json) to simulate the data
+  //   as we currently do not have the firebase database, we will use a mock data (data.json) to simulate the data
 
-    useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       const data = await fetch("productsdata.json");
       const products = await data.json();
@@ -77,75 +77,73 @@ function ShopPage() {
 
   return (
     <>
-          <section className="p-4 contend-header">
-        <section className="gallery-content">
-          <aside>
-            <h2 className="title">Filtros</h2>
-            <p className="sub-title">Por categoría</p>
-            <div className="content-category"> 
-            {/* Search for categoruy */}
-              {categories.map((category) => (
-                <label key={category}>
-                  <Checkbox
-                    checked={selectedCategories.includes(category)}
-                    onChange={(e) =>
-                      handleCategoryChange(category, e.target.checked)
-                    } />
-                  {category}
-                </label>
-              ))}
-            </div>
-            <p className="sub-title">Por marca</p>
-            <div className="content-category">
-              {/* Search for brand */}
-                {brands.map((brand) => (
-                    <label key={brand}>
+      <main className="bg-color">
+        <section>
+          <h2>          Descubre los mejores stickers para tu laptop, celular, tablet y más.
+          </h2>
+          <img src="" alt="" />
+        </section>
+        <section className="p-4 contend-header">
+          <section className="gallery-content">
+            <aside>
+              <h2 className="title">Filtros</h2>
+              <p className="sub-title">Por categoría</p>
+              <div className="content-category">
+                {/* Search for categoruy */}
+                {categories.map((category) => (
+                  <label className="text" key={category}>
                     <Checkbox
-                        touch-target="wrapper"
-                        onChange={(e) => handleBrandChange(brand, e.target.checked)}
-                    />
-                    {brand}
-                    </label>
+                      checked={selectedCategories.includes(category)}
+                      color="default"
+                      onChange={(e) =>
+                        handleCategoryChange(category, e.target.checked)
+                      } />
+                      
+                    {category}
+                  </label>
                 ))}
-              
-            </div>
-          </aside>
-          <section className="contet-products">
-            <div className="flex justify-between align-center mb-4">
-              {/* <md-outlined-text-field placeholder="Search for messages">
+              </div>
+            </aside>
+            <section className="contet-products">
+              <div className="flex justify-between align-center mb-4">
+                {/* <md-outlined-text-field placeholder="Search for messages">
                 <md-icon slot="leading-icon">search</md-icon>
               </md-outlined-text-field> */}
-              <div className="input-search">
-              <input
-                className="input-transparent"
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-              <SearchIcon />
-              </div>
-              <div className="flex align-center">
-                <span className="sub-title p-4">Ordenar por:</span>
-                <select className="p-2">
-                  <option>Menor precio</option>
-                  <option>Mayor precio</option>
-                </select>
+                <div className="input-search">
+                  <input
+                    className="input-transparent"
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+
+                  <IconButton style={{ color: 'white' }}>
+                    <SearchIcon />
+                  </IconButton>
                 </div>
-            </div>
-            <div className="content-card">
-              {filteredProducts.map((product: Product) => (
-                <Card
-                  key={product.id}
-                  title={product.name}
-                  price={product.price.toString()}
-                  img={product.img}
+                <div className="flex align-center">
+                  <span className="sub-title p-4">Ordenar por:</span>
+                  <select className="p-2">
+                    <option>Menor precio</option>
+                    <option>Mayor precio</option>
+                  </select>
+                </div>
+              </div>
+              <div className="content-card">
+                {filteredProducts.map((product: Product) => (
+                  <Card
+                    key={product.id}
+                    title={product.name}
+                    price={product.price.toString()}
+                    img={product.img}
                   // falta hacer el fix de la imagen
-                />
-              ))}
-            </div>
+                  />
+                ))}
+              </div>
+            </section>
           </section>
         </section>
-      </section>
+      </main>
     </>
   );
 }
