@@ -8,8 +8,14 @@ $color-white: #ffffff;
 $color-neutral-600: #141718;
 $color-neutral-500: #6C7275;
 $color-neutral-400: #9F9F9F;
+$color-neutral-300: #f3f2f4;
 
 $color-error: #b00020;
+
+.main{
+  margin-top: 70px;
+  padding: 4% 8%;
+}
 
 .title-main {
   font-size: 48px;
@@ -79,6 +85,9 @@ $color-error: #b00020;
 }
 .justify-around{
   justify-content: space-around;
+}
+.direction-column{
+  flex-direction: column;
 }
 .p-4{
   padding: 1.5rem;

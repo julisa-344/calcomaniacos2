@@ -22,7 +22,7 @@ function Header() {
                         <ShoppingCartIcon />
                     </IconButton>
                 </Link>
-                <Link to='/LoginSignup' aria-label='Login'>
+                <Link to='/account' aria-label='Login'>
                 <IconButton style={{ color: 'white' }}>
                         <PersonIcon />
                     </IconButton>

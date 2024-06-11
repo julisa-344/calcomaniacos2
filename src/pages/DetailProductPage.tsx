@@ -2,8 +2,6 @@ import './../theme.scss';
 import { useState } from "react";
 import Card from "../components/CardComponent";
 import Button from "../components/Button";
-import Footer from "../components/FooterComponent";
-import Header from "../components/HeaderComponent";
 function DetailProductPage() {
 
     const [showAdditionalInfo, setShowAdditionalInfo] = useState(false);
@@ -21,7 +19,6 @@ function DetailProductPage() {
 
     return (
         <>
-            <Header />
             <main className="bg-color">
                 <section className="w-full flex p-4 product-detail">
                     <div className="w-50 flex justify-center">
@@ -70,7 +67,6 @@ function DetailProductPage() {
                 </section>
 
             </main>
-            <Footer />
         </>
     );
 }

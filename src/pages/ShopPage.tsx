@@ -83,7 +83,7 @@ function ShopPage() {
           </h2>
           <img src="" alt="" />
         </section>
-        <section className="p-4 contend-header">
+        <section className="p-4">
           <section className="gallery-content">
             <aside>
               <h2 className="title">Filtros</h2>
