@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './style/Hero.scss';
 import ButtonComponent from './Button';
+import { useNavigate } from 'react-router-dom';
 
 function HeroComponent() {
+
+    const navigate = useNavigate();
+
+    const handleButtonClick = () => {
+        navigate('/make-collection');
+      };
+      
     const [backgroundImageIndex, setBackgroundImageIndex] = useState(0);
     const backgroundImageList = [
         '/img/bg1.png',
@@ -31,7 +39,7 @@ function HeroComponent() {
                         <p className="sub-title ">
                             Locos por los stickers
                         </p>
-                        <ButtonComponent text='Crea tu colecciòn' onClick={()=>{}} variant='outlined' />
+                        <ButtonComponent text='Crea tu colecciòn' onClick={handleButtonClick} variant='outlined' />
                         <br />
                     </div>
                 </div>

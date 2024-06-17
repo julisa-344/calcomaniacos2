@@ -6,6 +6,7 @@ $color-primary-800: #150C3E;
 $color-secondary: #FFC200;
 $color-white: #ffffff;
 $color-neutral-600: #141718;
+$color-neutral-550: #6C7275;
 $color-neutral-500: #6C7275;
 $color-neutral-400: #9F9F9F;
 $color-neutral-300: #f3f2f4;
@@ -54,7 +55,9 @@ $color-error: #b00020;
 .text-center {
   text-align: center;
 }
-
+.mt-h{
+  margin-top: 70px;
+}
 .m-t{
   margin-top: 16px;
 }
@@ -97,6 +100,9 @@ $color-error: #b00020;
 }
 .p-6{
   padding: 2.5rem;
+}
+.pt-8{
+  padding-top: 3rem;
 }
 .m-4{
   margin: 1.5rem;

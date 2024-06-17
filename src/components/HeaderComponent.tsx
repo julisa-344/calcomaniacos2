@@ -11,13 +11,13 @@ function Header() {
             <div className="flex align-center">
                 <h2 className="header-title">Calcomaniacos</h2>
             </div>
+            <div>
+                <Link to='/' className='link-header'>Home</Link>
+                <Link to='/shop' className='link-header'>Shop</Link>
+                <Link to='/make-collection' className='link-header'>Crea tu coleccion</Link>
+            </div>
             <nav className="header-nav">
-                <Link to='/' aria-label='Home'>
-                <IconButton style={{ color: 'white' }}>
-                        <HomeIcon />
-                    </IconButton>
-                </Link>
-                <Link to='/shop' aria-label='Cart'>
+                <Link to='/cart' aria-label='Cart'>
                 <IconButton style={{ color: 'white' }}>
                         <ShoppingCartIcon />
                     </IconButton>

@@ -7,22 +7,24 @@ footer {
     height: 300px;
     background-color: #7A11F9;
     color: #fff;
-
+    width: 100vw;
+    bottom: 0;
+    h2 {
+        font-weight: 100px;
+        font-size: 15px;
+    }
+    
+    p {
+        font-weight: 100px;
+        font-size: 13px; 
+    }
+    
+    li {
+        font-size: 13px;
+    }
 }
 
-footer h2 {
-    font-weight: 100px;
-    font-size: 15px;
-}
 
-footer p {
-    font-weight: 100px;
-    font-size: 13px; 
-}
-
-footer li {
-    font-size: 13px;
-}
 
 .iconsSocialFooter {
     display: flex;
