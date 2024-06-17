@@ -1,3 +1,4 @@
+import * as React from 'react';
 import "./style/shopPage.scss";
 import "../theme.scss";
 import Card from "../components/CardComponent";
@@ -5,6 +6,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import { Checkbox } from "@mui/material";
 import { IconButton } from "@mui/material";
+import FormControl from '@mui/material/FormControl';
+import InputAdornment from '@mui/material/InputAdornment';
+import Box from '@mui/material/Box';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 interface Product {
   id: string;
   name: string;
@@ -39,7 +48,6 @@ function ShopPage() {
       setProducts(products);
     };
     // The data.json file is located in the public folder
-
     fetchData();
   }, []);
 
@@ -75,6 +83,12 @@ function ShopPage() {
     .map((product) => product.brand)
     .filter((value, index, self) => self.indexOf(value) === index);
 
+    const [age, setAge] = React.useState('');
+
+    const handleChange = (event: SelectChangeEvent) => {
+      setAge(event.target.value);
+    };
+
   return (
     <>
       <main className="bg-color">
@@ -106,37 +120,52 @@ function ShopPage() {
             </aside>
             <section className="contet-products">
               <div className="flex justify-between align-center mb-4">
-                {/* <md-outlined-text-field placeholder="Search for messages">
-                <md-icon slot="leading-icon">search</md-icon>
-              </md-outlined-text-field> */}
-                <div className="input-search">
-                  <input
-                    className="input-transparent"
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
-
-                  <IconButton style={{ color: 'white' }}>
-                    <SearchIcon />
-                  </IconButton>
-                </div>
-                <div className="flex align-center">
-                  <span className="sub-title p-4">Ordenar por:</span>
-                  <select className="p-2">
-                    <option>Menor precio</option>
-                    <option>Mayor precio</option>
-                  </select>
-                </div>
+                <Box sx={{ width: '100%',maxWidth: '100%',}} >
+                  <FormControl variant="outlined">
+                  <OutlinedInput
+                      style={{ borderColor: 'white', color: 'white' }}
+                      id="outlined-adornment-password"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            style={{ color: 'white' }}
+                            edge="end"
+                          >
+                            <SearchIcon />
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      label="Buscar"
+                    />
+                  </FormControl>
+                  <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                    <InputLabel id="demo-select-small-label">Ordenar por:</InputLabel>
+                    <Select
+                      labelId="demo-select-small-label"
+                      id="demo-select-small"
+                      value={age}
+                      label="Age"
+                      onChange={handleChange}
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      <MenuItem value={10}>Relevancia</MenuItem>
+                      <MenuItem value={20}>Menor precio</MenuItem>
+                      <MenuItem value={30}>Mayor precio</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
               </div>
               <div className="content-card">
                 {filteredProducts.map((product: Product) => (
                   <Card
                     key={product.id}
-                    title={product.name}
+                    name={product.name}
                     price={product.price.toString()}
                     img={product.img}
-                  // falta hacer el fix de la imagen
                   />
                 ))}
               </div>

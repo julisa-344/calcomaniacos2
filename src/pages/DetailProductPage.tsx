@@ -1,21 +1,24 @@
 import './../theme.scss';
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Card from "../components/CardComponent";
 import Button from "../components/Button";
+import { CartContext, CartContetType } from '../CartContext';
+
 function DetailProductPage() {
 
-    const [showAdditionalInfo, setShowAdditionalInfo] = useState(false);
-    const [showReviews, setShowReviews] = useState(false);
+    const { cart, setCart } = useContext<CartContetType>(CartContext);
 
-    const handleAdditionalInfoClick = () => {
-        setShowAdditionalInfo(true);
-        setShowReviews(false);
-    };
+    const handleAddToCart = () => {
+        const product = {
+          name: 'Nombre del producto',
+          price: 'Precio del producto',
+          img: 'URL de la imagen del producto',
+        };
+    
+        setCart([...cart, product]);
 
-    const handleReviewsClick = () => {
-        setShowAdditionalInfo(false);
-        setShowReviews(true);
-    };
+        console.log(setCart)
+      };
 
     return (
         <>
@@ -54,16 +57,16 @@ function DetailProductPage() {
                                     <Button className='mr-4 m-b' text='Extra Grande (3x4cm)' onClick={()=>{}} variant='outlined'></Button>
                                 </div>
                             </div>
-                        <Button text="Agregar al carrito" onClick={() => { }} className='m-t'/>
+                        <Button text="Agregar al carrito" onClick={handleAddToCart} className='m-t'/>
                     </div>
                 </section>
 
                 <h2 className='title m-4 text-center'>Productos que te pueden interesar</h2>
 
                 <section className='flex justify-around p-6'>
-                    <Card title='Product' price='s/. 76' img="../../public/img/product1.png" />
-                    <Card title='Product' price='s/. 76' img="../../public/img/product1.png" />
-                    <Card title='Product' price='s/. 76' img="../../public/img/product1.png" />
+                    <Card name='Product' price='s/. 76' img="../../public/img/product1.png" />
+                    <Card name='Product' price='s/. 76' img="../../public/img/product1.png" />
+                    <Card name='Product' price='s/. 76' img="../../public/img/product1.png" />
                 </section>
 
             </main>

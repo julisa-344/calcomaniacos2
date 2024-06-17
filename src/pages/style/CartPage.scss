@@ -4,8 +4,12 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-top: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
     color: $color-white;
     padding: 22px;
+}
+.img-cart{
+    width: 100px;
 }

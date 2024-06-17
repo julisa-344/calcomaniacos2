@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 type CardProps = {
     img: string;
-    title: string;
+    name: string;
     price: string;
 };
 
-function Card({ img, title, price }: CardProps) {
+function Card({ img, name, price }: CardProps) {
     let navigate = useNavigate();
 
     const handleNavigate = () => {
@@ -19,7 +19,7 @@ function Card({ img, title, price }: CardProps) {
     return (
         <div className="card" >
             <img className='img-product' src={img} alt="producto" />
-            <h3 className='sub-title'>{title}</h3>
+            <h3 className='sub-title'>{name}</h3>
             <p className='text'>{price}</p>
             <Button onClick={handleNavigate} text="Comprar" variant='outlined' />
         </div>

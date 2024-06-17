@@ -23,7 +23,6 @@ function AccountPage() {
         event.preventDefault();
     };
 
-
     return (
         <>
             <main className="main flex">
