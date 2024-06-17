@@ -1,0 +1,11 @@
+@import '../../theme.scss';
+
+.item-product{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    color: $color-white;
+    padding: 22px;
+}
