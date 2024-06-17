@@ -9,11 +9,12 @@ type CardProps = {
     price: string;
 };
 
-function Card({ img, name, price }: CardProps) {
+function Card({ img, name, price, ...rest }: CardProps & { [key: string]: any }) {
     let navigate = useNavigate();
 
     const handleNavigate = () => {
-        navigate("/detail-product");
+        navigate("/detail-product", 
+        { state: { img, name, price, ...rest } });
       };
   
     return (

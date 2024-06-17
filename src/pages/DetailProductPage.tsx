@@ -3,10 +3,13 @@ import { useState, useContext } from "react";
 import Card from "../components/CardComponent";
 import Button from "../components/Button";
 import { CartContext, CartContetType } from '../CartContext';
+import { useLocation } from "react-router-dom";
 
 function DetailProductPage() {
 
     const { cart, setCart } = useContext<CartContetType>(CartContext);
+    const location = useLocation();
+    const product = location.state;
 
     const handleAddToCart = () => {
         const product = {
