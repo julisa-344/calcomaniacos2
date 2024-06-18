@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 
 import { Link } from 'react-router-dom';
 import { IconButton } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { CartContext } from '../CartContext';

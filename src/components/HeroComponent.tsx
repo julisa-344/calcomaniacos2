@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './style/Hero.scss';
 import ButtonComponent from './Button';
 import { useNavigate } from 'react-router-dom';
@@ -25,7 +25,7 @@ function HeroComponent() {
         }, 2500);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [backgroundImageList.length]);
 
     return (
         <div className="bg-color m-height m-width absolute bg">

@@ -1,4 +1,3 @@
-// CartContext.tsx
 import { createContext, Dispatch, SetStateAction } from 'react';
 
 type CartItemType = {
