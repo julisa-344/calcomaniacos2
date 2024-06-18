@@ -8,6 +8,7 @@ import GestureIcon from '@mui/icons-material/Gesture';
 import GradientIcon from '@mui/icons-material/Gradient';
 import html2canvas from 'html2canvas';
 import { CartContext, CartContetType } from '../CartContext';
+import { SketchPicker } from 'react-color';
 
 class AddBorder extends fabric.Image.filters.BaseFilter {
 	type = 'AddBorder';
@@ -121,16 +122,33 @@ function MakeCollection() {
 	const { cart, setCart } = useContext<CartContetType>(CartContext);
 	const canvasRef = useRef<fabric.Canvas | null>(null);
 	const [images, setImages] = useState<any[]>([]);
-	
-	const handleScrenshot = async () => {
+	const [colorPickerVisible, setColorPickerVisible] = useState(false);
+	const [borderColor, setBorderColor] = useState('#7A11F9');
+	const colorPickerRef = useRef<HTMLDivElement | null>(null);
+
+	const handleColorChange = (color: any) => {
+		setBorderColor(color.hex);
+		const activeObject = canvasRef.current?.getActiveObject() as fabric.Image;
+		if (activeObject) {
+			const borderFilter = activeObject.filters?.find(filter => filter instanceof AddBorder) as AddBorder;
+			if (borderFilter) {
+				borderFilter.borderColor = color.hex;
+				activeObject.applyFilters();
+				canvasRef.current?.renderAll();
+			}
+		}
+	};
+
+	const handleScreenshot = async () => {
 		const canvasElement = document.getElementById('canvas');
-			if (canvasElement) {
-				const screenshot = await html2canvas(canvasElement);
-				const screenshotUrl = screenshot.toDataURL();
-				console.log(screenshotUrl);
-			setCart([...cart, { name: 'Coleccion personalizada', price: ' S/. 12.9', img: screenshotUrl }]);
+		if (canvasElement) {
+			const screenshot = await html2canvas(canvasElement);
+			const screenshotUrl = screenshot.toDataURL();
+			console.log(screenshotUrl);
+			setCart([...cart, { name: 'Colección personalizada', price: 12, img: screenshotUrl }]);
 		}
 	}
+
 	useEffect(() => {
 		const fetchData = async () => {
 			const response = await fetch("data.json");
@@ -144,8 +162,16 @@ function MakeCollection() {
 		});
 		canvasRef.current = canvas;
 
+		const handleClickOutside = (event: MouseEvent) => {
+			if (colorPickerRef.current && !colorPickerRef.current.contains(event.target as Node)) {
+				setColorPickerVisible(false);
+			}
+		};
+		document.addEventListener('mousedown', handleClickOutside);
+
 		return () => {
 			canvas.dispose();
+			document.removeEventListener('mousedown', handleClickOutside);
 		};
 	}, []);
 
@@ -168,15 +194,14 @@ function MakeCollection() {
 
 				const borderFilter = new AddBorder({
 					borderSize: 20,
-					borderColor: '#7A11F9',
+					borderColor: borderColor,
 					textureWidth: img.width,
 					textureHeight: img.height
 				});
 
-				img.filters = [];
-				img.filters.push(borderFilter);
-
+				img.filters = [borderFilter];
 				img.applyFilters();
+
 				if (canvasRef.current) {
 					canvasRef.current.add(img);
 					canvasRef.current.setActiveObject(img);
@@ -197,9 +222,17 @@ function MakeCollection() {
 					<div className="content-canvas">
 						<div className="action-canvas">
 							<div className="color-picker-container">
-								<IconButton>
+								<IconButton onClick={() => setColorPickerVisible(!colorPickerVisible)}>
 									<ColorLensIcon />
+
 								</IconButton>
+								{colorPickerVisible && (
+									<div
+										ref={colorPickerRef}
+										style={{ position: 'absolute', zIndex: '2' }}>
+										<SketchPicker color={borderColor} onChangeComplete={handleColorChange} />
+									</div>
+								)}
 								<IconButton>
 									<GestureIcon />
 								</IconButton>
@@ -207,6 +240,7 @@ function MakeCollection() {
 									<GradientIcon />
 								</IconButton>
 							</div>
+
 						</div>
 						<canvas id="canvas" width="467" height="750" ></canvas>
 					</div>
@@ -223,7 +257,7 @@ function MakeCollection() {
 								/>
 							))}
 						</div>
-						<Button className="m-t" text="Agregar al carrito" onClick={handleScrenshot} variant='outlined' />
+						<Button className="m-t" text="Agregar al carrito" onClick={handleScreenshot} variant='outlined' />
 					</div>
 				</section>
 			</main>

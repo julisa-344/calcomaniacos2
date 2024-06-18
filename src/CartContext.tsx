@@ -2,7 +2,7 @@ import { createContext, Dispatch, SetStateAction } from 'react';
 
 type CartItemType = {
   name: string;
-  price: String;
+  price: number;
   img: string;
 };
 

@@ -153,7 +153,7 @@ function ShopPage() {
 									<Card
 										key={product.id}
 										name={product.name}
-										price={product.price.toString()}
+										price={product.price}
 										img={product.img}
 									/>
 								))}

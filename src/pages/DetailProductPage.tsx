@@ -31,16 +31,16 @@ function DetailProductPage() {
 					</div>
 					<div className="contend-info-products">
 						<h2 className="title">{product.name}</h2>
-						<p className='title'>{product.price}</p>
+						<p className='title'> S/. {product.price}</p>
 
 						<p className='text'>{product.description}</p>
 
 						<div>
 							<h3 className='sub-title'>Acabado</h3>
 							<div className='flex w-full'>
-								<Button className='mr-4' text='Matte' onClick={() => { }} variant='outlined'></Button>
+								<Button className='mr-4' text='Olografico' onClick={() => { }} variant='outlined'></Button>
 								<Button className="mr-4" text='Matte' onClick={() => { }} variant='outlined'></Button>
-								<Button className='mr-4' text='Matte' onClick={() => { }} variant='outlined'></Button>
+								<Button className='mr-4' text='Transparente' onClick={() => { }} variant='outlined'></Button>
 
 							</div>
 						</div>
@@ -48,9 +48,9 @@ function DetailProductPage() {
 							<h3 className='sub-title'>Tamano</h3>
 							<div className='flex w-full flex-wrap'>
 								<Button className='mr-4 m-b' text='Pequeno (3x4cm)' onClick={() => { }} variant='outlined'></Button>
-								<Button className="mr-4 m-b" text='Mediano (3x4cm)' onClick={() => { }} variant='outlined'></Button>
-								<Button className='mr-4 m-b' text='Grande (3x4cm)' onClick={() => { }} variant='outlined'></Button>
-								<Button className='mr-4 m-b' text='Extra Grande (3x4cm)' onClick={() => { }} variant='outlined'></Button>
+								<Button className="mr-4 m-b" text='Mediano (6x8cm)' onClick={() => { }} variant='outlined'></Button>
+								<Button className='mr-4 m-b' text='Grande (15x15cm)' onClick={() => { }} variant='outlined'></Button>
+								<Button className='mr-4 m-b' text='Extra Grande (20x20cm)' onClick={() => { }} variant='outlined'></Button>
 							</div>
 						</div>
 						<Button text="Agregar al carrito" onClick={handleAddToCart} className='m-t' />
@@ -60,9 +60,9 @@ function DetailProductPage() {
 				<h2 className='title m-4 text-center'>Productos que te pueden interesar</h2>
 
 				<section className='flex justify-around p-6'>
-					<Card name='Product' price='s/. 76' img="../assets/RM1.png" />
-					<Card name='Product' price='s/. 76' img="../assets/RM2.png" />
-					<Card name='Product' price='s/. 76' img="../assets/RM3.png" />
+					<Card name='Product' price={12} img="../assets/RM1.png" />
+					<Card name='Product' price={12} img="../assets/RM2.png" />
+					<Card name='Product' price={12} img="../assets/RM3.png" />
 				</section>
 
 			</main>
