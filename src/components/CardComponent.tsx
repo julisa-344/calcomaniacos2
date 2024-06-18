@@ -10,14 +10,14 @@ type CardProps = {
     description?: string;
 };
 
-function Card({ img, name, price, ...rest }: CardProps & { [key: string]: any }) {
+function Card({ img, name, price, description, ...rest }: CardProps & { [key: string]: any }) {
     let navigate = useNavigate();
 
     const handleNavigate = () => {
         navigate("/detail-product", 
-        { state: { img, name, price, ...rest } });
+        { state: { img, name, price, description, ...rest } });
       };
-  
+    console.log(rest);
     return (
         <div className="card" >
             <img className='img-product' src={img} alt="producto" />

@@ -20,7 +20,7 @@ interface Product {
 	price: number;
 	img: string;
 	category: string;
-	brand: string;
+	description: string;
 }
 
 function ShopPage() {
@@ -46,7 +46,6 @@ function ShopPage() {
 			const products = await data.json();
 			setProducts(products);
 		};
-		// The data.json file is located in the public folder
 		fetchData();
 	}, []);
 

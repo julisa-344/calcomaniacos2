@@ -181,9 +181,7 @@ function MakeCollection() {
 					canvas.renderAll();
 
 				}
-
 			}
-
 		};
 
 		document.addEventListener('mousedown', handleClickOutside);

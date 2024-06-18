@@ -19,7 +19,6 @@ function DetailProductPage() {
 		};
 
 		setCart([...cart, productToAdd]);
-
 		console.log(cart);
 	};
 	return (
