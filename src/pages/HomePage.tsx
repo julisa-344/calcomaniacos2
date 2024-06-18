@@ -5,7 +5,7 @@ function HomePage() {
         <>
             <main className="bg-color">
                     <HeroComponent />
-                    <section>
+                    {/* <section>
                         <div>
                             <div>
                                 <img src="" alt="" />
@@ -23,7 +23,7 @@ function HomePage() {
                         <div>
                             
                         </div>
-                    </section>
+                    </section> */}
             </main>
         </>
     );

@@ -150,6 +150,7 @@ function MakeCollection() {
 	}
 
 	useEffect(() => {
+
 		const fetchData = async () => {
 			const response = await fetch("data.json");
 			const data = await response.json();
@@ -160,6 +161,7 @@ function MakeCollection() {
 		const canvas = new fabric.Canvas('canvas', {
 			selection: true,
 		});
+
 		canvasRef.current = canvas;
 
 		const handleClickOutside = (event: MouseEvent) => {
@@ -175,11 +177,8 @@ function MakeCollection() {
 				const activeObject = canvas.getActiveObject();
 
 				if (activeObject) {
-
 					canvas.remove(activeObject);
-
 					canvas.renderAll();
-
 				}
 			}
 		};
@@ -242,7 +241,6 @@ function MakeCollection() {
 							<div className="color-picker-container">
 								<IconButton onClick={() => setColorPickerVisible(!colorPickerVisible)}>
 									<ColorLensIcon />
-
 								</IconButton>
 								{colorPickerVisible && (
 									<div

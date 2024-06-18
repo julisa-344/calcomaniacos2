@@ -22,7 +22,6 @@ interface Product {
 	category: string;
 	description: string;
 }
-
 function ShopPage() {
 	const [products, setProducts] = useState<Product[]>([]);
 	const [searchTerm, setSearchTerm] = useState("");
@@ -76,13 +75,7 @@ function ShopPage() {
 
 	return (
 		<>
-			<main className="bg-color">
-				<section>
-					<h2>
-						Descubre los mejores stickers para tu laptop, celular, tablet y más.
-					</h2>
-					<img src="" alt="" />
-				</section>
+			<main className="bg-color main">
 				<section className="p-4">
 					<section className="gallery-content">
 						<aside>
@@ -95,6 +88,7 @@ function ShopPage() {
 										<Checkbox
 											checked={selectedCategories.includes(category)}
 											color="default"
+											style={{ color: 'white' }} // Set the color to white
 											onChange={(e) =>
 												handleCategoryChange(category, e.target.checked)
 											} />
@@ -106,27 +100,15 @@ function ShopPage() {
 						</aside>
 						<section className="contet-products">
 							<div className="flex justify-between align-center mb-4">
-								<Box sx={{ width: '100%', maxWidth: '100%', }} >
-									<FormControl variant="outlined">
-										<OutlinedInput
-											style={{ color: 'white' }}
-											color="primary"
-											id="outlined-search"
-											label="Buscar"
-											value={searchTerm}
-											onChange={(e) => setSearchTerm(e.target.value)}
-											endAdornment={
-												<InputAdornment position="end">
-													<IconButton
-														style={{ color: 'white' }}
-														edge="end"
-													>
-														<SearchIcon />
-													</IconButton>
-												</InputAdornment>
-											}
-										/>
-									</FormControl>
+										<div className="input-search">
+											<input
+												className="input-transparent"
+												type="text"
+												value={searchTerm}
+												onChange={(e) => setSearchTerm(e.target.value)}
+											/>
+											<SearchIcon  style={{ color: 'white' }}  />
+										</div>
 									<FormControl sx={{ m: 1, minWidth: 120 }} size="small" variant="outlined">
 										<InputLabel id="demo-select-small-label">Ordenar por:</InputLabel>
 										<Select
@@ -145,7 +127,6 @@ function ShopPage() {
 											<MenuItem value={30}>Mayor precio</MenuItem>
 										</Select>
 									</FormControl>
-								</Box>
 							</div>
 							<div className="content-card">
 								{filteredProducts.map((product: Product) => (
@@ -154,6 +135,7 @@ function ShopPage() {
 										name={product.name}
 										price={product.price}
 										img={product.img}
+										description={product.description}
 									/>
 								))}
 							</div>

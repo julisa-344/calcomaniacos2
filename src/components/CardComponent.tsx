@@ -17,7 +17,7 @@ function Card({ img, name, price, description, ...rest }: CardProps & { [key: st
         navigate("/detail-product", 
         { state: { img, name, price, description, ...rest } });
       };
-    console.log(rest);
+    console.log(img);
     return (
         <div className="card" >
             <img className='img-product' src={img} alt="producto" />
