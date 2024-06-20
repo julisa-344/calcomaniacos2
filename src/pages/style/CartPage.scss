@@ -1,0 +1,31 @@
+@import '../../theme.scss';
+
+.item-product{
+    width: 100%;
+    height: 146px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    color: $color-white;
+    padding: 22px;
+    .img-cart{
+        height: 100%;
+    }
+    .content-btn{
+        width: 100px;
+    }
+    .btn-small{
+        width: 35px;
+        height: 35px;
+        border-radius: 8px;
+        border: 1px solid $color-white;
+        background-color: $color-primary-800;
+        color: $color-white;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

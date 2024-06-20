@@ -5,22 +5,23 @@ import { useNavigate } from "react-router-dom";
 
 type CardProps = {
     img: string;
-    title: string;
-    price: string;
+    name: string;
+    price: number;
+    description?: string;
 };
 
-function Card({ img, title, price }: CardProps) {
+function Card({ img, name, price, description,}: CardProps & { [key: string]: any }) {
     let navigate = useNavigate();
 
     const handleNavigate = () => {
-        navigate("/detail-product");
+        navigate("/detail-product", 
+        { state: { img, name, price, description} });
       };
-  
     return (
         <div className="card" >
             <img className='img-product' src={img} alt="producto" />
-            <h3 className='sub-title'>{title}</h3>
-            <p className='text'>{price}</p>
+            <h3 className='sub-title'>{name}</h3>
+            <p className='text'>S/. {price}</p>
             <Button onClick={handleNavigate} text="Comprar" variant='outlined' />
         </div>
     );

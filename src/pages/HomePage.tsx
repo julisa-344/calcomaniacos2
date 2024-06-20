@@ -1,4 +1,3 @@
-import MakeCollection from "../components/MakeCollectionComponent";
 import HeroComponent from "../components/HeroComponent";
 
 function HomePage() {
@@ -6,7 +5,6 @@ function HomePage() {
         <>
             <main className="bg-color">
                     <HeroComponent />
-                    <MakeCollection />
             </main>
         </>
     );

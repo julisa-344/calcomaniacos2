@@ -1,27 +1,44 @@
 @import '../../theme.scss';
 
 .header {
-    display: flex;
-    padding: 0 32px;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    background: rgb(118,17,250);
-    z-index: 100;
-    color: $color-white;
+	box-sizing: border-box;
+	display: flex;
+	padding: 0 32px;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 70px;
+	background: rgb(118, 17, 250);
+	z-index: 100;
+	color: $color-white;
+
+	.link-header {
+		font-size: 16px;
+		color: $color-white;
+		text-decoration: none;
+		padding-right: 1rem;
+	}
 }
 
-.header-nav {
-    margin-right: 1rem
-}
-
-.header-nav .link-title  {
-    font-size: 16px;
-    color: #fff;
-    text-decoration: none;
-    padding-right: 1rem;
+.cart {
+	position: relative;
+	width: 60px;
+height: 80px;
+	.count {
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 25px;
+		height: 25px;
+		top: 0;
+		right: 0;
+		border-radius: 50%;
+		background-color: $color-primary-800;
+		color: $color-white;
+		font-size: 16px;
+	}
 }

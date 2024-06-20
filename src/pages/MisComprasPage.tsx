@@ -21,6 +21,12 @@ const rows = [
     createData('#838484', 'October 17', 'S/. 23'),
     createData('#838484', 'October 17', 'S/. 23'),
     createData('#838484', 'October 17', 'S/. 23'),
+    createData('#838484', 'October 17', 'S/. 23'),
+    createData('#838484', 'October 17', 'S/. 23'),
+    createData('#838484', 'October 17', 'S/. 23'),
+    createData('#838484', 'October 17', 'S/. 23'),
+    createData('#838484', 'October 17', 'S/. 23'),
+    createData('#838484', 'October 17', 'S/. 23'),
 ];
 
 function MisCompras() {
