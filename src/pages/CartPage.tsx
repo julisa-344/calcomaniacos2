@@ -1,6 +1,6 @@
 import './style/CartPage.scss';
 import './../theme.scss';
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import Card from '../components/CardComponent';
 import { TextField } from "@mui/material";
 import Box from '@mui/material/Box';

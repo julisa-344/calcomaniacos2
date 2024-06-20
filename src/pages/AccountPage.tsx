@@ -49,12 +49,10 @@ function AccountPage() {
                 if (email !== user.email) {
                     await updateEmail(user, email);
                 }
-
                 // Update password
                 if (newPassword && newPassword === repeatPassword) {
                     await updatePassword(user, newPassword);
                 }
-
                 // Update other user data in Firestore
                 await updateDoc(doc(firestore, 'users', user.uid), {
                     name,

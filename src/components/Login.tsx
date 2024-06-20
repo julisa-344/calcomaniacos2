@@ -44,7 +44,7 @@ const Login = () => {
   };
 
   return (
-    <Container maxWidth="xs" className="login-container">
+    <Container  className="login-container">
       <Box className="login-box" boxShadow={3} p={3} mt={5}>
         <Typography variant="h5" gutterBottom>
           {isRegistering ? 'Register' : 'Login'}

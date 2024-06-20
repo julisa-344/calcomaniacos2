@@ -20,8 +20,8 @@ function AsideAccount() {
 
     return (
         <aside className="aside-account bg-color">
-            <div className="mb-4">
-                <img src={user?.photoURL || 'path/to/default/image.jpg'} alt="User" />
+            <div className="mb-4 flex justify-center direccion-column">
+                <img className='account-img' src={user?.photoURL || 'path/to/default/image.jpg'} alt="User" />
                 <h4 className='text-center'>{user ? user.displayName : 'Usuario'}</h4>
             </div>
             <Link className='sub-title-sideaccount' to='/account'>Cuenta</Link>
