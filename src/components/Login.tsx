@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Button, TextField, Typography, Container, Box, Grid, IconButton } from '@mui/material';
+import { Button, TextField, Typography, Container, Box, Grid } from '@mui/material';
 import { Google as GoogleIcon } from '@mui/icons-material';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import './style/Login.scss';
 import { auth } from '../firebase-config';

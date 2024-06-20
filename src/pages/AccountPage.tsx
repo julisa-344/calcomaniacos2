@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, OutlinedInput, FormControl, InputLabel, InputAdornment, IconButton, Box } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { getAuth, updateEmail, updatePassword } from 'firebase/auth';
+import { updateEmail, updatePassword } from 'firebase/auth';
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useAuth } from '../AuthContext';
 import Button from "../components/Button";
@@ -11,7 +11,6 @@ import AsideAccount from "../components/AsideAccountComponent";
 
 function AccountPage() {
     const { user } = useAuth();
-    const auth = getAuth();
     const firestore = getFirestore();
     const [showPassword, setShowPassword] = useState(false);
     const [name, setName] = useState('');
