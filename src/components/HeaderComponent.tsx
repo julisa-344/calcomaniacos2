@@ -37,6 +37,8 @@ function Header() {
         <Link to='/' className='link-header'>Home</Link>
         <Link to='/shop' className='link-header'>Shop</Link>
         <Link to='/make-collection' className='link-header'>Crea tu coleccion</Link>
+        <Link to='/create-sticker' className='link-header'>Crea tu sticker</Link>
+
       </div>
       <nav className="header-nav">
         <Link to='/cart' aria-label='Cart'>

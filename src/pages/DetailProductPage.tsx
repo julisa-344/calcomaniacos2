@@ -37,7 +37,7 @@ function DetailProductPage() {
 						<div>
 							<h3 className='sub-title'>Acabado</h3>
 							<div className='flex w-full'>
-								<Button className='mr-4' text='Olografico' onClick={() => { }} variant='outlined'></Button>
+								<Button className='mr-4' text='Holografico' onClick={() => { }} variant='outlined'></Button>
 								<Button className="mr-4" text='Matte' onClick={() => { }} variant='outlined'></Button>
 								<Button className='mr-4' text='Transparente' onClick={() => { }} variant='outlined'></Button>
 

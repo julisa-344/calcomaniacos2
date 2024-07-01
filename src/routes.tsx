@@ -7,6 +7,7 @@ import MisCompras from './pages/MisComprasPage';
 import MakeCollection from './pages/MakeCollectionPage';
 import CartPage from './pages/CartPage';
 import Login from './components/Login';
+import CreateStickerPage from './pages/CreateStickerPage';
 
 export default function Routes() {
   return useRoutes([
@@ -17,6 +18,7 @@ export default function Routes() {
     { path: '/detail-product', element: <DetailProductPage />},
     { path: '/account', element: <AccountPage />},
     { path: '/miscompras', element: <MisCompras />},
-    { path: '/cart', element: <CartPage />}
+    { path: '/cart', element: <CartPage />},
+    { path : '/create-sticker', element: <CreateStickerPage />}
   ]);
 }
