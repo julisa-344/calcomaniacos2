@@ -1,4 +1,20 @@
-[
+[   {
+    "id": "RM3",
+    "name": "Rick and Morty #3",
+    "tags": [
+        "Rick and Morty",
+        "RM3"
+    ],
+    "category": "Rick and Morty",
+    "img": "../assets/RM3.png",
+    "price": 10.0,
+    "description": "\u00danete a las aventuras interdimensionales con este divertido sticker de Rick and Morty. Ideal para los fan\u00e1ticos de la serie que desean llevar la diversi\u00f3n a todas partes.",
+    "acabado": {
+        "glossy": "../assets/RM1_glossy.webp",
+        "matte": "../assets/RM1_matte.webp",
+        "transparent": "../assets/RM1_transparent.webp"
+    }
+},
     {
         "id": "AM1",
         "name": "Articks Monkey #1",
@@ -9,7 +25,12 @@
         "category": "Articks Monkey",
         "img": "../assets/AM1.png",
         "price": 10.0,
-        "description": "Descubre el mundo caprichoso de Articks Monkey con este exclusivo sticker. Perfecto para decorar tus pertenencias con un toque \u00fanico y divertido."
+        "description": "Descubre el mundo caprichoso de Articks Monkey con este exclusivo sticker. Perfecto para decorar tus pertenencias con un toque \u00fanico y divertido.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "AM2",
@@ -21,7 +42,12 @@
         "category": "Articks Monkey",
         "img": "../assets/AM2.png",
         "price": 10.0,
-        "description": "Descubre el mundo caprichoso de Articks Monkey con este exclusivo sticker. Perfecto para decorar tus pertenencias con un toque \u00fanico y divertido."
+        "description": "Descubre el mundo caprichoso de Articks Monkey con este exclusivo sticker. Perfecto para decorar tus pertenencias con un toque \u00fanico y divertido.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "AM3",
@@ -33,7 +59,12 @@
         "category": "Articks Monkey",
         "img": "../assets/AM3.png",
         "price": 10.0,
-        "description": "Descubre el mundo caprichoso de Articks Monkey con este exclusivo sticker. Perfecto para decorar tus pertenencias con un toque \u00fanico y divertido."
+        "description": "Descubre el mundo caprichoso de Articks Monkey con este exclusivo sticker. Perfecto para decorar tus pertenencias con un toque \u00fanico y divertido.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "AM4",
@@ -45,7 +76,12 @@
         "category": "Articks Monkey",
         "img": "../assets/AM4.png",
         "price": 10.0,
-        "description": "Descubre el mundo caprichoso de Articks Monkey con este exclusivo sticker. Perfecto para decorar tus pertenencias con un toque \u00fanico y divertido."
+        "description": "Descubre el mundo caprichoso de Articks Monkey con este exclusivo sticker. Perfecto para decorar tus pertenencias con un toque \u00fanico y divertido.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "AM5",
@@ -57,7 +93,12 @@
         "category": "Articks Monkey",
         "img": "../assets/AM5.png",
         "price": 10.0,
-        "description": "Descubre el mundo caprichoso de Articks Monkey con este exclusivo sticker. Perfecto para decorar tus pertenencias con un toque \u00fanico y divertido."
+        "description": "Descubre el mundo caprichoso de Articks Monkey con este exclusivo sticker. Perfecto para decorar tus pertenencias con un toque \u00fanico y divertido.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "BB1",
@@ -69,7 +110,12 @@
         "category": "Bad Bunny",
         "img": "../assets/BB1.png",
         "price": 10.0,
-        "description": "Lleva tu ritmo a otro nivel con este elegante sticker de Bad Bunny. Ideal para todos los fan\u00e1ticos que desean agregar un toque de estilo a su colecci\u00f3n."
+        "description": "Lleva tu ritmo a otro nivel con este elegante sticker de Bad Bunny. Ideal para todos los fan\u00e1ticos que desean agregar un toque de estilo a su colecci\u00f3n.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "BB2",
@@ -81,7 +127,12 @@
         "category": "Bad Bunny",
         "img": "../assets/BB2.png",
         "price": 10.0,
-        "description": "Lleva tu ritmo a otro nivel con este elegante sticker de Bad Bunny. Ideal para todos los fan\u00e1ticos que desean agregar un toque de estilo a su colecci\u00f3n."
+        "description": "Lleva tu ritmo a otro nivel con este elegante sticker de Bad Bunny. Ideal para todos los fan\u00e1ticos que desean agregar un toque de estilo a su colecci\u00f3n.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "BB3",
@@ -93,7 +144,12 @@
         "category": "Bad Bunny",
         "img": "../assets/BB3.png",
         "price": 10.0,
-        "description": "Lleva tu ritmo a otro nivel con este elegante sticker de Bad Bunny. Ideal para todos los fan\u00e1ticos que desean agregar un toque de estilo a su colecci\u00f3n."
+        "description": "Lleva tu ritmo a otro nivel con este elegante sticker de Bad Bunny. Ideal para todos los fan\u00e1ticos que desean agregar un toque de estilo a su colecci\u00f3n.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "BB4",
@@ -105,7 +161,12 @@
         "category": "Bad Bunny",
         "img": "../assets/BB4.png",
         "price": 10.0,
-        "description": "Lleva tu ritmo a otro nivel con este elegante sticker de Bad Bunny. Ideal para todos los fan\u00e1ticos que desean agregar un toque de estilo a su colecci\u00f3n."
+        "description": "Lleva tu ritmo a otro nivel con este elegante sticker de Bad Bunny. Ideal para todos los fan\u00e1ticos que desean agregar un toque de estilo a su colecci\u00f3n.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "BB5",
@@ -117,7 +178,12 @@
         "category": "Bad Bunny",
         "img": "../assets/BB5.png",
         "price": 10.0,
-        "description": "Lleva tu ritmo a otro nivel con este elegante sticker de Bad Bunny. Ideal para todos los fan\u00e1ticos que desean agregar un toque de estilo a su colecci\u00f3n."
+        "description": "Lleva tu ritmo a otro nivel con este elegante sticker de Bad Bunny. Ideal para todos los fan\u00e1ticos que desean agregar un toque de estilo a su colecci\u00f3n.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "CSM1",
@@ -129,7 +195,12 @@
         "category": "Chainsaw Man",
         "img": "../assets/CSM1.png",
         "price": 10.0,
-        "description": "Sum\u00e9rgete en el emocionante mundo de Chainsaw Man con este din\u00e1mico sticker. Perfecto para los amantes del anime que buscan expresar su pasi\u00f3n."
+        "description": "Sum\u00e9rgete en el emocionante mundo de Chainsaw Man con este din\u00e1mico sticker. Perfecto para los amantes del anime que buscan expresar su pasi\u00f3n.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "CSM2",
@@ -141,7 +212,12 @@
         "category": "Chainsaw Man",
         "img": "../assets/CSM2.png",
         "price": 10.0,
-        "description": "Sum\u00e9rgete en el emocionante mundo de Chainsaw Man con este din\u00e1mico sticker. Perfecto para los amantes del anime que buscan expresar su pasi\u00f3n."
+        "description": "Sum\u00e9rgete en el emocionante mundo de Chainsaw Man con este din\u00e1mico sticker. Perfecto para los amantes del anime que buscan expresar su pasi\u00f3n.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "CSM3",
@@ -153,7 +229,12 @@
         "category": "Chainsaw Man",
         "img": "../assets/CSM3.png",
         "price": 10.0,
-        "description": "Sum\u00e9rgete en el emocionante mundo de Chainsaw Man con este din\u00e1mico sticker. Perfecto para los amantes del anime que buscan expresar su pasi\u00f3n."
+        "description": "Sum\u00e9rgete en el emocionante mundo de Chainsaw Man con este din\u00e1mico sticker. Perfecto para los amantes del anime que buscan expresar su pasi\u00f3n.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "CSM4",
@@ -165,7 +246,12 @@
         "category": "Chainsaw Man",
         "img": "../assets/CSM4.png",
         "price": 10.0,
-        "description": "Sum\u00e9rgete en el emocionante mundo de Chainsaw Man con este din\u00e1mico sticker. Perfecto para los amantes del anime que buscan expresar su pasi\u00f3n."
+        "description": "Sum\u00e9rgete en el emocionante mundo de Chainsaw Man con este din\u00e1mico sticker. Perfecto para los amantes del anime que buscan expresar su pasi\u00f3n.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "CSM5",
@@ -177,7 +263,12 @@
         "category": "Chainsaw Man",
         "img": "../assets/CSM5.png",
         "price": 10.0,
-        "description": "Sum\u00e9rgete en el emocionante mundo de Chainsaw Man con este din\u00e1mico sticker. Perfecto para los amantes del anime que buscan expresar su pasi\u00f3n."
+        "description": "Sum\u00e9rgete en el emocionante mundo de Chainsaw Man con este din\u00e1mico sticker. Perfecto para los amantes del anime que buscan expresar su pasi\u00f3n.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "MESSI1",
@@ -189,7 +280,12 @@
         "category": "Lionel Messi",
         "img": "../assets/MESSI1.png",
         "price": 10.0,
-        "description": "Celebra la grandeza de Lionel Messi con este coleccionable sticker. Ideal para los aficionados al f\u00fatbol que desean rendir homenaje a su \u00eddolo."
+        "description": "Celebra la grandeza de Lionel Messi con este coleccionable sticker. Ideal para los aficionados al f\u00fatbol que desean rendir homenaje a su \u00eddolo.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "MESSI2",
@@ -201,7 +297,12 @@
         "category": "Lionel Messi",
         "img": "../assets/MESSI2.png",
         "price": 10.0,
-        "description": "Celebra la grandeza de Lionel Messi con este coleccionable sticker. Ideal para los aficionados al f\u00fatbol que desean rendir homenaje a su \u00eddolo."
+        "description": "Celebra la grandeza de Lionel Messi con este coleccionable sticker. Ideal para los aficionados al f\u00fatbol que desean rendir homenaje a su \u00eddolo.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "MESSI5",
@@ -213,7 +314,12 @@
         "category": "Lionel Messi",
         "img": "../assets/MESSI5.png",
         "price": 10.0,
-        "description": "Celebra la grandeza de Lionel Messi con este coleccionable sticker. Ideal para los aficionados al f\u00fatbol que desean rendir homenaje a su \u00eddolo."
+        "description": "Celebra la grandeza de Lionel Messi con este coleccionable sticker. Ideal para los aficionados al f\u00fatbol que desean rendir homenaje a su \u00eddolo.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "MM4",
@@ -225,7 +331,12 @@
         "category": "Memes",
         "img": "../assets/MM4.png",
         "price": 10.0,
-        "description": "A\u00f1ade un toque de humor a tu d\u00eda con este divertido sticker de memes. Perfecto para quienes disfrutan compartir risas y buenos momentos."
+        "description": "A\u00f1ade un toque de humor a tu d\u00eda con este divertido sticker de memes. Perfecto para quienes disfrutan compartir risas y buenos momentos.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "RM1",
@@ -237,7 +348,12 @@
         "category": "Rick and Morty",
         "img": "../assets/RM1.png",
         "price": 10.0,
-        "description": "\u00danete a las aventuras interdimensionales con este divertido sticker de Rick and Morty. Ideal para los fan\u00e1ticos de la serie que desean llevar la diversi\u00f3n a todas partes."
+        "description": "\u00danete a las aventuras interdimensionales con este divertido sticker de Rick and Morty. Ideal para los fan\u00e1ticos de la serie que desean llevar la diversi\u00f3n a todas partes.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "RM2",
@@ -249,20 +365,14 @@
         "category": "Rick and Morty",
         "img": "../assets/RM2.png",
         "price": 10.0,
-        "description": "\u00danete a las aventuras interdimensionales con este divertido sticker de Rick and Morty. Ideal para los fan\u00e1ticos de la serie que desean llevar la diversi\u00f3n a todas partes."
+        "description": "\u00danete a las aventuras interdimensionales con este divertido sticker de Rick and Morty. Ideal para los fan\u00e1ticos de la serie que desean llevar la diversi\u00f3n a todas partes.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
-    {
-        "id": "RM3",
-        "name": "Rick and Morty #3",
-        "tags": [
-            "Rick and Morty",
-            "RM3"
-        ],
-        "category": "Rick and Morty",
-        "img": "../assets/RM3.png",
-        "price": 10.0,
-        "description": "\u00danete a las aventuras interdimensionales con este divertido sticker de Rick and Morty. Ideal para los fan\u00e1ticos de la serie que desean llevar la diversi\u00f3n a todas partes."
-    },
+
     {
         "id": "RM4",
         "name": "Rick and Morty #4",
@@ -273,7 +383,12 @@
         "category": "Rick and Morty",
         "img": "../assets/RM4.png",
         "price": 10.0,
-        "description": "\u00danete a las aventuras interdimensionales con este divertido sticker de Rick and Morty. Ideal para los fan\u00e1ticos de la serie que desean llevar la diversi\u00f3n a todas partes."
+        "description": "\u00danete a las aventuras interdimensionales con este divertido sticker de Rick and Morty. Ideal para los fan\u00e1ticos de la serie que desean llevar la diversi\u00f3n a todas partes.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "RM5",
@@ -285,7 +400,12 @@
         "category": "Rick and Morty",
         "img": "../assets/RM5.png",
         "price": 10.0,
-        "description": "\u00danete a las aventuras interdimensionales con este divertido sticker de Rick and Morty. Ideal para los fan\u00e1ticos de la serie que desean llevar la diversi\u00f3n a todas partes."
+        "description": "\u00danete a las aventuras interdimensionales con este divertido sticker de Rick and Morty. Ideal para los fan\u00e1ticos de la serie que desean llevar la diversi\u00f3n a todas partes.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "MM1",
@@ -297,7 +417,12 @@
         "category": "Memes",
         "img": "../assets/MM1.png",
         "price": 10.0,
-        "description": "A\u00f1ade un toque de humor a tu d\u00eda con este divertido sticker de memes. Perfecto para quienes disfrutan compartir risas y buenos momentos."
+        "description": "A\u00f1ade un toque de humor a tu d\u00eda con este divertido sticker de memes. Perfecto para quienes disfrutan compartir risas y buenos momentos.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "MM2",
@@ -309,7 +434,12 @@
         "category": "Memes",
         "img": "../assets/MM2.png",
         "price": 10.0,
-        "description": "A\u00f1ade un toque de humor a tu d\u00eda con este divertido sticker de memes. Perfecto para quienes disfrutan compartir risas y buenos momentos."
+        "description": "A\u00f1ade un toque de humor a tu d\u00eda con este divertido sticker de memes. Perfecto para quienes disfrutan compartir risas y buenos momentos.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "MM3",
@@ -321,7 +451,12 @@
         "category": "Memes",
         "img": "../assets/MM3.png",
         "price": 10.0,
-        "description": "A\u00f1ade un toque de humor a tu d\u00eda con este divertido sticker de memes. Perfecto para quienes disfrutan compartir risas y buenos momentos."
+        "description": "A\u00f1ade un toque de humor a tu d\u00eda con este divertido sticker de memes. Perfecto para quienes disfrutan compartir risas y buenos momentos.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "MM5",
@@ -333,7 +468,12 @@
         "category": "Memes",
         "img": "../assets/MM5.png",
         "price": 10.0,
-        "description": "A\u00f1ade un toque de humor a tu d\u00eda con este divertido sticker de memes. Perfecto para quienes disfrutan compartir risas y buenos momentos."
+        "description": "A\u00f1ade un toque de humor a tu d\u00eda con este divertido sticker de memes. Perfecto para quienes disfrutan compartir risas y buenos momentos.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "MESSI3",
@@ -345,7 +485,12 @@
         "category": "Lionel Messi",
         "img": "../assets/MESSI3.png",
         "price": 10.0,
-        "description": "Celebra la grandeza de Lionel Messi con este coleccionable sticker. Ideal para los aficionados al f\u00fatbol que desean rendir homenaje a su \u00eddolo."
+        "description": "Celebra la grandeza de Lionel Messi con este coleccionable sticker. Ideal para los aficionados al f\u00fatbol que desean rendir homenaje a su \u00eddolo.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     },
     {
         "id": "MESSI4",
@@ -357,6 +502,11 @@
         "category": "Lionel Messi",
         "img": "../assets/MESSI4.png",
         "price": 10.0,
-        "description": "Celebra la grandeza de Lionel Messi con este coleccionable sticker. Ideal para los aficionados al f\u00fatbol que desean rendir homenaje a su \u00eddolo."
+        "description": "Celebra la grandeza de Lionel Messi con este coleccionable sticker. Ideal para los aficionados al f\u00fatbol que desean rendir homenaje a su \u00eddolo.",
+        "acabado": {
+            "glossy": "../assets/AM1_glossy.png",
+            "matte": "../assets/AM1_matte.png",
+            "transparent": "../assets/AM1_transparent.png"
+        }
     }
 ]

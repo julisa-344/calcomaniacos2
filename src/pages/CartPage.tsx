@@ -32,7 +32,7 @@ function CartPage() {
 				{cart.map((product, index) => (
 					<div className='item-product' key={index}>
 						<img src={product.img} alt={product.name} className='img-cart' />
-						<p>{product.name}</p>
+						<p>{`${product.name} ${product.acabado}`}</p>
 						<p> S/. {product.price * (counts[index] || 1)}</p>
 						<div className='flex justify-between align-center content-btn'>
 							<button onClick={() => decrement(index)} className='btn-small'>-</button>

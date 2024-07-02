@@ -17,10 +17,15 @@ interface Product {
 	img: string;
 	category: string;
 	description: string;
+	acabado	: {
+		glossy: string;
+		matte: string;
+		transparent: string;
+	};
 }
 
 function ShopPage() {
-	const [products, setProducts] = useState<Product[]>([]);
+	const [products, setProducts] = useState<Product[]>([]);	
 	const [searchTerm, setSearchTerm] = useState("");
 	const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
@@ -44,6 +49,9 @@ function ShopPage() {
 		};
 		fetchData();
 	}, []);
+
+	console.log("products", products);
+
 
 	const filteredProducts = products.filter(
 		(product) =>
@@ -139,8 +147,10 @@ function ShopPage() {
 										price={product.price}
 										img={product.img}
 										description={product.description}
+										acabado={product.acabado}
 									/>
 								))}
+								
 							</div>
 						</section>
 					</section>
