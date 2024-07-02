@@ -1,5 +1,4 @@
 [   {
-    "id": "RM3",
     "name": "Rick and Morty #3",
     "tags": [
         "Rick and Morty",
@@ -16,7 +15,7 @@
     }
 },
     {
-        "id": "AM1",
+         
         "name": "Articks Monkey #1",
         "tags": [
             "Articks Monkey",
@@ -33,7 +32,6 @@
         }
     },
     {
-        "id": "AM2",
         "name": "Articks Monkey #2",
         "tags": [
             "Articks Monkey",
@@ -50,7 +48,6 @@
         }
     },
     {
-        "id": "AM3",
         "name": "Articks Monkey #3",
         "tags": [
             "Articks Monkey",
@@ -67,7 +64,6 @@
         }
     },
     {
-        "id": "AM4",
         "name": "Articks Monkey #4",
         "tags": [
             "Articks Monkey",
@@ -84,7 +80,6 @@
         }
     },
     {
-        "id": "AM5",
         "name": "Articks Monkey #5",
         "tags": [
             "Articks Monkey",
@@ -101,7 +96,6 @@
         }
     },
     {
-        "id": "BB1",
         "name": "Bad Bunny #1",
         "tags": [
             "Bad Bunny",
@@ -118,7 +112,6 @@
         }
     },
     {
-        "id": "BB2",
         "name": "Bad Bunny #2",
         "tags": [
             "Bad Bunny",
@@ -135,7 +128,6 @@
         }
     },
     {
-        "id": "BB3",
         "name": "Bad Bunny #3",
         "tags": [
             "Bad Bunny",
@@ -152,7 +144,6 @@
         }
     },
     {
-        "id": "BB4",
         "name": "Bad Bunny #4",
         "tags": [
             "Bad Bunny",
@@ -169,7 +160,6 @@
         }
     },
     {
-        "id": "BB5",
         "name": "Bad Bunny #5",
         "tags": [
             "Bad Bunny",
@@ -186,7 +176,6 @@
         }
     },
     {
-        "id": "CSM1",
         "name": "Chainsaw Man #1",
         "tags": [
             "Chainsaw Man",
@@ -203,7 +192,6 @@
         }
     },
     {
-        "id": "CSM2",
         "name": "Chainsaw Man #2",
         "tags": [
             "Chainsaw Man",
@@ -220,7 +208,6 @@
         }
     },
     {
-        "id": "CSM3",
         "name": "Chainsaw Man #3",
         "tags": [
             "Chainsaw Man",
@@ -237,7 +224,6 @@
         }
     },
     {
-        "id": "CSM4",
         "name": "Chainsaw Man #4",
         "tags": [
             "Chainsaw Man",
@@ -254,7 +240,6 @@
         }
     },
     {
-        "id": "CSM5",
         "name": "Chainsaw Man #5",
         "tags": [
             "Chainsaw Man",
@@ -271,7 +256,6 @@
         }
     },
     {
-        "id": "MESSI1",
         "name": "Lionel Messi #1",
         "tags": [
             "Lionel Messi",
@@ -288,7 +272,6 @@
         }
     },
     {
-        "id": "MESSI2",
         "name": "Lionel Messi #2",
         "tags": [
             "Lionel Messi",
@@ -305,7 +288,6 @@
         }
     },
     {
-        "id": "MESSI5",
         "name": "Lionel Messi #5",
         "tags": [
             "Lionel Messi",
@@ -322,7 +304,6 @@
         }
     },
     {
-        "id": "MM4",
         "name": "Memes #4",
         "tags": [
             "Memes",
@@ -339,7 +320,6 @@
         }
     },
     {
-        "id": "RM1",
         "name": "Rick and Morty #1",
         "tags": [
             "Rick and Morty",
@@ -356,7 +336,6 @@
         }
     },
     {
-        "id": "RM2",
         "name": "Rick and Morty #2",
         "tags": [
             "Rick and Morty",
@@ -374,7 +353,6 @@
     },
 
     {
-        "id": "RM4",
         "name": "Rick and Morty #4",
         "tags": [
             "Rick and Morty",
@@ -391,7 +369,6 @@
         }
     },
     {
-        "id": "RM5",
         "name": "Rick and Morty #5",
         "tags": [
             "Rick and Morty",
@@ -408,7 +385,6 @@
         }
     },
     {
-        "id": "MM1",
         "name": "Memes #1",
         "tags": [
             "Memes",
@@ -425,7 +401,6 @@
         }
     },
     {
-        "id": "MM2",
         "name": "Memes #2",
         "tags": [
             "Memes",
@@ -442,7 +417,6 @@
         }
     },
     {
-        "id": "MM3",
         "name": "Memes #3",
         "tags": [
             "Memes",
@@ -459,7 +433,6 @@
         }
     },
     {
-        "id": "MM5",
         "name": "Memes #5",
         "tags": [
             "Memes",
@@ -476,7 +449,6 @@
         }
     },
     {
-        "id": "MESSI3",
         "name": "Lionel Messi #3",
         "tags": [
             "Lionel Messi",
@@ -493,7 +465,6 @@
         }
     },
     {
-        "id": "MESSI4",
         "name": "Lionel Messi #4",
         "tags": [
             "Lionel Messi",

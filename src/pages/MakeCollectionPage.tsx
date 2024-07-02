@@ -1,5 +1,5 @@
 import './../theme.scss';
-import { useState, useRef } from "react";
+import { useState } from "react";
 import "./style/MakeCollection.scss";
 import Canvas from "../components/Canvas";
 import ImageCatalog from "../components/ImgCatalog";

@@ -8,6 +8,7 @@ import MakeCollection from './pages/MakeCollectionPage';
 import CartPage from './pages/CartPage';
 import Login from './components/Login';
 import CreateStickerPage from './pages/CreateStickerPage';
+import WishListPage from './pages/wishListPage';
 
 export default function Routes() {
   return useRoutes([
@@ -19,6 +20,7 @@ export default function Routes() {
     { path: '/account', element: <AccountPage />},
     { path: '/miscompras', element: <MisCompras />},
     { path: '/cart', element: <CartPage />},
-    { path : '/create-sticker', element: <CreateStickerPage />}
+    { path : '/create-sticker', element: <CreateStickerPage />},
+    { path: 'lista-deseos', element: <WishListPage />}
   ]);
 }

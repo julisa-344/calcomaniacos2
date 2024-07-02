@@ -29,6 +29,7 @@ const Canvas: React.FC<CanvasProps> = ({
   const selectedImageRef = useRef<fabric.Image | null>(null);
   const imageMapRef = useRef<Map<fabric.Image, { silhouette: fabric.Image, color: string, gradientColor1: string, gradientColor2: string, useGradient: boolean }>>(new Map());
 
+  console.log(loadedImages);
   useEffect(() => {
     if (canvasRef.current) {
       fabricCanvasRef.current = new fabric.Canvas(canvasRef.current, {

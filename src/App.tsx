@@ -7,19 +7,19 @@ import Routes from './routes';
 import { AuthProvider } from './AuthContext';
 
 function App() {
-  const [cart, setCart] = useState<CartContetType['cart']>([]);
+	const [cart, setCart] = useState<CartContetType['cart']>([]);
 
-  return (
-    <Router>
-      <AuthProvider>
-        <CartContext.Provider value={{ cart, setCart }}>
-          <HeaderComponent />
-          <Routes />
-        </CartContext.Provider>
-        <FooterComponent />
-      </AuthProvider>
-    </Router>
-  );
+	return (
+		<Router>
+			<AuthProvider>
+				<CartContext.Provider value={{ cart, setCart }}>
+					<HeaderComponent />
+					<Routes />
+				</CartContext.Provider>
+				<FooterComponent />
+			</AuthProvider>
+		</Router>
+	);
 }
 
 export default App;

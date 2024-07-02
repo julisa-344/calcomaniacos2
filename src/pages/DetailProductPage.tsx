@@ -80,9 +80,9 @@ function DetailProductPage() {
 				<h2 className="title m-4 text-center">Productos que te pueden interesar</h2>
 
 				<section className="flex justify-around p-6">
-					<Card name="Product" price={12} img="../assets/RM1.png" />
-					<Card name="Product" price={12} img="../assets/RM2.png" />
-					<Card name="Product" price={12} img="../assets/RM3.png" />
+					<Card id="" name="Product" price={12} img="../assets/RM1.png" />
+					<Card id="" name="Product" price={12} img="../assets/RM2.png" />
+					<Card id="" name="Product" price={12} img="../assets/RM3.png" />
 				</section>
 			</main>
 		</>
