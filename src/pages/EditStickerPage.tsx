@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./style/EditSticker.scss";
 import * as React from 'react';
@@ -16,6 +16,8 @@ import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
 import GestureIcon from '@mui/icons-material/Gesture';
 import GradientIcon from '@mui/icons-material/Gradient';
+import CropOutlinedIcon from '@mui/icons-material/CropOutlined';
+
 import Canvas from "../components/Canvas";
 
 import "./style/EditSticker.scss";
@@ -38,13 +40,12 @@ function EditStickerPage() {
 	const location = useLocation();
 	const imageUrl = location.state?.imageUrl;
 
-	const [selectedImages, setSelectedImages] = useState<string[]>([]);
 	const [color, setColor] = useState<string>("#00FF00");
 	const [gradientColor1, setGradientColor1] = useState<string>("#FF0000");
 	const [gradientColor2, setGradientColor2] = useState<string>("#0000FF");
 	const [useGradient, setUseGradient] = useState<boolean>(false);
 
-
+console.log("imageUrl",imageUrl);
 	return (
 		<main className="main bg-color">
 			<h1 className="title text-center">Edita tu Sticker</h1>
@@ -56,10 +57,9 @@ function EditStickerPage() {
 						gradientColor1={gradientColor1}
 						gradientColor2={gradientColor2}
 						useGradient={useGradient}
-						imageSrcs={selectedImages}
-					/>
+						imageSrcs={imageUrl ? [imageUrl] : []}
+						/>
 					<div>
-						{imageUrl && <img className='image-edit' src={imageUrl} alt="Selected" />}
 					</div>
 				</section>
 				<section className='aside-detail_sticker'>
@@ -100,7 +100,7 @@ function EditStickerPage() {
 								<GestureIcon />
 							</IconButton>
 							<IconButton>
-								<GradientIcon />
+								<CropOutlinedIcon />
 							</IconButton>
 						</div>
 					</div>
