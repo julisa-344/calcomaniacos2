@@ -33,6 +33,7 @@ const rows = [
 	createData('Acabado', 'Vinil'),
 	createData('Ancho', '25 cm'),
 	createData('Alto', '5 cm'),
+	createData('Cantidad', '1'),
 	createData('Precio Final', '20 soles')
 ];
 
@@ -40,37 +41,50 @@ function EditStickerPage() {
 	const location = useLocation();
 	const imageUrl = location.state?.imageUrl;
 
-	const [color, setColor] = useState<string>("#00FF00");
+	const [color, setColor] = useState<string>("#FFF");
 	const [gradientColor1, setGradientColor1] = useState<string>("#FF0000");
 	const [gradientColor2, setGradientColor2] = useState<string>("#0000FF");
 	const [useGradient, setUseGradient] = useState<boolean>(false);
 
-console.log("imageUrl",imageUrl);
+	console.log("imageUrl", imageUrl);
 	return (
 		<main className="main bg-color">
 			<h1 className="title text-center">Edita tu Sticker</h1>
-			<section className='flex'>
-				<section>
-				<Canvas
-						lineWidth={20}
+			<section className='flex justify-between container'>
+				<section className='flex'>
+					<Canvas
 						color={color}
 						gradientColor1={gradientColor1}
 						gradientColor2={gradientColor2}
 						useGradient={useGradient}
 						imageSrcs={imageUrl ? [imageUrl] : []}
-						/>
-					<div>
+						width={1000}
+						height={700}
+						maxImageWidth={300}
+					/>
+					<div className="action-canvas ml-4">
+						<div className="color-picker-container">
+							<IconButton >
+								<ColorLensIcon />
+							</IconButton>
+							<IconButton>
+								<GestureIcon />
+							</IconButton>
+							<IconButton>
+								<CropOutlinedIcon />
+							</IconButton>
+						</div>
 					</div>
 				</section>
 				<section className='aside-detail_sticker'>
 					<div className='subir-img'>
 						<FileUploadOutlinedIcon />
 						<p>.png .jpg</p>
-						<Button className='text-end' text='Subir' onClick={() => { }}  />
+						<Button className='text-end' text='Subir' onClick={() => { }} />
 
 					</div>
-					<h2 className='sub-title'>Detalles</h2>
-					<div>
+					<div className=''>
+						<h2 className=''>Detalles</h2>
 						<TableContainer sx={{ Width: 'fit-content' }} component={Paper}>
 							<Table aria-label="simple table">
 								<TableBody>
@@ -88,23 +102,11 @@ console.log("imageUrl",imageUrl);
 								</TableBody>
 							</Table>
 						</TableContainer>
+						<Button className='text-center m-t' text='Comprar' onClick={() => { }} />
 					</div>
 				</section>
-				<section>
-				<div className="action-canvas">
-						<div className="color-picker-container">
-							<IconButton >
-								<ColorLensIcon />
-							</IconButton>
-							<IconButton>
-								<GestureIcon />
-							</IconButton>
-							<IconButton>
-								<CropOutlinedIcon />
-							</IconButton>
-						</div>
-					</div>
-				</section>
+
+
 			</section>
 
 		</main>

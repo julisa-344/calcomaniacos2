@@ -11,7 +11,7 @@ import GradientIcon from '@mui/icons-material/Gradient';
 function MakeCollection() {
 
 	const [selectedImages, setSelectedImages] = useState<string[]>([]);
-	const [color, setColor] = useState<string>("#00FF00");
+	const [color, setColor] = useState<string>("#fff");
 	const [gradientColor1, setGradientColor1] = useState<string>("#FF0000");
 	const [gradientColor2, setGradientColor2] = useState<string>("#0000FF");
 	const [useGradient, setUseGradient] = useState<boolean>(false);
@@ -20,8 +20,8 @@ function MakeCollection() {
 		setSelectedImages((prevImages) => [...prevImages, src]);
 	};
 
-	const handleColorChange = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		setColor((event.target as HTMLInputElement).value);
+	const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setColor(event.target.value);
 	};
 
 	const handleGradientColor1Change = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +43,7 @@ function MakeCollection() {
 				<div className="content-canvas">
 					<div className="action-canvas">
 						<div className="color-picker-container">
-							<IconButton onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleColorChange(event)}>
+							<IconButton>
 								<ColorLensIcon />
 							</IconButton>
 							<IconButton>
@@ -55,12 +55,13 @@ function MakeCollection() {
 						</div>
 					</div>
 					<Canvas
-						lineWidth={20}
 						color={color}
 						gradientColor1={gradientColor1}
 						gradientColor2={gradientColor2}
 						useGradient={useGradient}
 						imageSrcs={selectedImages}
+						width={600}
+						height={700}
 					/>
 				</div>
 				<ImageCatalog onSelectImage={handleSelectImage} />
