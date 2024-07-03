@@ -53,7 +53,6 @@ function MakeCollection() {
 								<GradientIcon />
 							</IconButton>
 						</div>
-
 					</div>
 					<Canvas
 						lineWidth={20}

@@ -77,6 +77,12 @@ $color-error: #b00020;
 .justify-center{
   justify-content: center;
 }
+.justify-around{
+  justify-content: space-around;
+}
+.justify-evenly{
+  justify-content: space-evenly;
+}
 .direccion-column{
   flex-direction: column;
 }
@@ -94,6 +100,9 @@ $color-error: #b00020;
 }
 .direction-column{
   flex-direction: column;
+}
+.gap-2{
+  gap: 2rem;
 }
 .p-4{
   padding: 1.5rem;
@@ -114,7 +123,7 @@ $color-error: #b00020;
   margin: 2.5rem;
 }
 .mb-4{
-  margin-bottom: 1.5rem;
+  margin-bottom: 32px;
 }
 .w-max{
   width: 100%;
