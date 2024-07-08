@@ -10,17 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { addToFavorites, removeFromFavorites, getFavorites } from '../firebaseFunctions';
 import { Product } from '../types';
 
-// type CardProps = {
-// 	key: string;
-// 	img: string;
-// 	name: string;
-// 	price: number;
-// 	description?: string;
-// 	acabado?: object;
-// };
-
 interface CardProps extends Product {}
-
 
 const Card: React.FC<CardProps> = ({ id, name, price, img, description, acabado }) => {
 	const [isFavorite, setIsFavorite] = useState<boolean>(false);

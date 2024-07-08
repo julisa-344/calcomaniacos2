@@ -103,7 +103,6 @@ function ShopPage() {
 											}
 											style={{ color: 'white' }} 
 										/>
-
 										{category}
 									</label>
 								))}
