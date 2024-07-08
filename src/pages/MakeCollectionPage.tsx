@@ -11,30 +11,30 @@ import GradientIcon from '@mui/icons-material/Gradient';
 function MakeCollection() {
 
 	const [selectedImages, setSelectedImages] = useState<string[]>([]);
-	const [color, setColor] = useState<string>("#fff");
-	const [gradientColor1, setGradientColor1] = useState<string>("#FF0000");
-	const [gradientColor2, setGradientColor2] = useState<string>("#0000FF");
-	const [useGradient, setUseGradient] = useState<boolean>(false);
+	const [color] = useState<string>("#fff");
+	const [gradientColor1] = useState<string>("#FF0000");
+	const [gradientColor2] = useState<string>("#0000FF");
+	const [useGradient] = useState<boolean>(false);
 
 	const handleSelectImage = (src: string) => {
 		setSelectedImages((prevImages) => [...prevImages, src]);
 	};
 
-	const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setColor(event.target.value);
-	};
+	// const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	// 	setColor(event.target.value);
+	// };
 
-	const handleGradientColor1Change = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setGradientColor1(event.target.value);
-	};
+	// const handleGradientColor1Change = (event: React.ChangeEvent<HTMLInputElement>) => {
+	// 	setGradientColor1(event.target.value);
+	// };
 
-	const handleGradientColor2Change = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setGradientColor2(event.target.value);
-	};
+	// const handleGradientColor2Change = (event: React.ChangeEvent<HTMLInputElement>) => {
+	// 	setGradientColor2(event.target.value);
+	// };
 
-	const handleUseGradientChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setUseGradient(event.target.checked);
-	};
+	// const handleUseGradientChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	// 	setUseGradient(event.target.checked);
+	// };
 
 	return (
 		<main className="main bg-color">

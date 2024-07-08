@@ -1,13 +1,11 @@
 import { useLocation } from 'react-router-dom';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import "./style/EditSticker.scss";
-import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '../components/Button';
@@ -15,7 +13,6 @@ import { IconButton } from '@mui/material';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
 import GestureIcon from '@mui/icons-material/Gesture';
-import GradientIcon from '@mui/icons-material/Gradient';
 import CropOutlinedIcon from '@mui/icons-material/CropOutlined';
 
 import Canvas from "../components/Canvas";
@@ -41,12 +38,11 @@ function EditStickerPage() {
 	const location = useLocation();
 	const imageUrl = location.state?.imageUrl;
 
-	const [color, setColor] = useState<string>("#FFF");
-	const [gradientColor1, setGradientColor1] = useState<string>("#FF0000");
-	const [gradientColor2, setGradientColor2] = useState<string>("#0000FF");
-	const [useGradient, setUseGradient] = useState<boolean>(false);
+	const [color] = useState<string>("#FFF");
+	const [gradientColor1] = useState<string>("#FF0000");
+	const [gradientColor2] = useState<string>("#0000FF");
+	const [useGradient] = useState<boolean>(false);
 
-	console.log("imageUrl", imageUrl);
 	return (
 		<main className="main bg-color">
 			<h1 className="title text-center">Edita tu Sticker</h1>

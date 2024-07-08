@@ -3,7 +3,6 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import ImageList from '@mui/material/ImageList';
@@ -95,7 +94,9 @@ function CreateStickerPage() {
 		  const reader = new FileReader();
 		  reader.onload = () => {
 			const imageUrl = reader.result as string;
+			console.log('imageUrl', imageUrl? 'si hay imagen': 'no hay imagen');
 			setImage(imageUrl);
+			console.log("image", image);
 			navigate('/edit-sticker', { state: { imageUrl } });
 		  };
 		  reader.readAsDataURL(file);
@@ -103,6 +104,7 @@ function CreateStickerPage() {
 	  };
 
 	const triggerFileInput = () => {
+		console.log('clickTrigger');
 		fileInputRef.current?.click();
 	};
 

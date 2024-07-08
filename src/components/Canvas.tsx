@@ -186,78 +186,91 @@ const Canvas: React.FC<CanvasProps> = ({
 			imgElement.src = image.src;
 			imgElement.crossOrigin = 'anonymous';
 			imgElement.onload = () => {
-				fabric.Image.fromURL(image.src, (img) => {
-					const canvasCenterX = fabricCanvas.getWidth() / 2;
-					const canvasCenterY = fabricCanvas.getHeight() / 2;
+        // Calculate the scale factor to downscale the image
+        const maxDimension = 500;
+        const scaleWidth = maxDimension / imgElement.width;
+        const scaleHeight = maxDimension / imgElement.height;
+        const scaleFactor = Math.min(scaleWidth, scaleHeight, 1); // Ensure we don't upscale images
 
-					// Ajustar el tamaño de la imagen si es más grande que el máximo permitido
-					// Verificar si img.width está definido antes de usarlo
-					if (imgElement.width !== undefined && (!maxImageWidth || imgElement.width > maxImageWidth)) {
-						const scaleFactor = maxImageWidth ? maxImageWidth / imgElement.width : 1;
-						img.scaleX = scaleFactor;
-						img.scaleY = scaleFactor;
-					}
-					img.set({
-						left: canvasCenterX,
-						top: canvasCenterY,
-						hasBorders: false,
-						hasControls: true,
-						originX: 'center',
-						originY: 'center',
-					});
+        fabric.Image.fromURL(image.src, (img) => {
+          const canvasCenterX = fabricCanvas.getWidth() / 2;
+          const canvasCenterY = fabricCanvas.getHeight() / 2;
 
-					const silhouetteImg = new fabric.Image(imgElement, {
-						left: canvasCenterX,
-						top: canvasCenterY,
-						scaleX: img.scaleX,
-						scaleY: img.scaleY,
-						originX: 'center',
-						originY: 'center',
-						selectable: false,
-						evented: false,
-						angle: img.angle,
-						flipX: img.flipX,
-						flipY: img.flipY
-					});
+          img.scaleX = scaleFactor;
+          img.scaleY = scaleFactor;
+          img.set({
+            left: canvasCenterX,
+            top: canvasCenterY,
+            hasBorders: false,
+            hasControls: true,
+            originX: "center",
+            originY: "center",
+          });
 
-					imageMapRef.current.set(img, {
-						silhouette: silhouetteImg,
-						color: color,
-						gradientColor1: gradientColor1,
-						gradientColor2: gradientColor2,
-						useGradient: useGradient
-					});
+          const silhouetteImg = new fabric.Image(imgElement, {
+            left: canvasCenterX,
+            top: canvasCenterY,
+            scaleX: img.scaleX,
+            scaleY: img.scaleY,
+            originX: "center",
+            originY: "center",
+            selectable: false,
+            evented: false,
+            angle: img.angle,
+            flipX: img.flipX,
+            flipY: img.flipY,
+          });
 
-					function updateSilhouetteTransform() {
-						silhouetteImg.set({
-							left: img.left,
-							top: img.top,
-							scaleX: img.scaleX,
-							scaleY: img.scaleY,
-							angle: img.angle,
-							flipX: img.flipX,
-							flipY: img.flipY
-						});
-						fabricCanvas?.renderAll();
-					}
+          imageMapRef.current.set(img, {
+            silhouette: silhouetteImg,
+            color: color,
+            gradientColor1: gradientColor1,
+            gradientColor2: gradientColor2,
+            useGradient: useGradient,
+          });
 
-					img.on('moving', updateSilhouetteTransform);
-					img.on('scaling', updateSilhouetteTransform);
-					img.on('rotating', updateSilhouetteTransform);
-					img.on('flipping', updateSilhouetteTransform);
+          function updateSilhouetteTransform() {
+            silhouetteImg.set({
+              left: img.left,
+              top: img.top,
+              scaleX: img.scaleX,
+              scaleY: img.scaleY,
+              angle: img.angle,
+              flipX: img.flipX,
+              flipY: img.flipY,
+            });
+            fabricCanvas?.renderAll();
+          }
 
-					img.on('modified', () => {
-						const currentData = imageMapRef.current.get(img);
-						if (currentData) {
-							updateSilhouette(img, currentData.color, currentData.gradientColor1, currentData.gradientColor2, currentData.useGradient);
-						}
-					});
+          img.on("moving", updateSilhouetteTransform);
+          img.on("scaling", updateSilhouetteTransform);
+          img.on("rotating", updateSilhouetteTransform);
+          img.on("flipping", updateSilhouetteTransform);
 
-					fabricCanvas.add(silhouetteImg);
-					fabricCanvas.add(img);
-					updateSilhouette(img, color, gradientColor1, gradientColor2, useGradient);
-				});
-			};
+          img.on("modified", () => {
+            const currentData = imageMapRef.current.get(img);
+            if (currentData) {
+              updateSilhouette(
+                img,
+                currentData.color,
+                currentData.gradientColor1,
+                currentData.gradientColor2,
+                currentData.useGradient
+              );
+            }
+          });
+
+          fabricCanvas.add(silhouetteImg);
+          fabricCanvas.add(img);
+          updateSilhouette(
+            img,
+            color,
+            gradientColor1,
+            gradientColor2,
+            useGradient
+          );
+        });
+      };
 		}
 	};
 
