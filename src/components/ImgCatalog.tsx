@@ -2,7 +2,6 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase-config';
-import Button from './Button';
 
 interface ImageCatalogProps {
 	onSelectImage: (src: string) => void;
