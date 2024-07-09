@@ -24,7 +24,7 @@ const WishListPage: React.FC = () => {
             acabado: productDetails.acabado
           });
         } else {
-          console.error(`Product details not found for ID: ${fav.productId}`);
+          console.error(`Producto no encontrado: ${fav.productId}`);
         }
       }
 
@@ -36,7 +36,7 @@ const WishListPage: React.FC = () => {
 
   return (
     <main className='main bg-color'>
-      <h1 className='title text-center'>Lista de deseos</h1>
+      <h1 className='title text-center mb-4'>Lista de deseos</h1>
       <div className="content-card">
         {favoriteProducts.map((product: Product) => (
           <Card
