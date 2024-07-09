@@ -5,9 +5,6 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Button from '../components/Button';
 import "./style/createSticker.scss";
 import { useNavigate } from 'react-router-dom';
@@ -110,113 +107,124 @@ function CreateStickerPage() {
 
 
 	return (
-		<main className="main bg-color">
-			<h1 className="title text-center mb-4">Crea tu propio sticker</h1>
-			<div className='flex justify-center gap-2'>
-				<div className='flex direction-column'>
-					<h2 className='sub-title'>Forma</h2>
-					<TableContainer sx={{ width: '160px', height: 'fit-content' }} component={Paper}>
-						<Table aria-label="simple table">
-							<TableBody>
-								{rowsShape.map((row) => (
-									<TableRow
-										key={row.shape}
-										sx={{
-											'&:last-child td, &:last-child th': { border: 0 },
-											backgroundColor: selectedRow === row.shape ? '#E8E8E8' : 'inherit',
-										}}
-										onClick={() => setSelectedRow(row.shape)}
-									>
-										<TableCell component="th" scope="row">
-											{row.shape}
-										</TableCell>
-									</TableRow>
-								))}
-							</TableBody>
-						</Table>
-					</TableContainer>
-				</div>
+    <main className="main bg-color">
+      <h1 className="title text-center mb-4">Crea tu propio sticker</h1>
+      <div className="flex justify-center gap-2">
+        <div className="flex direction-column">
+          <h2 className="sub-title">Forma</h2>
+          <TableContainer
+            sx={{ width: "160px", height: "fit-content" }}
+            component={Paper}
+          >
+            <Table aria-label="simple table">
+              <TableBody>
+                {rowsShape.map((row) => (
+                  <TableRow
+                    key={row.shape}
+                    sx={{
+                      "&:last-child td, &:last-child th": { border: 0 },
+                      backgroundColor:
+                        selectedRow === row.shape ? "#E8E8E8" : "inherit",
+                    }}
+                    onClick={() => setSelectedRow(row.shape)}
+                  >
+                    <TableCell component="th" scope="row">
+                      {row.shape}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
 
-				<div className='flex direction-column'>
-					<h2 className='sub-title'>Tamano</h2>
-					<TableContainer sx={{ width: '160px', height: 'fit-content' }} component={Paper}>
-						<Table sx={{ minWidth: 100 }} aria-label="simple table">
-							<TableBody>
-								{rowsSize.map((row) => (
-									<TableRow
-										key={row.size}
-										sx={{
-											'&:last-child td, &:last-child th': { border: 0 },
-											backgroundColor: selectedRow === row.size ? '#E8E8E8' : 'inherit',
-										}}
-										onClick={() => setSelectedRow(row.size)}
-									>
-										<TableCell component="th" scope="row">
-											{row.size}
-										</TableCell>
-									</TableRow>
-								))}
-							</TableBody>
-						</Table>
-					</TableContainer>
-				</div>
+        <div className="flex direction-column">
+          <h2 className="sub-title">Tamano</h2>
+          <TableContainer
+            sx={{ width: "160px", height: "fit-content" }}
+            component={Paper}
+          >
+            <Table sx={{ minWidth: 100 }} aria-label="simple table">
+              <TableBody>
+                {rowsSize.map((row) => (
+                  <TableRow
+                    key={row.size}
+                    sx={{
+                      "&:last-child td, &:last-child th": { border: 0 },
+                      backgroundColor:
+                        selectedRow === row.size ? "#E8E8E8" : "inherit",
+                    }}
+                    onClick={() => setSelectedRow(row.size)}
+                  >
+                    <TableCell component="th" scope="row">
+                      {row.size}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
 
-				<div className='flex direction-column'>
-					<h2 className='sub-title'>Cantidad</h2>
-					<TableContainer sx={{ width: '160px', height: 'fit-content' }} component={Paper}>
-						<Table aria-label="simple table">
-							<TableBody>
-								{rowsQuantity.map((row) => (
-									<TableRow
-										key={row.quantity}
-										sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-									>
-										<TableCell component="th" scope="row">
-											{row.quantity}
-										</TableCell>
-									</TableRow>
-								))}
-							</TableBody>
-						</Table>
-					</TableContainer>
-				</div>
-				<div>
-					<h2 className='sub-title'>Material</h2>
-					<div className='flex justify-center gap-2'>
-
-						<ImageList sx={{ width: 270, height: 'fit-content' }}>
-							{itemData.map((item) => (
-								<ImageListItem key={item.img}>
-									<img
-										srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-										src={`${item.img}?w=248&fit=crop&auto=format`}
-										alt={item.title}
-										loading="lazy"
-										className='material-img'
-									/>
-									<ImageListItemBar
-										sx={{ color: 'white' }}
-										title={item.title}
-										position="below"
-									/>
-								</ImageListItem>
-							))}
-						</ImageList>
-					</div>
-
-				</div>
-
-			</div>
-			<input
-				type="file"
-				ref={fileInputRef}
-				onChange={handleImageUpload}
-				accept=".png,.jpg"
-				style={{ display: 'none' }}
-			/>
-			<Button className='text-end' text='Upload' onClick={triggerFileInput} variant='outlined' />
-		</main>
-	);
+        <div className="flex direction-column">
+          <h2 className="sub-title">Cantidad</h2>
+          <TableContainer
+            sx={{ width: "160px", height: "fit-content" }}
+            component={Paper}
+          >
+            <Table aria-label="simple table">
+              <TableBody>
+                {rowsQuantity.map((row) => (
+                  <TableRow
+                    key={row.quantity}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      {row.quantity}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+        <div>
+          <h2 className="sub-title">Material</h2>
+          <div className="flex justify-center gap-2">
+            <section
+              style={{ width: "290px", flexWrap: "wrap" }}
+              className="flex"
+            >
+              {itemData.map((item) => (
+                <div key={item.img}>
+                  <img
+                    srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                    src={`${item.img}?w=248&fit=crop&auto=format`}
+                    alt={item.title}
+                    className="material-img"
+                  />
+                  <h3 className="text">{item.title}</h3>
+                </div>
+              ))}
+            </section>
+          </div>
+        </div>
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleImageUpload}
+          accept=".png,.jpg"
+          style={{ display: "none" }}
+        />
+        <Button
+          className="text-end"
+          text="Upload"
+          onClick={triggerFileInput}
+          variant="outlined"
+        />
+      </div>
+    </main>
+  );
 }
 
 export default CreateStickerPage;

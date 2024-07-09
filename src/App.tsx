@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { CartContext, CartContetType } from './CartContext';
+import { CartContext, CartContextType } from './CartContext';
 import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent';
 import Routes from './routes';
 import { AuthProvider } from './AuthContext';
 
 function App() {
-	const [cart, setCart] = useState<CartContetType['cart']>([]);
+	const [cart, setCart] = useState<CartContextType['cart']>([]);
 
 	return (
 		<Router>

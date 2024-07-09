@@ -11,7 +11,6 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 	const [images, setImages] = useState<any[]>([]);
 
 	useEffect(() => {
-		// Fetch de datos y carga de imágenes
 		const fetchData = async () => {
 			const response = await fetch("data.json");
 			const data = await response.json();
@@ -34,12 +33,6 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 					/>
 				))}
 			</div>
-			<Button
-				text="Descargar"
-				onClick={() => {
-					/* Lógica para eliminar imagen */
-				}}
-			/>
 		</div>
 	);
 };

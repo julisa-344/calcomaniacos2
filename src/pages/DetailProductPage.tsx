@@ -2,11 +2,11 @@ import "./style/DetailProduct.scss";
 import { useContext, useState } from "react";
 import Card from "../components/CardComponent";
 import Button from "../components/Button";
-import { CartContext, CartContetType } from '../CartContext';
+import { CartContext, CartContextType } from '../CartContext';
 import { useLocation } from "react-router-dom";
 
 function DetailProductPage() {
-	const { cart, setCart } = useContext<CartContetType>(CartContext);
+	const { cart, setCart } = useContext<CartContextType>(CartContext);
 	const location = useLocation();
 	const product = location.state;
 	const [selectedFinish, setSelectedFinish] = useState("");

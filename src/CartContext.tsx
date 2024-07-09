@@ -8,12 +8,12 @@ type CartItemType = {
   acabado: string;
 };
 
-export type CartContetType = {
+export type CartContextType = {
   cart: CartItemType[];
   setCart: Dispatch<SetStateAction<CartItemType[]>>;
 };
 
-export const CartContext = createContext<CartContetType>({
+export const CartContext = createContext<CartContextType>({
   cart: [],
   setCart: () => {},
 });

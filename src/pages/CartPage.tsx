@@ -5,12 +5,12 @@ import Card from '../components/CardComponent';
 import { TextField } from "@mui/material";
 import Box from '@mui/material/Box';
 import Button from '../components/Button';
-import { CartContext, CartContetType } from '../CartContext';
+import { CartContext, CartContextType } from '../CartContext';
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function CartPage() {
 
-	const { cart, setCart } = useContext<CartContetType>(CartContext);
+	const { cart, setCart } = useContext<CartContextType>(CartContext);
 	const [counts, setCounts] = useState<{ [key: number]: number }>({});
 
 	const increment = (index: number) => {
