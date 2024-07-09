@@ -177,7 +177,6 @@ const Canvas: React.FC<CanvasProps> = ({
 					edgePoints.push([x + margin, y + margin]);
 				}
 			}
-			console.log("PERRRO");
 		}
 
     offscreenCtx.beginPath();

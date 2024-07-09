@@ -238,7 +238,7 @@ function CreateStickerPage() {
 				style={{ display: "none" }}
 			/>
 			<Button
-				className="text-end"
+				className="text-center mt-h"
 				text="Upload"
 				onClick={triggerFileInput}
 				variant="outlined"
