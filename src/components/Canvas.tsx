@@ -148,16 +148,10 @@ const Canvas: React.FC<CanvasProps> = ({
       return "";
     }
 
-    offscreenCtx.drawImage(imgElement, margin, margin);
-    const imageData = offscreenCtx.getImageData(
-      margin,
-      margin,
-      imgElement.width,
-      imgElement.height
-    );
-    const data = imageData.data;
-
-    offscreenCtx.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+		offscreenCtx.drawImage(imgElement, margin, margin);
+		const imageData = offscreenCtx.getImageData(margin, margin, imgElement.width, imgElement.height);
+		const data = imageData.data;
+		offscreenCtx.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
 
     if (useGradient) {
       const gradient = offscreenCtx.createLinearGradient(
@@ -175,18 +169,16 @@ const Canvas: React.FC<CanvasProps> = ({
 
     offscreenCtx.lineWidth = margin * 2;
 
-    const edgePoints: [number, number][] = [];
-    for (let y = 1; y < imgElement.height - 1; y++) {
-      for (let x = 1; x < imgElement.width - 1; x++) {
-        const alpha = data[(y * imgElement.width + x) * 4 + 3];
-        if (
-          alpha > 0 &&
-          isEdge(data, imgElement.width, imgElement.height, x, y)
-        ) {
-          edgePoints.push([x + margin, y + margin]);
-        }
-      }
-    }
+		const edgePoints: [number, number][] = [];
+		for (let y = 1; y < imgElement.height - 1; y++) {
+			for (let x = 1; x < imgElement.width - 1; x++) {
+				const alpha = data[(y * imgElement.width + x) * 4 + 3];
+				if (alpha > 0 && isEdge(data, imgElement.width, imgElement.height, x, y)) {
+					edgePoints.push([x + margin, y + margin]);
+				}
+			}
+			console.log("PERRRO");
+		}
 
     offscreenCtx.beginPath();
     edgePoints.forEach(([x, y]) => {

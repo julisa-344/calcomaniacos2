@@ -7,7 +7,6 @@ interface ImageCatalogProps {
 }
 
 const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
-
 	const [images, setImages] = useState<any[]>([]);
 
 	useEffect(() => {

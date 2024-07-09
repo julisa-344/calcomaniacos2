@@ -77,13 +77,13 @@ const itemData = [
 
 function CreateStickerPage() {
 	const navigate = useNavigate();
-	
+
 	const [selectedRow, setSelectedRow] = useState<string | null>(null);
 
 	// Estado para almacenar la imagen cargada
 	const [image, setImage] = useState<string | null>(null);
 	const fileInputRef = useRef<HTMLInputElement>(null);
-	
+
 	// Función para manejar la carga de la imagen
 	const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files ? event.target.files[0] : null;
@@ -98,7 +98,7 @@ function CreateStickerPage() {
 		  };
 		  reader.readAsDataURL(file);
 		}
-	  };
+	};
 
 	const triggerFileInput = () => {
 		console.log('clickTrigger');
