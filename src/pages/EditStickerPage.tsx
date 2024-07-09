@@ -14,12 +14,9 @@ import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
 import GestureIcon from '@mui/icons-material/Gesture';
 import CropOutlinedIcon from '@mui/icons-material/CropOutlined';
-
 import Canvas from "../components/Canvas";
 
 import "./style/EditSticker.scss";
-
-
 
 function EditStickerPage() {
   const location = useLocation();
@@ -34,13 +31,11 @@ function EditStickerPage() {
   const [useGradient] = useState<boolean>(false);
   const [triggerDownload, setTriggerDownload] = useState(false);
 
-  console.log(location.state);
-
   function createData(
-    acabado: string,
+    detalle: string,
     valor: string
   ) {
-    return { acabado, valor };
+    return { detalle, valor };
   }
 
   const rows = [
@@ -94,11 +89,11 @@ function EditStickerPage() {
                 <TableBody>
                   {rows.map((row) => (
                     <TableRow
-                      key={row.acabado}
+                      key={row.detalle}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
                       <TableCell component="th" scope="row">
-                        {row.acabado}
+                        {row.detalle}
                       </TableCell>
                       <TableCell align="right">{row.valor}</TableCell>
                     </TableRow>

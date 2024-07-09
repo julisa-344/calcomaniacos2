@@ -50,9 +50,6 @@ function ShopPage() {
 		fetchData();
 	}, []);
 
-	console.log("products", products);
-
-
 	const filteredProducts = products.filter(
 		(product) =>
 			product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&

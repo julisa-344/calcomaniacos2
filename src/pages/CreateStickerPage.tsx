@@ -4,7 +4,6 @@ import Button from '../components/Button';
 import "./style/createSticker.scss";
 import { useNavigate } from 'react-router-dom';
 
-
 function createDataShape(shape: string) {
 	return { shape };
 }
@@ -83,7 +82,7 @@ function CreateStickerPage() {
 	const [modalTitle, setModalTitle] = useState('');
 	const [modalLabel, setModalLabel] = useState('');
 	const [customValue, setCustomValue] = useState('');
-	// Estado para almacenar la imagen cargada
+
 	const [image, setImage] = useState<string | null>(null);
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -91,21 +90,22 @@ function CreateStickerPage() {
 
 	const handleRowClick = (row: any) => {
 		if (row.size === 'personaliza el tamano' || row.quantity === 'personaliza la cantidad') {
-			setModalTitle(row.size ? 'Personalizar Tamano' : 'Personalizar Cantidad');
-			setModalLabel(row.size ? 'Tamano' : 'Cantidad');
+			setModalTitle(row.size ? 'Personalizar tamaño' : 'Personalizar Cantidad');
+			setModalLabel(row.size ? 'Tamaño' : 'Cantidad');
 			setModalOpen(true);
 		} else {
 			if (row.size) setSelectedSize(row.size);
 			if (row.quantity) setSelectedQuantity(row.quantity);
 		}
 	};
+	console.log(setCustomValue);
 
 	const handleModalClose = () => {
 		setModalOpen(false);
 	};
 
 	const handleSave = () => {
-		if (modalTitle.includes('Tamano')) {
+		if (modalTitle.includes('Tamaño')) {
 			setSelectedSize(customValue);
 		} else {
 			setSelectedQuantity(customValue);
@@ -117,16 +117,13 @@ function CreateStickerPage() {
 		setSelectedMaterial(material.title);
 	};
 
-	// Función para manejar la carga de la imagen
 	const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files ? event.target.files[0] : null;
 		if (file && file.type.match('image.*')) {
 			const reader = new FileReader();
 			reader.onload = () => {
 				const imageUrl = reader.result as string;
-				console.log('imageUrl', imageUrl ? 'si hay imagen' : 'no hay imagen');
 				setImage(imageUrl);
-				console.log("image", image);
 				navigate('/edit-sticker', {
 					state: {
 						imageUrl,
@@ -143,10 +140,8 @@ function CreateStickerPage() {
 	};
 
 	const triggerFileInput = () => {
-		console.log('clickTrigger');
 		fileInputRef.current?.click();
 	};
-
 
 	return (
 		<main className="main bg-color">

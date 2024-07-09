@@ -6,43 +6,36 @@ import { CartContext, CartContextType } from '../CartContext';
 import { useLocation } from "react-router-dom";
 
 function DetailProductPage() {
-	const { cart, setCart } = useContext<CartContextType>(CartContext);
-	const location = useLocation();
-	const product = location.state;
-	const [selectedFinish, setSelectedFinish] = useState("");
-	const [selectedSize, setSelectedSize] = useState("");
-	const [finish, setFinish] = useState("default");
+  const { cart, setCart } = useContext<CartContextType>(CartContext);
+  const location = useLocation();
+  const product = location.state;
+  const [selectedFinish, setSelectedFinish] = useState("default");
+  const [selectedSize, setSelectedSize] = useState("");
 
-	const handleAddToCart = () => {
-		const productToAdd = {
+  const handleAddToCart = () => {
+    const productToAdd = {
       name: product.name,
       price: product.price,
       img: product.img,
       tamano: selectedSize,
       acabado: selectedFinish,
     };
-		console.log("productToAdd", productToAdd);
-		setCart([...cart, productToAdd]);
-	};
+    setCart([...cart, productToAdd]);
+  };
 
-	const handleFinishClick = (finishType: string) => {
-		setSelectedFinish(finishType);
-		setFinish(finishType);
-	};
-	
-	const handleSizeClick = (size: string) => {
-      setSelectedSize(size);
-    };
+  const handleFinishClick = (finishType: string) => {
+    setSelectedFinish(finishType);
+  };
 
-	const getImageSrc = () => {
-		if (finish === 'default') {
-			return product.img;
-		} else {
-			return product.acabado[finish];
-		}
-	};
+  const handleSizeClick = (size: string) => {
+    setSelectedSize(size);
+  };
 
-	return (
+  const getImageSrc = () => {
+    return selectedFinish === 'default' ? product.img : product.acabado[selectedFinish];
+  };
+
+  return (
     <>
       <main className="bg-color">
         <section className="w-full flex p-4 product-detail">
@@ -57,57 +50,34 @@ function DetailProductPage() {
             <h2 className="title">{product.name}</h2>
             <p className="title">S/. {product.price}</p>
             <p className="text">{product.description}</p>
+
             <div>
               <h3 className="sub-title">Acabado</h3>
               <div className="flex w-full">
-                <Button
-                  className="mr-4"
-                  text="Glossy"
-                  onClick={() => handleFinishClick("glossy")}
-                  variant="outlined"
-                />
-                <Button
-                  className="mr-4"
-                  text="Matte"
-                  onClick={() => handleFinishClick("matte")}
-                  variant="outlined"
-                />
-                <Button
-                  className="mr-4"
-                  text="Transparente"
-                  onClick={() => handleFinishClick("transparent")}
-                  variant="outlined"
-                />
+                {["Glossy", "Matte", "Transparent"].map(finish => (
+                  <Button
+                    key={finish}
+                    className="mr-4"
+                    text={finish}
+                    onClick={() => handleFinishClick(finish.toLowerCase())}
+                    variant="outlined"
+                  />
+                ))}
               </div>
             </div>
 
             <div>
               <h3 className="sub-title">Tamaño</h3>
               <div className="flex w-full flex-wrap">
-                <Button
-                  className="mr-4 m-b"
-                  text="Pequeño (3x4cm)"
-                  onClick={() => handleSizeClick("3x4cm")}
-                  variant="outlined"
-                />
-                <Button
-                  className="mr-4 m-b"
-                  text="Mediano (6x8cm)"
-                  onClick={() => handleSizeClick("6x8cm")}
-                  variant="outlined"
-                />
-                <Button
-                  className="mr-4 m-b"
-                  text="Grande (15x15cm)"
-                  onClick={() => handleSizeClick("15x15cm")}
-                  variant="outlined"
-                />
-                <Button
-                  className="mr-4 m-b"
-                  text="Extra Grande (20x20cm)"
-                  onClick={() => handleSizeClick("20x20cm")}
-                  variant="outlined"
-                />
+                {["3x4cm", "6x8cm", "15x15cm", "20x20cm"].map(size => (
+                  <Button
+                    key={size}
+                    className="mr-4 m-b"
+                    text={`${size === "3x4cm" ? "Pequeño" : size === "6x8cm" ? "Mediano" : size === "15x15cm" ? "Grande" : "Extra Grande"} (${size})`}
+                    onClick={() => handleSizeClick(size)}
+                    variant="outlined"
+                  />
+                ))}
               </div>
             </div>
 
@@ -124,9 +94,9 @@ function DetailProductPage() {
         </h2>
 
         <section className="flex justify-around p-6">
-          <Card id="" name="Product" price={12} img="../assets/RM1.png" />
-          <Card id="" name="Product" price={12} img="../assets/RM2.png" />
-          <Card id="" name="Product" price={12} img="../assets/RM3.png" />
+          {["../assets/RM1.png", "../assets/RM2.png", "../assets/RM3.png"].map((img, index) => (
+            <Card key={index} id="" name="Product" price={12} img={img} />
+          ))}
         </section>
       </main>
     </>

@@ -15,7 +15,6 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log('Logged in');
       navigate('/shop');
     } catch (error) {
       console.error('Error logging in:', error);
@@ -25,7 +24,6 @@ const Login = () => {
   const handleRegister = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      console.log('User registered');
       navigate('/shop');
     } catch (error) {
       console.error('Error registering:', error);
@@ -36,7 +34,6 @@ const Login = () => {
     const provider = new GoogleAuthProvider();
     try {
       await signInWithPopup(auth, provider);
-      console.log('Logged in with Google');
       navigate('/shop');
     } catch (error) {
       console.error('Error logging in with Google:', error);

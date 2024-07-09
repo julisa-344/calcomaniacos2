@@ -12,18 +12,14 @@ function Header() {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
 
-  console.log('Header - user:', user, 'loading:', loading);
-
   const handleAccountClick = () => {
     if (loading) {
       console.log('Header - still loading');
       return;
     }
     if (user) {
-      console.log('Header - navigating to /account');
       navigate('/account');
     } else {
-      console.log('Header - navigating to /login');
       navigate('/login');
     }
   };

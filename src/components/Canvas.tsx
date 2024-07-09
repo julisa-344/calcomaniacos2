@@ -107,7 +107,6 @@ const Canvas: React.FC<CanvasProps> = ({
 
   useEffect(() => {
     if (triggerDownload) {
-      console.log("triggerDownload");
       if (fabricCanvasRef.current) {
         const dataURL = fabricCanvasRef.current.toDataURL({
           format: "png",

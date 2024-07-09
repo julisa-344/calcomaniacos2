@@ -20,7 +20,6 @@ const Card: React.FC<CardProps> = ({ id, name, price, img, description, acabado 
 			const favorites = await getFavorites();
 			setIsFavorite(favorites.some(fav => fav.productId === id));
 		};
-
 		fetchFavorites();
 	}, [id]);
 
