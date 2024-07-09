@@ -19,33 +19,39 @@ import Canvas from "../components/Canvas";
 
 import "./style/EditSticker.scss";
 
-function createData(
-	acabado: string,
-	valor: string
-) {
-	return { acabado, valor };
-}
 
-const rows = [
-	createData('Acabado', 'Vinil'),
-	createData('Ancho', '25 cm'),
-	createData('Alto', '5 cm'),
-	createData('Cantidad', '1'),
-	createData('Precio Final', '20 soles')
-];
 
 function EditStickerPage() {
-	const location = useLocation();
-	const imageUrl = location.state?.imageUrl;
+  const location = useLocation();
+  const imageUrl = location.state?.imageUrl;
+  const size = location.state?.size;
+  const quantity = location.state?.quantity;
+  const acabado = location.state?.material;
+  const forma = location.state?.shape; 
+  const [color] = useState<string>("#FFF");
+  const [gradientColor1] = useState<string>("#FF0000");
+  const [gradientColor2] = useState<string>("#0000FF");
+  const [useGradient] = useState<boolean>(false);
+  const [triggerDownload, setTriggerDownload] = useState(false);
 
-	const [color] = useState<string>("#FFF");
-	const [gradientColor1] = useState<string>("#FF0000");
-	const [gradientColor2] = useState<string>("#0000FF");
-	const [useGradient] = useState<boolean>(false);
-	  const [triggerDownload, setTriggerDownload] = useState(false);
+  console.log(location.state);
 
+  function createData(
+    acabado: string,
+    valor: string
+  ) {
+    return { acabado, valor };
+  }
 
-	return (
+  const rows = [
+    createData('Acabado', acabado),
+    createData('Tamano', size),
+    createData('Cantidad', quantity),
+    createData('Forma', forma),
+    createData('Precio Final', '20 soles')
+  ];
+
+  return (
     <main className="main bg-color">
       <h1 className="title text-center">Edita tu Sticker</h1>
       <section className="flex justify-between container">
@@ -79,7 +85,7 @@ function EditStickerPage() {
           <div className="subir-img">
             <FileUploadOutlinedIcon />
             <p>.png .jpg</p>
-            <Button className="text-end" text="Subir" onClick={() => {}} />
+            <Button className="text-end" text="Subir" onClick={() => { }} />
           </div>
           <div className="">
             <h2 className="">Detalles</h2>
