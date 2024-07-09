@@ -14,11 +14,11 @@ import { firestore } from '../firebase-config';
 
 interface Product {
 	id: string;
-	nombre: string;
-	precio: number;
-	src: string;
-	categoria: string;
-	descripcion: string;
+	name: string;
+	price: number;
+	img: string;
+	category: string;
+	description: string;
 	acabado: {
 		glossy: string;
 		matte: string;
@@ -34,18 +34,18 @@ function ShopPage() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const querySnapshot = await getDocs(collection(firestore, 'images')); // Utiliza la colección 'images'
+			const querySnapshot = await getDocs(collection(firestore, 'products'));
 			const productsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Product[];
 			setProducts(productsData);
 		};
 		fetchData();
 	}, []);
-
+	
 	const filteredProducts = products.filter(
 		(product) =>
-			product.nombre?.toLowerCase().includes(searchTerm.toLowerCase()) &&
+			product.name?.toLowerCase().includes(searchTerm.toLowerCase()) &&
 			(selectedCategories.length === 0 ||
-				selectedCategories.includes(product.categoria))
+				selectedCategories.includes(product.category))
 	);
 
 	const handleCategoryChange = (category: string, isChecked: boolean) => {
@@ -57,7 +57,7 @@ function ShopPage() {
 	};
 
 	const categories = products
-		.map((product) => product.categoria)
+		.map((product) => product.category)
 		.filter((value, index, self) => self.indexOf(value) === index);
 
 	const handleChange = (event: SelectChangeEvent) => {
@@ -86,7 +86,7 @@ function ShopPage() {
 											onChange={(e) =>
 												handleCategoryChange(category, e.target.checked)
 											}
-											style={{ color: 'white' }} 
+											style={{ color: 'white' }}
 										/>
 										{category}
 									</label>
@@ -102,7 +102,7 @@ function ShopPage() {
 										value={searchTerm}
 										onChange={(e) => setSearchTerm(e.target.value)}
 									/>
-									<SearchIcon  style={{ color: 'white' }} />
+									<SearchIcon style={{ color: 'white' }} />
 								</div>
 								<FormControl sx={{ m: 1, minWidth: 120 }} size="small" variant="outlined">
 									<InputLabel id="demo-select-small-label">Ordenar por:</InputLabel>
@@ -128,10 +128,10 @@ function ShopPage() {
 									<Card
 										key={product.id}
 										id={product.id}
-										name={product.nombre}
-										price={product.precio}
-										img={product.src}
-										description={product.descripcion}
+										name={product.name}
+										price={product.price}
+										img={product.img}
+										description={product.description}
 										acabado={product.acabado}
 									/>
 								))}
