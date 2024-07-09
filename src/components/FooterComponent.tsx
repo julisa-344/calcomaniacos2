@@ -1,5 +1,6 @@
 import './style/Footer.scss';
 import { Link } from 'react-router-dom';
+import { Facebook, Instagram, WhatsApp } from '@mui/icons-material';
 
 function FooterComponent() {
   return (
@@ -9,9 +10,9 @@ function FooterComponent() {
           <div className='linksToSocial'>
             <h2>Redes Sociales</h2>
             <div className='iconsSocialFooter'>
-              <Link to='#facebook'><img src='/social-media/icons8-facebook.svg' alt='Facebook' /></Link>
-              <Link to='#instagram'><img src='/social-media/icons8-instagram-48.svg' alt='Instagram' /></Link>
-              <Link to='#whatsapp'><img src='/social-media/icons8-whatsapp.svg' alt='WhatsApp' /></Link>
+              <Link to='#facebook'><Facebook /></Link>
+              <Link to='#instagram'><Instagram /></Link>
+              <Link to='#whatsapp'><WhatsApp /></Link>
             </div>
           </div>
           <div className='adressFooter'>
@@ -32,10 +33,10 @@ function FooterComponent() {
         <div className='paymentFooter'>
           <h2>Formas de Pago</h2>
           <div className='paymentIcons'>
-            <img src='/payments/icons8-visa.svg' alt='Visa' />
-            <img src='/payments/icons8-mastercard.svg' alt='Mastercard' />
-            <img src='/payments/icons8-american-express.svg' alt='American Express' />
-            <img src='/payments/icons8-paypal.svg' alt='PayPal' />
+            <img src='/payments/visa-svgrepo-com.svg' alt='Visa' />
+            <img src='/payments/master-card-svgrepo-com.svg' alt='Mastercard' />
+            <img src='/payments/american-express-logo-svgrepo-com.svg' alt='American Express' />
+            <img src='/payments/paypal-svgrepo-com.svg' alt='PayPal' />
           </div>
         </div>
       </div>

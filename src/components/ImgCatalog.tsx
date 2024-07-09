@@ -1,5 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from "react";
+import { collection, getDocs } from 'firebase/firestore';
+import { firestore } from '../firebase-config';
+import Button from './Button';
 
 interface ImageCatalogProps {
 	onSelectImage: (src: string) => void;
@@ -10,12 +13,12 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const response = await fetch("data.json");
-			const data = await response.json();
-			setImages(data);
+		  const querySnapshot = await getDocs(collection(firestore, 'images'));
+		  const data = querySnapshot.docs.map(doc => doc.data());
+		  setImages(data);
 		};
 		fetchData();
-	}, []);
+	  }, []);
 
 	return (
 		<div className="catalog-container">

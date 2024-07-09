@@ -9,15 +9,17 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { collection, getDocs } from 'firebase/firestore';
+import { firestore } from '../firebase-config';
 
 interface Product {
 	id: string;
-	name: string;
-	price: number;
-	img: string;
-	category: string;
-	description: string;
-	acabado	: {
+	nombre: string;
+	precio: number;
+	src: string;
+	categoria: string;
+	descripcion: string;
+	acabado: {
 		glossy: string;
 		matte: string;
 		transparent: string;
@@ -25,36 +27,25 @@ interface Product {
 }
 
 function ShopPage() {
-	const [products, setProducts] = useState<Product[]>([]);	
+	const [products, setProducts] = useState<Product[]>([]);
 	const [searchTerm, setSearchTerm] = useState("");
 	const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-
-	/*
-	useEffect(() => {
-	  const fetchData = async () => {
-		const db = firebase.firestore();
-		const data = await db.collection("beautyProducts").get();
-		setProducts(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-	  };
-	  fetchData();
-	}, []); */
-
-	//   as we currently do not have the firebase database, we will use a mock data (data.json) to simulate the data
+	const [age, setAge] = React.useState('');
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const data = await fetch("productsdata.json");
-			const products = await data.json();
-			setProducts(products);
+			const querySnapshot = await getDocs(collection(firestore, 'images')); // Utiliza la colección 'images'
+			const productsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Product[];
+			setProducts(productsData);
 		};
 		fetchData();
 	}, []);
 
 	const filteredProducts = products.filter(
 		(product) =>
-			product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+			product.nombre?.toLowerCase().includes(searchTerm.toLowerCase()) &&
 			(selectedCategories.length === 0 ||
-				selectedCategories.includes(product.category))
+				selectedCategories.includes(product.categoria))
 	);
 
 	const handleCategoryChange = (category: string, isChecked: boolean) => {
@@ -66,10 +57,8 @@ function ShopPage() {
 	};
 
 	const categories = products
-		.map((product) => product.category)
+		.map((product) => product.categoria)
 		.filter((value, index, self) => self.indexOf(value) === index);
-
-	const [age, setAge] = React.useState('');
 
 	const handleChange = (event: SelectChangeEvent) => {
 		setAge(event.target.value);
@@ -90,9 +79,8 @@ function ShopPage() {
 							<h2 className="title">Filtros</h2>
 							<p className="sub-title">Por categoría</p>
 							<div className="content-category">
-								{/* Search for categoruy */}
-								{categories.map((category) => (
-									<label className="text" key={category}>
+								{categories.map((category, index) => (
+									<label className="text" key={index}>
 										<Checkbox
 											checked={selectedCategories.includes(category)}
 											onChange={(e) =>
@@ -140,10 +128,10 @@ function ShopPage() {
 									<Card
 										key={product.id}
 										id={product.id}
-										name={product.name}
-										price={product.price}
-										img={product.img}
-										description={product.description}
+										name={product.nombre}
+										price={product.precio}
+										img={product.src}
+										description={product.descripcion}
 										acabado={product.acabado}
 									/>
 								))}
@@ -155,4 +143,5 @@ function ShopPage() {
 		</>
 	);
 }
+
 export default ShopPage;

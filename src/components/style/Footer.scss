@@ -31,11 +31,11 @@ footer {
     gap: 15px;
 }
 
-.iconsSocialFooter img {
-    width: 30px;
+.iconsSocialFooter a{
+    color: white;
 }
 
-.iconsSocialFooter a img:hover {
+.iconsSocialFooter a:hover {
     cursor: pointer;
     filter: brightness(1) invert(0.5);
 }
@@ -44,6 +44,16 @@ footer {
     display: flex;
     justify-content: space-around;
     width: 100%;
+}
+
+.paymentIcons {
+    display: flex;
+    gap: 5px;
+}
+
+.paymentIcons img {
+    width: 50px;
+    filter: invert(100%);
 }
 
 footer ul {
