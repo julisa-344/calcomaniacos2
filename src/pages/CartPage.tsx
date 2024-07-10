@@ -74,7 +74,33 @@ function CartPage() {
               noValidate
               autoComplete="off"
             >
-              <TextField id="outlined-basic" label="Cupon" variant="outlined" />
+              <TextField
+                id="outlined-basic"
+                label="Cupon"
+                variant="outlined"
+                sx={{
+                  "& .MuiInputBase-root": {
+                    color: "white",
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: "white",
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "white",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "gray",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "gray",
+                    },
+                  },
+                }}
+                InputLabelProps={{
+                  style: { color: "white" }, // Color del label
+                }}
+              />
               <Button text="Insertar" onClick={() => {}} variant="outlined" />
             </Box>
             <p className="sub-title">
