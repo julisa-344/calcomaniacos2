@@ -104,24 +104,6 @@ function ShopPage() {
 									/>
 									<SearchIcon style={{ color: 'white' }} />
 								</div>
-								<FormControl sx={{ m: 1, minWidth: 120 }} size="small" variant="outlined">
-									<InputLabel id="demo-select-small-label">Ordenar por:</InputLabel>
-									<Select
-										labelId="demo-select-small-label"
-										id="demo-select-small"
-										value={age}
-										label="Age"
-										onChange={handleChange}
-										style={{ borderColor: 'white', color: 'white' }}
-									>
-										<MenuItem value="">
-											<em>None</em>
-										</MenuItem>
-										<MenuItem value={10}>Relevancia</MenuItem>
-										<MenuItem value={20}>Menor precio</MenuItem>
-										<MenuItem value={30}>Mayor precio</MenuItem>
-									</Select>
-								</FormControl>
 							</div>
 							<div className="content-card">
 								{filteredProducts.map((product: Product) => (
