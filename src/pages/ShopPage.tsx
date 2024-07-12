@@ -65,83 +65,106 @@ function ShopPage() {
 	};
 
 	return (
-		<>
-			<main className="bg-color">
-				<section>
-					<h2>
-						Descubre los mejores stickers para tu laptop, celular, tablet y más.
-					</h2>
-					<img src="" alt="" />
-				</section>
-				<section className="p-4">
-					<section className="gallery-content">
-						<aside>
-							<h2 className="title">Filtros</h2>
-							<p className="sub-title">Por categoría</p>
-							<div className="content-category">
-								{categories.map((category, index) => (
-									<label className="text" key={index}>
-										<Checkbox
-											checked={selectedCategories.includes(category)}
-											onChange={(e) =>
-												handleCategoryChange(category, e.target.checked)
-											}
-											style={{ color: 'white' }}
-										/>
-										{category}
-									</label>
-								))}
-							</div>
-						</aside>
-						<section className="contet-products">
-							<div className="flex justify-between align-center mb-4">
-								<div className="input-search">
-									<input
-										className="input-transparent"
-										type="text"
-										value={searchTerm}
-										onChange={(e) => setSearchTerm(e.target.value)}
-									/>
-									<SearchIcon style={{ color: 'white' }} />
-								</div>
-								<FormControl sx={{ m: 1, minWidth: 120 }} size="small" variant="outlined">
-									<InputLabel id="demo-select-small-label">Ordenar por:</InputLabel>
-									<Select
-										labelId="demo-select-small-label"
-										id="demo-select-small"
-										value={age}
-										label="Age"
-										onChange={handleChange}
-										style={{ borderColor: 'white', color: 'white' }}
-									>
-										<MenuItem value="">
-											<em>None</em>
-										</MenuItem>
-										<MenuItem value={10}>Relevancia</MenuItem>
-										<MenuItem value={20}>Menor precio</MenuItem>
-										<MenuItem value={30}>Mayor precio</MenuItem>
-									</Select>
-								</FormControl>
-							</div>
-							<div className="content-card">
-								{filteredProducts.map((product: Product) => (
-									<Card
-										key={product.id}
-										id={product.id}
-										name={product.name}
-										price={product.price}
-										img={product.img}
-										description={product.description}
-										acabado={product.acabado}
-									/>
-								))}
-							</div>
-						</section>
-					</section>
-				</section>
-			</main>
-		</>
-	);
+    <>
+      <main className="bg-color">
+        <section>
+          <h2>
+            Descubre los mejores stickers para tu laptop, celular, tablet y más.
+          </h2>
+          <img src="" alt="" />
+        </section>
+        <section className="p-4">
+          <section className="gallery-content">
+            <aside>
+              <h2 className="title">Filtros</h2>
+              <p className="sub-title">Por categoría</p>
+              <div className="content-category">
+                {categories.map((category, index) => (
+                  <label className="text" key={index}>
+                    <Checkbox
+                      checked={selectedCategories.includes(category)}
+                      onChange={(e) =>
+                        handleCategoryChange(category, e.target.checked)
+                      }
+                      style={{ color: "white" }}
+                    />
+                    {category}
+                  </label>
+                ))}
+              </div>
+            </aside>
+            <section className="contet-products">
+              <div className="flex justify-between align-center mb-4">
+                <div className="input-search">
+                  <input
+                    className="input-transparent"
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                  <SearchIcon style={{ color: "white" }} />
+                </div>
+                <FormControl
+                  sx={{
+                    m: 1,
+                    minWidth: 120,
+                    "& .MuiOutlinedInput-root": {
+                      "& fieldset": {
+                        borderColor: "white"
+                      },
+                      "&:hover fieldset": {
+                        borderColor: "gray"
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "gray"
+                      }
+                    }
+                  }}
+                  size="small"
+                  variant="outlined"
+                >
+                  <InputLabel
+                    id="demo-select-small-label"
+                    sx={{ color: "white" }}
+                  >
+                    Ordenar por:
+                  </InputLabel>
+                  <Select
+                    labelId="demo-select-small-label"
+                    id="demo-select-small"
+                    value={age}
+                    label="Age"
+                    onChange={handleChange}
+                    style={{ borderColor: "white", color: "white" }}
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={10}>Relevancia</MenuItem>
+                    <MenuItem value={20}>Menor precio</MenuItem>
+                    <MenuItem value={30}>Mayor precio</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+              <div className="content-card">
+                {filteredProducts.map((product: Product) => (
+                  <Card
+                    key={product.id}
+                    id={product.id}
+                    name={product.name}
+                    price={product.price}
+                    img={product.img}
+                    description={product.description}
+                    acabado={product.acabado}
+                  />
+                ))}
+              </div>
+            </section>
+          </section>
+        </section>
+      </main>
+    </>
+  );
 }
 
 export default ShopPage;
