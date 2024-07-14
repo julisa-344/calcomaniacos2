@@ -9,11 +9,13 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useNavigate } from "react-router-dom";
 import { addToFavorites, removeFromFavorites, getFavorites } from '../firebaseFunctions';
 import { Product } from '../types';
+import MyCircularProgress from './CircularProgress';
 
 interface CardProps extends Product {}
 
 const Card: React.FC<CardProps> = ({ id, name, price, img, description, acabado }) => {
 	const [isFavorite, setIsFavorite] = useState<boolean>(false);
+	const [imageLoaded, setImageLoaded] = useState(false);
 
 	useEffect(() => {
 		const fetchFavorites = async () => {
@@ -52,8 +54,16 @@ const Card: React.FC<CardProps> = ({ id, name, price, img, description, acabado 
 				}
 				actionPosition="right"
 			/>
-
-			<img className='img-product' src={img} alt="producto" />
+        {!imageLoaded && (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+            <MyCircularProgress /> {/* Muestra esto mientras la imagen está cargando */}
+          </div>
+        )}
+			<img 
+			className='img-product' 
+			src={img} 
+			alt="producto"
+			onLoad={() => setImageLoaded(true)}/>
 			<h3 className='sub-title'>{name}</h3>
 			<p className='text'>S/. {price}</p>
 			<Button onClick={handleNavigate} text="Comprar" variant='outlined' />

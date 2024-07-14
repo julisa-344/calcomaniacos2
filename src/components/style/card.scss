@@ -3,7 +3,8 @@
 .card {
 	width: 27%;
 	max-width: 286px;
-	height: 377px;
+	max-height: 377px;
+	height: fit-content;
 	background-color: transparent;
 	padding: 16px;
 	box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
@@ -11,8 +12,10 @@
 }
 
 .img-product {
-	height: 240px;
-	width: 216px;
+	max-height: 240px;
+	width: 100%;
+	height: auto;
+	max-width: 216px;
 }
 
 .card::before {

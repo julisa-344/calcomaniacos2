@@ -31,12 +31,15 @@ function ShopPage() {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 	const [age, setAge] = React.useState('');
+  const [isLoading, setIsLoading] = useState(true); // Estado para manejar la carga
 
 	useEffect(() => {
 		const fetchData = async () => {
+      setIsLoading(true);
 			const querySnapshot = await getDocs(collection(firestore, 'products'));
 			const productsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Product[];
 			setProducts(productsData);
+      setIsLoading(false);
 		};
 		fetchData();
 	}, []);
@@ -66,13 +69,7 @@ function ShopPage() {
 
 	return (
     <>
-      <main className="bg-color">
-        <section>
-          <h2>
-            Descubre los mejores stickers para tu laptop, celular, tablet y más.
-          </h2>
-          <img src="" alt="" />
-        </section>
+      <main className="main bg-color">
         <section className="p-4">
           <section className="gallery-content">
             <aside>
