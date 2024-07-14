@@ -35,6 +35,7 @@ canvas {
     .catalog-img {
         flex: 0 0 calc(24.5% - 10px);
         max-width: calc(24.5% - 10px);
+        min-width: 170px;
         background: #ffffff14;
         border-radius: 6px;
         cursor: pointer;
@@ -64,4 +65,46 @@ canvas {
     padding: 10px;
     border-radius: 10px;
     height: fit-content;
+  }
+  .bottom-bar{
+	display: none;
+  }
+  @media (max-width: 768px) {
+    .bottom-bar{
+        display: block;
+      }
+    .container {
+      flex-direction: column;
+    }
+  
+    .content-canvas.hide,
+    .container-catalog.hide {
+      display: none;
+    }
+  
+    .content-canvas.show,
+    .container-catalog.show {
+      display: block;
+    }
+  
+    .bottom-bar {
+      bottom: 0;
+      width: 100%;
+      background-color: #fff;
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid #ddd;
+      padding: 10px 0;
+    }
+  
+    .bottom-bar button {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  
+    .bottom-bar button:focus {
+      outline: none;
+    }
   }

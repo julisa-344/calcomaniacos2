@@ -1,16 +1,22 @@
-import './style/Header.scss';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { IconButton } from '@mui/material';
-import PersonIcon from '@mui/icons-material/Person';
+import { IconButton, AppBar, Toolbar, Drawer, List, ListItem, ListItemText, Typography, Badge, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { CartContext } from '../CartContext';
-import { useAuth } from '../AuthContext';
+import PersonIcon from '@mui/icons-material/Person';
+import './style/Header.scss';
 
-function Header() {
+import { useAuth } from '../AuthContext';
+import { CartContext } from '../CartContext';
+
+const Header: React.FC = () => {
   const { cart } = useContext(CartContext);
   const { user, loading } = useAuth();
   const navigate = useNavigate();
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const handleAccountClick = () => {
     if (loading) {
@@ -24,34 +30,72 @@ function Header() {
     }
   };
 
-  return (
-    <header className="header">
-      <div className="flex align-center">
-        <h2 className="header-title">Calcomaniacos</h2>
-      </div>
-      <div>
-        <Link to='/' className='link-header'>Home</Link>
-        <Link to='/shop' className='link-header'>Shop</Link>
-        <Link to='/make-collection' className='link-header'>Crea tu coleccion</Link>
-        <Link to='/create-sticker' className='link-header'>Crea tu sticker</Link>
+  const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+    if (event.type === 'keydown' && ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')) {
+      return;
+    }
+    setDrawerOpen(open);
+  };
 
-      </div>
-      <nav className="header-nav">
-        <Link to='/cart' aria-label='Cart'>
-          <IconButton style={{ color: 'white' }} className='cart'>
-            <ShoppingCartIcon />
-            {cart.length > 0 && <p className="count">{cart.length}</p>}
+  const drawerList = () => (
+    <List>
+      <ListItem button component={Link} to="/" onClick={toggleDrawer(false)}>
+        <ListItemText primary="Home" />
+      </ListItem>
+      <ListItem button component={Link} to="/shop" onClick={toggleDrawer(false)}>
+        <ListItemText primary="Shop" />
+      </ListItem>
+      <ListItem button component={Link} to="/make-collection" onClick={toggleDrawer(false)}>
+        <ListItemText primary="Crea tu colección" />
+      </ListItem>
+      <ListItem button component={Link} to="/create-sticker" onClick={toggleDrawer(false)}>
+        <ListItemText primary="Crea tu sticker" />
+      </ListItem>
+    </List>
+  );
+
+  return (
+    <AppBar position="fixed" sx={{ backgroundColor: 'rgb(122, 17, 249)' }} className='header'>
+      <Toolbar>
+        {isMobile && (
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={toggleDrawer(true)}
+            className="menu-button"
+          >
+            <MenuIcon />
           </IconButton>
-        </Link>
-        <IconButton
-          style={{ color: 'white' }}
-          aria-label='Account'
-          onClick={handleAccountClick}
-        >
-          <PersonIcon />
-        </IconButton>
-      </nav>
-    </header>
+        )}
+        <Typography variant="h6" className="header-title" noWrap>
+          Calcomaniacos
+        </Typography>
+        <div className="nav-links">
+          {!isMobile && (
+            <div>
+              <Link to="/" className="link-header">Home</Link>
+              <Link to="/shop" className="link-header">Shop</Link>
+              <Link to="/make-collection" className="link-header">Crea tu colección</Link>
+              <Link to="/create-sticker" className="link-header">Crea tu sticker</Link>
+            </div>
+          )}
+        </div>
+        <div className="header-nav">
+          <IconButton component={Link} to="/cart" color="inherit" aria-label="Cart">
+            <Badge badgeContent={cart.length} color="secondary">
+              <ShoppingCartIcon />
+            </Badge>
+          </IconButton>
+          <IconButton color="inherit" aria-label="Account" onClick={handleAccountClick}>
+            <PersonIcon />
+          </IconButton>
+        </div>
+      </Toolbar>
+      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+        {drawerList()}
+      </Drawer>
+    </AppBar>
   );
 }
 

@@ -1,39 +1,37 @@
 import "./../theme.scss";
+import * as React from 'react';
 import { useState } from "react";
 import "./style/MakeCollection.scss";
 import Canvas from "../components/Canvas";
 import ImageCatalog from "../components/ImgCatalog";
-import { IconButton } from "@mui/material";
+import { IconButton, TableContainer, Table, TableBody, TableRow, TableCell, Paper, Box } from '@mui/material';
 import ColorLensIcon from "@mui/icons-material/ColorLens";
 import GestureIcon from "@mui/icons-material/Gesture";
 import GradientIcon from "@mui/icons-material/Gradient";
 import Button from "../components/Button";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import CropPortraitIcon from '@mui/icons-material/CropPortrait';
+import ImageIcon from '@mui/icons-material/Image';
 
 function MakeCollection() {
 	const [selectedImages, setSelectedImages] = useState<string[]>([]);
-	const [color, setColor] = useState<string>("#fff");
-	const [gradientColor1, setGradientColor1] = useState<string>("#FF0000");
-	const [gradientColor2, setGradientColor2] = useState<string>("#0000FF");
-	const [useGradient, setUseGradient] = useState<boolean>(false);
-	const [triggerDownload, setTriggerDownload] = useState(false);
+	const [color, setColor] = useState('#000000');
+	const [gradientColor1, setGradientColor1] = useState('#ffffff');
+	const [gradientColor2, setGradientColor2] = useState('#000000');
 	const [showColorPicker, setShowColorPicker] = useState(false);
+	const [useGradient, setUseGradient] = useState(false);
+	const [triggerDownload, setTriggerDownload] = useState(false);
+	const [selectedView, setSelectedView] = useState('canvas'); // New state for selected view
+	const [value, setValue] = React.useState(0);
 
-	function createData(
-		detalle: string,
-		valor: string
-	) {
+	function createData(detalle: string, valor: string) {
 		return { detalle, valor };
 	}
 
 	const rows = [
 		createData('Nombre', 'Papel'),
-		createData('Tamano', 'A4'),
+		createData('Tamaño', 'A4'),
 	];
 
 	const handleSelectImage = (src: string) => {
@@ -64,7 +62,7 @@ function MakeCollection() {
 		<main className="main bg-color">
 			<h2 className="title mb-4 text-center">Crea tu colección</h2>
 			<section className="container">
-				<div className="content-canvas">
+				<div className={`content-canvas ${selectedView === 'canvas' ? 'show' : 'hide'}`}>
 					<div className="action-canvas">
 						<div className="color-picker-container">
 							<IconButton onClick={toggleColorPicker}>
@@ -119,7 +117,7 @@ function MakeCollection() {
 						triggerDownload={triggerDownload}
 					/>
 				</div>
-				<div className="container-catalog flex direction-column justify-between">
+				<div className={`container-catalog flex direction-column justify-between ${selectedView === 'catalog' ? 'show' : 'hide'}`}>
 					<ImageCatalog onSelectImage={handleSelectImage} />
 				</div>
 				<div className="aside-detail_sticker">
@@ -150,6 +148,26 @@ function MakeCollection() {
 					/>
 				</div>
 			</section>
+			<Box className="bottom-bar" sx={{ width: 500 }}>
+				<BottomNavigation
+					showLabels
+					value={value}
+					onChange={(event, newValue) => {
+						setValue(newValue);
+					}}
+				>
+					<BottomNavigationAction
+						label="Canva"
+						icon={<CropPortraitIcon />}
+						onClick={() => setSelectedView('canvas')}
+					/>
+					<BottomNavigationAction
+						label="Catalogo"
+						icon={<ImageIcon />}
+						onClick={() => setSelectedView('catalog')}
+					/>
+				</BottomNavigation>
+			</Box>
 		</main>
 	);
 }
