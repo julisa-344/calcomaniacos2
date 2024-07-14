@@ -31,8 +31,9 @@ function ShopPage() {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 	const [age, setAge] = React.useState('');
-  const [isLoading, setIsLoading] = useState(true); // Estado para manejar la carga
+  const [isLoading, setIsLoading] = useState(true);
 
+  console.log(isLoading);
 	useEffect(() => {
 		const fetchData = async () => {
       setIsLoading(true);
