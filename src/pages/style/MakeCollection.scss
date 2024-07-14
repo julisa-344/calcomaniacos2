@@ -1,14 +1,7 @@
 @import '../../theme.scss';
 
-.container {
-    display: flex;
-    padding: 32px;
-    justify-content: space-around;
-    gap: 20px;
-    width: 100%;
-    height: 80vh;
-}
 .content-canvas{
+    width: fit-content;
     display: flex;
     gap: 10px;
 }
@@ -16,20 +9,32 @@ canvas {
     border: 1px solid #ccc;
     background-color: transparent;
 }
-.catalog-container{
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
     width: 100%;
+    height: 705px;
+    max-height: 80vh;
+    overflow: hidden;
+}
+
+.container-catalog{
+    height: 100%;
 }
 .container_catalog-img {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     width: 100%;
-    height: 73vh;
+    height: auto;
     overflow-y: scroll;
     scrollbar-width: thin;
     scrollbar-color: $color-primary $color-neutral-500;
     .catalog-img {
-        width: 200px;
+        flex: 0 0 calc(24.5% - 10px);
+        max-width: calc(24.5% - 10px);
         background: #ffffff14;
         border-radius: 6px;
         cursor: pointer;

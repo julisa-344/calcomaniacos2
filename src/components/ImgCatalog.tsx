@@ -3,11 +3,6 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase-config';
 import SearchIcon from "@mui/icons-material/Search";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-
 
 interface ImageCatalogProps {
 	onSelectImage: (src: string) => void;
@@ -27,50 +22,9 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 	}, []);
 
 	return (
-		<div className="catalog-container">
+		<>
 			<div className="flex">
-				<FormControl
-					sx={{
-						m: 1,
-						minWidth: 120,
-						"& .MuiOutlinedInput-root": {
-							"& fieldset": {
-								borderColor: "white"
-							},
-							"&:hover fieldset": {
-								borderColor: "gray"
-							},
-							"&.Mui-focused fieldset": {
-								borderColor: "gray"
-							}
-						}
-					}}
-					size="small"
-					variant="outlined"
-				>
-					<InputLabel
-						id="demo-select-small-label"
-						sx={{ color: "white" }}
-					>
-						Ordenar por:
-					</InputLabel>
-					<Select
-						labelId="demo-select-small-label"
-						id="demo-select-small"
-						value=""
-						label="Age"
-						onChange={() => { }}
-						style={{ borderColor: "white", color: "white" }}
-					>
-						<MenuItem value="">
-							<em>None</em>
-						</MenuItem>
-						<MenuItem value={10}>Relevancia</MenuItem>
-						<MenuItem value={20}>Menor precio</MenuItem>
-						<MenuItem value={30}>Mayor precio</MenuItem>
-					</Select>
-				</FormControl>
-				<div className="input-search">
+				<div className="input-search mb-4">
 					<input
 						className="input-transparent"
 						type="text"
@@ -91,7 +45,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 					/>
 				))}
 			</div>
-		</div>
+		</>
 	);
 };
 

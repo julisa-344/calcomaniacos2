@@ -62,7 +62,7 @@ function MakeCollection() {
 
 	return (
 		<main className="main bg-color">
-			<h2 className="title text-center">Crea tu colección</h2>
+			<h2 className="title mb-4 text-center">Crea tu colección</h2>
 			<section className="container">
 				<div className="content-canvas">
 					<div className="action-canvas">
@@ -119,7 +119,7 @@ function MakeCollection() {
 						triggerDownload={triggerDownload}
 					/>
 				</div>
-				<div className="flex direction-column justify-between">
+				<div className="container-catalog flex direction-column justify-between">
 					<ImageCatalog onSelectImage={handleSelectImage} />
 				</div>
 				<div className="aside-detail_sticker">
