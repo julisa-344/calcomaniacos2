@@ -148,7 +148,7 @@ function MakeCollection() {
 					/>
 				</div>
 			</section>
-			<Box className="bottom-bar" sx={{ width: 500 }}>
+			<Box className="bottom-bar" sx={{ width: "100%" }}>
 				<BottomNavigation
 					showLabels
 					value={value}
