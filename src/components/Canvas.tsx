@@ -9,8 +9,8 @@ interface CanvasProps {
   gradientColor2: string;
   useGradient: boolean;
   imageSrcs: string[];
-  width: number; // --- Those 2 props serve to set the canvas size
-  height: number; // --- |
+  width: number | string;
+  height: number | string;
   maxImageWidth?: number;
   triggerDownload: boolean;
 }
@@ -31,7 +31,6 @@ const Canvas: React.FC<CanvasProps> = ({
   maxImageWidth = 300,
   triggerDownload,
 }) => {
-	// The triggerDownload state is used on the parent page of the Canvas component to trigger the download of the canvas image
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
   const [loadedImages, setLoadedImages] = useState<ImageItem[]>([]);
@@ -64,11 +63,24 @@ const Canvas: React.FC<CanvasProps> = ({
           selectedImageRef.current = null;
         }
       });
-    }
 
-    return () => {
-      fabricCanvasRef.current?.dispose();
-    };
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Backspace' && selectedImageRef.current) {
+          const silhouette = imageMapRef.current.get(selectedImageRef.current)?.silhouette;
+          if (silhouette) {
+            fabricCanvasRef.current?.remove(silhouette);
+          }
+          fabricCanvasRef.current?.remove(selectedImageRef.current);
+          imageMapRef.current.delete(selectedImageRef.current);
+          selectedImageRef.current = null;
+        }
+      };
+      document.addEventListener('keydown', handleKeyDown);
+      return () => {
+        fabricCanvasRef.current?.dispose();
+        document.removeEventListener('keydown', handleKeyDown);
+      };
+    }
   }, []);
 
   useEffect(() => {
@@ -116,10 +128,10 @@ const Canvas: React.FC<CanvasProps> = ({
 		// now add the image to the cart
 		const productToAdd = {
 			img: dataURL,
-			name: 'Sticker',
+			name: 'Collection personalizada',
 			price: 10,
 			tamano: '10x10',
-			acabado: 'Holografico'
+			acabado: 'vinil',
 		};
 
 		setCart([...cart, productToAdd]);
@@ -354,7 +366,6 @@ const Canvas: React.FC<CanvasProps> = ({
       ref={canvasRef}
       width={width}
       height={height}
-      style={{ border: "1px solid white", marginBottom: "20px" }}
     />
   );
 };

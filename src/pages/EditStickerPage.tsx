@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import "./style/EditSticker.scss";
 import Table from '@mui/material/Table';
@@ -20,16 +20,34 @@ import "./style/EditSticker.scss";
 
 function EditStickerPage() {
   const location = useLocation();
-  const imageUrl = location.state?.imageUrl;
+  const initialImageUrl = location.state?.imageUrl;
   const size = location.state?.size;
   const quantity = location.state?.quantity;
   const acabado = location.state?.material;
-  const forma = location.state?.shape; 
+  const forma = location.state?.shape;
   const [color] = useState<string>("#FFF");
   const [gradientColor1] = useState<string>("#FF0000");
   const [gradientColor2] = useState<string>("#0000FF");
   const [useGradient] = useState<boolean>(false);
   const [triggerDownload, setTriggerDownload] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [image, setImage] = useState<string | null>(initialImageUrl);
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files ? event.target.files[0] : null;
+    if (file && file.type.match('image.*')) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imageUrl = reader.result as string;
+        setImage(imageUrl);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current?.click();
+  };
 
   function createData(
     detalle: string,
@@ -56,7 +74,7 @@ function EditStickerPage() {
             gradientColor1={gradientColor1}
             gradientColor2={gradientColor2}
             useGradient={useGradient}
-            imageSrcs={imageUrl ? [imageUrl] : []}
+            imageSrcs={image ? [image] : []}
             width={1000}
             height={700}
             maxImageWidth={300}
@@ -80,7 +98,14 @@ function EditStickerPage() {
           <div className="subir-img">
             <FileUploadOutlinedIcon />
             <p>.png .jpg</p>
-            <Button className="text-end" text="Subir" onClick={() => { }} />
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleImageUpload}
+              accept=".png,.jpg"
+              style={{ display: "none" }}
+            />
+            <Button className="text-end" text="Subir" onClick={triggerFileInput} />
           </div>
           <div className="">
             <h2 className="">Detalles</h2>

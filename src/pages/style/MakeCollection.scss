@@ -1,10 +1,19 @@
 @import '../../theme.scss';
-
-.content-canvas{
+.categories-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+}
+.img-logo_neon {
+    width: 60px;
+}
+.content-canvas {
     width: fit-content;
     display: flex;
     gap: 10px;
 }
+
 canvas {
     border: 1px solid #ccc;
     background-color: transparent;
@@ -20,18 +29,21 @@ canvas {
     overflow: hidden;
 }
 
-.container-catalog{
+.container-catalog {
     height: 100%;
 }
+
 .container_catalog-img {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     width: 100%;
-    height: auto;
+    height: 100%;
+    overflow-x: hidden;
     overflow-y: scroll;
     scrollbar-width: thin;
     scrollbar-color: $color-primary $color-neutral-500;
+
     .catalog-img {
         flex: 0 0 calc(24.5% - 10px);
         max-width: calc(24.5% - 10px);
@@ -59,52 +71,63 @@ canvas {
     gap: 10px;
 }
 
-  .action-canvas{
+.action-canvas {
     width: min-content;
     background-color: #fff;
     padding: 10px;
     border-radius: 10px;
     height: fit-content;
-  }
-  .bottom-bar{
-	display: none;
-  }
-  @media (max-width: 768px) {
-    .bottom-bar{
-        display: block;
-      }
-    .container {
-      flex-direction: column;
+}
+.btn-mobile{
+    display: none;
+}
+
+.bottom-bar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    canvas {
+        width: 80vw !important;
+        height: 600px !important;
     }
-  
+
+    .action-canvas {
+        display: none;
+    }
+    .btn-mobile{
+        display: block;
+    }
+
+    .bottom-bar {
+        display: block;
+        margin-top: 24px;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
     .content-canvas.hide,
     .container-catalog.hide {
-      display: none;
+        display: none;
     }
-  
+
     .content-canvas.show,
     .container-catalog.show {
-      display: block;
+        display: flex;
     }
-  
-    .bottom-bar {
-      bottom: 0;
-      width: 100%;
-      background-color: #fff;
-      display: flex;
-      justify-content: space-around;
-      border-top: 1px solid #ddd;
-      padding: 10px 0;
+
+    .aside-detail_sticker {
+        display: none !important;
     }
-  
-    .bottom-bar button {
-      background: none;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
+}
+
+.container_catalog-img {
+    .catalog-img {
+        flex: 0 0 calc(33.3% - 10px);
+        max-width: calc(33% - 10px);
+        min-width: auto;
     }
-  
-    .bottom-bar button:focus {
-      outline: none;
-    }
-  }
+}

@@ -148,6 +148,12 @@ function MakeCollection() {
 					/>
 				</div>
 			</section>
+			<Button
+				className="text-center btn-mobile"
+				text="Descargar"
+				onClick={() => setTriggerDownload((prev) => !prev)}
+			/>
+
 			<Box className="bottom-bar" sx={{ width: "100%" }}>
 				<BottomNavigation
 					showLabels

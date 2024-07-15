@@ -73,7 +73,6 @@ const CustomModal = ({ open, handleClose, title, label, handleSave }: { open: bo
 );
 
 function CreateStickerPage() {
-
 	const [selectedShape, setSelectedShape] = useState('');
 	const [selectedSize, setSelectedSize] = useState('');
 	const [selectedQuantity, setSelectedQuantity] = useState('');
