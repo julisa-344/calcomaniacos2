@@ -48,6 +48,36 @@ function EditStickerPage() {
   const triggerFileInput = () => {
     fileInputRef.current?.click();
   };
+  const calcularPrecioFinal = () => {
+    // Definir precios base por acabado y tamaño
+    const preciosBase: { [key: string]: { size: number; price: number } } = {
+      'Holographico': { size: 3, price: 1 },
+      'Glitter': { size: 34, price: 1 },
+      'Oro': { size: 2, price: 1 },
+      'Plata': { size: 2, price: 1 }
+    };
+
+    // Obtener el precio base según el acabado y el tamaño
+    const precioBase = preciosBase[acabado]?.size === size ? preciosBase[acabado]?.price : null;
+
+    // Definir los rangos de descuento según la cantidad
+    let descuento = 1.0; // 100% precio base
+
+    if (quantity >= 6 && quantity <= 10) {
+      descuento = 0.95; // 95% del precio base
+    } else if (quantity >= 11 && quantity <= 20) {
+      descuento = 0.8; // 80% del precio base
+    } else if (quantity >= 21 && quantity <= 50) {
+      descuento = 0.7; // 70% del precio base
+    } else if (quantity >= 51) {
+      descuento = 0.6; // 60% del precio base
+    }
+
+    // Calcular el precio final
+    const precioFinal = precioBase ? precioBase * quantity * descuento : 0;
+
+    return precioFinal.toFixed(2); // Redondear el precio a 2 decimales
+  };
 
   function createData(
     detalle: string,
@@ -61,7 +91,7 @@ function EditStickerPage() {
     createData('Tamano', size),
     createData('Cantidad', quantity),
     createData('Forma', forma),
-    createData('Precio Final', '20 soles')
+    createData('Precio Final', `${calcularPrecioFinal()} soles`),
   ];
 
   return (
