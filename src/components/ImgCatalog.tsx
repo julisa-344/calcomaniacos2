@@ -46,7 +46,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 
 	const handleChangeCategoria = (event: SelectChangeEvent<string | null>) => {
 		setSelectedCategoria(event.target.value);
-		setSelectedSubcategoria(null); // Reset subcategoria selection
+		setSelectedSubcategoria(null);
 	};
 
 	useEffect(() => {
@@ -93,10 +93,12 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 	};
 
 	return (
-		<>
+		<>	
+		<div className='flex'>
+		{categorias.map((categoria) => (
 			<FormControl sx={{
 				m: 1,
-				minWidth: 120,
+				width: '90px',
 				"& .MuiOutlinedInput-root": {
 					"& fieldset": {
 						borderColor: "white"
@@ -109,52 +111,20 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 					}
 				}
 			}}>
-				<InputLabel id="categoria-label">Categoría</InputLabel>
+				<InputLabel id="categoria-label" sx={{color:'white'}}>{categoria}</InputLabel>
 				<Select
 					labelId="categoria-label"
 					value={selectedCategoria}
 					onChange={handleChangeCategoria}
 					input={<OutlinedInput id="categoria-select" label="Categoría" />}
 				>
-					{categorias.map((categoria) => (
-						<MenuItem key={categoria} value={categoria}>
-							{categoria}
-						</MenuItem>
-					))}
+					<MenuItem key={categoria} value={categoria}>
+						{categoria}
+					</MenuItem>
 				</Select>
 			</FormControl>
-
-			{selectedCategoria && (
-				<FormControl sx={{ m: 1, minWidth: 300 }}>
-					<InputLabel id="subcategoria-label">Subcategoría</InputLabel>
-					<Select
-						labelId="subcategoria-label"
-						multiple
-						value={selectedSubcategorias}
-						onChange={handleChangeSubcategoria}
-						input={<OutlinedInput id="subcategoria-select" label="Subcategoría" />}
-						renderValue={(selected) => (
-							<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-								{selected.map((value) => (
-									<Chip
-										key={value}
-										label={value}
-										sx={{ backgroundColor: 'white', color: '#150C3E' }}
-									/>
-								))}
-							</Box>
-						)}
-						MenuProps={MenuProps}
-					>
-						{subcategorias[selectedCategoria]?.map((subcategoria) => (
-							<MenuItem key={subcategoria} value={subcategoria}>
-								{subcategoria}
-							</MenuItem>
-						))}
-					</Select>
-				</FormControl>
-			)}
-
+		))}
+		</div>
 			<div id="catalog" className="container_catalog-img">
 				{filteredImages.map((image) => (
 					<img
