@@ -1,4 +1,7 @@
 @import '../../theme.scss';
+.aside-detail_sticker{
+    width: 300px;
+}
 .categories-container {
     width: 100%;
     display: flex;
@@ -30,6 +33,7 @@ canvas {
 }
 
 .container-catalog {
+    width: 50%;
     height: 100%;
 }
 
@@ -47,6 +51,7 @@ canvas {
     .catalog-img {
         flex: 0 0 calc(24.5% - 10px);
         max-width: calc(24.5% - 10px);
+        width: 100px;
         min-width: 170px;
         background: #ffffff14;
         border-radius: 6px;
@@ -120,14 +125,5 @@ canvas {
     }
 
     .aside-detail_sticker {
-        display: none !important;
-    }
-}
-
-.container_catalog-img {
-    .catalog-img {
-        flex: 0 0 calc(33.3% - 10px);
-        max-width: calc(33% - 10px);
-        min-width: auto;
     }
 }
