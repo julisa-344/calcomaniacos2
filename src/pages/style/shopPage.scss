@@ -17,6 +17,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
+    justify-content: space-between;
 }
 .contet-products{
     width: 60%;
@@ -71,3 +72,17 @@
     height: 80vh;
     align-items: center;
 }
+.filter-icon{
+    display: none;
+}
+.section_filtros{
+    margin-right: 42px;
+}
+@media (max-width: 768px) {
+    .section_filtros{
+        display: none;
+    }
+    .filter-icon{
+        display: flex;
+    }    
+  }

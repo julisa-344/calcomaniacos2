@@ -120,7 +120,7 @@ function ShopPage() {
 		<main className="main bg-color">
 			<section className="p-4">
 				<Grid container spacing={4}>
-					<Grid item xs={12} md={9}>
+					<Grid item >
 						<div className="flex justify-between align-center mb-4">
 							<div className="input-search">
 								<TextField
@@ -128,10 +128,8 @@ function ShopPage() {
 									value={searchTerm}
 									onChange={(e) => setSearchTerm(e.target.value)}
 									placeholder="Buscar..."
-									InputProps={{
-										endAdornment: <SearchIcon style={{ color: 'white' }} />,
-									}}
 								/>
+								<SearchIcon style={{ color: 'white', textAlign:'right' }} />
 							</div>
 							<FormControl
 								sx={{
@@ -174,18 +172,21 @@ function ShopPage() {
 									<MenuItem value={30}>Mayor precio</MenuItem>
 								</Select>
 							</FormControl>
-							<IconButton
-								onClick={toggleDrawer}
-								edge="start"
-								color="inherit"
-								aria-label="open drawer"
-								className='filter-icon'
+							<div className='filter-icon'
 							>
-								<FilterListIcon style={{ color: 'white' }} />
-							</IconButton>
+								<IconButton
+									onClick={toggleDrawer}
+									edge="start"
+									color="inherit"
+									aria-label="open drawer"
+								>
+									<FilterListIcon style={{ color: 'white' }} />
+								</IconButton>
+							</div>
+
 						</div>
 						<section className='flex justify-between w-max'>
-							<aside>
+							<aside className='section_filtros'>
 								<h2 className="title">Filtros</h2>
 								<p className="sub-title">Por categoría</p>
 								<div className="content-category">
@@ -220,18 +221,17 @@ function ShopPage() {
 
 					</Grid>
 				</Grid>
-				{/* Drawer visible solo en dispositivos móviles */}
-				<Drawer
+				{<Drawer
 					anchor="left"
 					open={drawerOpen}
 					onClose={toggleDrawer}
 					variant="temporary"
 					ModalProps={{
-						keepMounted: true, // Mejora el rendimiento en dispositivos móviles
+						keepMounted: true,
 					}}
 				>
 					{drawerContent}
-				</Drawer>
+				</Drawer>}
 			</section>
 		</main>
 	);

@@ -28,3 +28,10 @@
 	mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
 	mask-composite: exclude;
 }
+
+@media (max-width: 768px) {
+	.card {
+		width: 38%;
+		gap: 8px;
+	}   
+  }
