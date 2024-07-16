@@ -1,0 +1,15 @@
+.card-icons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16px;
+
+  img {
+    filter: invert(80%);
+    width: 50px;
+    transition: filter 0.3s ease-in-out;
+
+    &.active {
+      filter: grayscale(100%);
+    }
+  }
+}
