@@ -33,20 +33,15 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 	const [images, setImages] = useState<ImageData[]>([]);
 	const [categorias, setCategorias] = useState<string[]>([]);
 	const [subcategorias, setSubcategorias] = useState<{ [key: string]: string[] }>({});
-	const [selectedCategoria, setSelectedCategoria] = useState<string | null>(null);
-	const [selectedSubcategoria, setSelectedSubcategoria] = useState<string | null>(null);
+	const [selectedSubcategorias, setSelectedSubcategorias] = useState<{ [key: string]: string[] }>({});
 
 	const theme = useTheme();
-	const [selectedSubcategorias, setSelectedSubcategorias] = useState<string[]>([]);
 
-
-	const handleChangeSubcategoria = (event: SelectChangeEvent<string | string[]>) => {
-		setSelectedSubcategorias(event.target.value as string[]);
-	};
-
-	const handleChangeCategoria = (event: SelectChangeEvent<string | null>) => {
-		setSelectedCategoria(event.target.value);
-		setSelectedSubcategoria(null);
+	const handleChangeSubcategoria = (categoria: string) => (event: SelectChangeEvent<string[]>) => {
+		setSelectedSubcategorias({
+			...selectedSubcategorias,
+			[categoria]: event.target.value as string[],
+		});
 	};
 
 	useEffect(() => {
@@ -58,7 +53,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 				src: doc.data().src,
 				categoria: doc.data().categoria,
 				sub_categoria: doc.data().sub_categoria,
-				tags: doc.data().tags
+				tags: doc.data().tags,
 			}));
 
 			// Extract unique categorias and their subcategorias
@@ -83,48 +78,57 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 		fetchData();
 	}, []);
 
-	const filteredImages = selectedCategoria
-		? images.filter(image => image.categoria === selectedCategoria &&
-			(selectedSubcategorias.length === 0 || selectedSubcategorias.includes(image.sub_categoria)))
-		: images;
+	const filteredImages = images.filter(image => {
+		const selectedSubs = selectedSubcategorias[image.categoria] || [];
+		return selectedSubs.length === 0 || selectedSubs.includes(image.sub_categoria);
+	});
 
 	const handleImageClick = (src: string) => {
 		onSelectImage(src);
 	};
 
 	return (
-		<>	
-		<div className='flex'>
-		{categorias.map((categoria) => (
-			<FormControl sx={{
-				m: 1,
-				width: '90px',
-				"& .MuiOutlinedInput-root": {
-					"& fieldset": {
-						borderColor: "white"
-					},
-					"&:hover fieldset": {
-						borderColor: "gray"
-					},
-					"&.Mui-focused fieldset": {
-						borderColor: "gray"
-					}
-				}
-			}}>
-				<InputLabel id="categoria-label" sx={{color:'white'}}>{categoria}</InputLabel>
-				<Select
-					labelId="categoria-label"
-					value={selectedCategoria}
-					onChange={handleChangeCategoria}
-					input={<OutlinedInput id="categoria-select" label="Categoría" />}
-				>
-					<MenuItem key={categoria} value={categoria}>
-						{categoria}
-					</MenuItem>
-				</Select>
-			</FormControl>
-		))}
-		</div>
+		<>
+			<div className='flex'>
+				{categorias.map((categoria) => (
+					<FormControl
+						key={categoria}
+						sx={{
+							m: 1,
+							width: '180px',
+							"& .MuiOutlinedInput-root": {
+								"& fieldset": {
+									borderColor: "white",
+								},
+								"&:hover fieldset": {
+									borderColor: "gray",
+								},
+								"&.Mui-focused fieldset": {
+									borderColor: "gray",
+								},
+							},
+						}}
+					>
+						<InputLabel id={`${categoria}-label`} sx={{ color: 'white' }}>
+							{categoria}
+						</InputLabel>
+						<Select
+							labelId={`${categoria}-label`}
+							multiple
+							value={selectedSubcategorias[categoria] || []}
+							onChange={handleChangeSubcategoria(categoria)}
+							input={<OutlinedInput id={`${categoria}-select`} label="Subcategoría" />}
+						>
+							{subcategorias[categoria].map((subcategoria) => (
+								<MenuItem key={subcategoria} value={subcategoria}>
+									{subcategoria}
+								</MenuItem>
+							))}
+						</Select>
+					</FormControl>
+				))}
+			</div>
+
 			<div id="catalog" className="container_catalog-img">
 				{filteredImages.map((image) => (
 					<img
@@ -139,5 +143,4 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 		</>
 	);
 };
-
 export default ImageCatalog;
