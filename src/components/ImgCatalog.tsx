@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FormControl, InputLabel, Select, MenuItem, OutlinedInput } from '@mui/material';
 import { collection, getDocs, QueryDocumentSnapshot } from 'firebase/firestore';
-import { useTheme } from '@mui/material/styles';
 import { firestore } from '../firebase-config';
 import { SelectChangeEvent } from '@mui/material';
 
@@ -18,8 +17,6 @@ interface ImageCatalogProps {
 	onSelectImage: (src: string) => void;
 }
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
 
 const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 	const [images, setImages] = useState<ImageData[]>([]);
