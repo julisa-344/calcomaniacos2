@@ -17,17 +17,17 @@ function FooterComponent() {
           </div>
           <div className='adressFooter'>
             <h2>Dirección:</h2>
-            <p>Lorem Ipsum, 993, etc etc </p>
+            <p>Cieneguills </p>
             <p>Lima - Perú</p>
           </div>
         </div>
         <div className='categoriesFooter'>
           <h2>Categorías</h2>
           <ul>
-            <li><Link to='#skin'>Music</Link></li>
-            <li><Link to='#shade'>Memes</Link></li>
-            <li><Link to='#cilios'>Deporte</Link></li>
-            <li><Link to='#blush'>TEcnologia</Link></li>
+            <li><Link to='#skin' className='li-category'>Music</Link></li>
+            <li><Link to='#shade' className='li-category'>Memes</Link></li>
+            <li><Link to='#cilios' className='li-category'>Deporte</Link></li>
+            <li><Link to='#blush'className='li-category'>Tecnologia</Link></li>
           </ul>
         </div>
         <div className='paymentFooter'>

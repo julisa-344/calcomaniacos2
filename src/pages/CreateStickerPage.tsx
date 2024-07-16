@@ -209,7 +209,6 @@ function CreateStickerPage() {
 					label={modalLabel}
 					handleSave={handleSave}
 				/>
-
 				<div>
 					<h2 className="sub-title">Material</h2>
 					<div className="flex justify-center gap-2">
