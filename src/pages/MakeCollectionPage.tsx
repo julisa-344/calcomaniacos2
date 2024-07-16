@@ -22,12 +22,11 @@ function MakeCollection() {
 	const [showColorPicker, setShowColorPicker] = useState(false);
 	const [useGradient, setUseGradient] = useState(false);
 	const [triggerDownload, setTriggerDownload] = useState(false);
-	const [selectedView, setSelectedView] = useState('canvas'); // New state for selected view
+	const [selectedView, setSelectedView] = useState('canvas');
 	const [value, setValue] = React.useState(0);
 
 	function createData(detalle: string, valor: string) {
-		return { detalle, valor };
-	}
+		return { detalle, valor };	}
 
 	const rows = [
 		createData('Nombre', 'Papel'),

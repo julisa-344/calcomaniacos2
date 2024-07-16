@@ -10,6 +10,7 @@ import Login from './components/Login';
 import CreateStickerPage from './pages/CreateStickerPage';
 import WishListPage from './pages/wishListPage';
 import EditStickerPage from './pages/EditStickerPage';
+import PaymentPage from './pages/PaymentPage';
 
 export default function Routes() {
   return useRoutes([
@@ -23,6 +24,7 @@ export default function Routes() {
     { path: '/cart', element: <CartPage />},
     { path : '/create-sticker', element: <CreateStickerPage />},
     { path: '/lista-deseos', element: <WishListPage />},
-    { path: '/edit-sticker', element: <EditStickerPage />}
+    { path: '/edit-sticker', element: <EditStickerPage />},
+    { path: '/payment', element: <PaymentPage />}
   ]);
 }
