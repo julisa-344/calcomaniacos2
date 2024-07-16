@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FormControl, InputLabel, Select, MenuItem, OutlinedInput, Box, Chip } from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem, OutlinedInput } from '@mui/material';
 import { collection, getDocs, QueryDocumentSnapshot } from 'firebase/firestore';
 import { useTheme } from '@mui/material/styles';
 import { firestore } from '../firebase-config';
@@ -20,22 +20,12 @@ interface ImageCatalogProps {
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-	PaperProps: {
-		style: {
-			maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-			width: 250,
-		},
-	},
-};
 
 const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 	const [images, setImages] = useState<ImageData[]>([]);
 	const [categorias, setCategorias] = useState<string[]>([]);
 	const [subcategorias, setSubcategorias] = useState<{ [key: string]: string[] }>({});
 	const [selectedSubcategorias, setSelectedSubcategorias] = useState<{ [key: string]: string[] }>({});
-
-	const theme = useTheme();
 
 	const handleChangeSubcategoria = (categoria: string) => (event: SelectChangeEvent<string[]>) => {
 		setSelectedSubcategorias({
