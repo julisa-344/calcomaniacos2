@@ -55,14 +55,24 @@ function EditStickerPage() {
   };
 
   const calcularPrecioFinal = () => {
-    const preciosBase: { [key: string]: { size: number; price: number } } = {
-      'Holographico': { size: 3, price: 1 },
-      'Glitter': { size: 34, price: 1 },
-      'Oro': { size: 2, price: 1 },
-      'Plata': { size: 2, price: 1 }
+    // Definir precios base por acabado y tamaño (cada tamanio definido tiene 1 dolar de valor)
+    const preciosBase: { [key: string]: { price: number } } = {
+      Glitter: { price: 16 },
+      Holographico: { price: 9 },
+      Oro: { price: 4 },
+      Plata: { price: 4 },
     };
+    
 
-    const precioBase = preciosBase[acabado]?.size === size ? preciosBase[acabado]?.price : null;
+    // Size = "3 x 3"
+    // calcular el area y el precio en funcion del material
+
+    const areaCustom = Number(size[0]) * Number(size[4]);
+
+    // Obtener precio base
+    const precioBase = (1 / preciosBase[acabado].price) * areaCustom;
+
+    // Calcular el precio final, el cual corresponde al area custom multiplicado por el precio base
 
     let descuento = 1.0;
 

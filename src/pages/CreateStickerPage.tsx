@@ -50,15 +50,15 @@ const itemData = [
 	},
 	{
 		img: '../img/GLITTER.png',
-		title: 'Vinil',
+		title: 'Glitter',
 	},
 	{
 		img: '../img/ORO.png',
-		title: 'Vinil Matte',
+		title: 'Oro',
 	},
 	{
 		img: '../img/PLATA.png',
-		title: 'Transparente',
+		title: 'Plata',
 	}
 ];
 
