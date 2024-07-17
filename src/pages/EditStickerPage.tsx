@@ -32,6 +32,7 @@ function EditStickerPage() {
   const [triggerDownload, setTriggerDownload] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<string | null>(initialImageUrl);
+  const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
@@ -48,8 +49,12 @@ function EditStickerPage() {
   const triggerFileInput = () => {
     fileInputRef.current?.click();
   };
+
+  const handleResize = (width: number, height: number) => {
+    setImageDimensions({ width, height });
+  };
+
   const calcularPrecioFinal = () => {
-    // Definir precios base por acabado y tamaño
     const preciosBase: { [key: string]: { size: number; price: number } } = {
       'Holographico': { size: 3, price: 1 },
       'Glitter': { size: 34, price: 1 },
@@ -57,26 +62,23 @@ function EditStickerPage() {
       'Plata': { size: 2, price: 1 }
     };
 
-    // Obtener el precio base según el acabado y el tamaño
     const precioBase = preciosBase[acabado]?.size === size ? preciosBase[acabado]?.price : null;
 
-    // Definir los rangos de descuento según la cantidad
-    let descuento = 1.0; // 100% precio base
+    let descuento = 1.0;
 
     if (quantity >= 6 && quantity <= 10) {
-      descuento = 0.95; // 95% del precio base
+      descuento = 0.95;
     } else if (quantity >= 11 && quantity <= 20) {
-      descuento = 0.8; // 80% del precio base
+      descuento = 0.8;
     } else if (quantity >= 21 && quantity <= 50) {
-      descuento = 0.7; // 70% del precio base
+      descuento = 0.7;
     } else if (quantity >= 51) {
-      descuento = 0.6; // 60% del precio base
+      descuento = 0.6; 
     }
 
-    // Calcular el precio final
     const precioFinal = precioBase ? precioBase * quantity * descuento : 0;
 
-    return precioFinal.toFixed(2); // Redondear el precio a 2 decimales
+    return precioFinal.toFixed(2);
   };
 
   function createData(
@@ -109,6 +111,7 @@ function EditStickerPage() {
             height={700}
             maxImageWidth={300}
             triggerDownload={triggerDownload}
+            onResize={handleResize} // Add this line
           />
           <div className="action-canvas ml-4">
             <div className="color-picker-container">

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FormControl, InputLabel, Select, MenuItem, OutlinedInput, Box, Chip } from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem, OutlinedInput } from '@mui/material';
 import { collection, getDocs, QueryDocumentSnapshot } from 'firebase/firestore';
-import { useTheme } from '@mui/material/styles';
 import { firestore } from '../firebase-config';
 import { SelectChangeEvent } from '@mui/material';
 
@@ -15,7 +14,7 @@ interface ImageData {
 }
 
 interface ImageCatalogProps {
-	onSelectImage: (src: string) => void;
+	onSelectImage: (src: string, name: string) => void;
 }
 
 const ITEM_HEIGHT = 48;
@@ -34,8 +33,6 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 	const [categorias, setCategorias] = useState<string[]>([]);
 	const [subcategorias, setSubcategorias] = useState<{ [key: string]: string[] }>({});
 	const [selectedSubcategorias, setSelectedSubcategorias] = useState<{ [key: string]: string[] }>({});
-
-	const theme = useTheme();
 
 	const handleChangeSubcategoria = (categoria: string) => (event: SelectChangeEvent<string[]>) => {
 		setSelectedSubcategorias({
@@ -56,7 +53,6 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 				tags: doc.data().tags,
 			}));
 
-			// Extract unique categorias and their subcategorias
 			const categoriasSet = new Set<string>();
 			const subcategoriasMap: { [key: string]: string[] } = {};
 
@@ -83,8 +79,8 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 		return selectedSubs.length === 0 || selectedSubs.includes(image.sub_categoria);
 	});
 
-	const handleImageClick = (src: string) => {
-		onSelectImage(src);
+	const handleImageClick = (image: ImageData) => {
+		onSelectImage(image.src, image.nombre);
 	};
 
 	return (
@@ -136,7 +132,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 						src={image.src}
 						alt={`Imagen de ${image.categoria}`}
 						className="catalog-img"
-						onClick={() => handleImageClick(image.src)}
+						onClick={() => handleImageClick(image)}
 					/>
 				))}
 			</div>

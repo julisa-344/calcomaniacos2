@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { fabric } from "fabric";
 import { CartContext, CartContextType } from "../CartContext";
@@ -13,6 +12,7 @@ interface CanvasProps {
   height: number | string;
   maxImageWidth?: number;
   triggerDownload: boolean;
+  onResize: (width: number, height: number) => void;
 }
 
 interface ImageItem {
@@ -30,6 +30,7 @@ const Canvas: React.FC<CanvasProps> = ({
   height,
   maxImageWidth = 300,
   triggerDownload,
+  onResize,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
@@ -271,11 +272,10 @@ const Canvas: React.FC<CanvasProps> = ({
       imgElement.src = image.src;
       imgElement.crossOrigin = "anonymous";
       imgElement.onload = () => {
-        // Calculate the scale factor to downscale the image
         const maxDimension = maxImageWidth;
         const scaleWidth = maxDimension / imgElement.width;
         const scaleHeight = maxDimension / imgElement.height;
-        const scaleFactor = Math.min(scaleWidth, scaleHeight, 1); // Ensure we don't upscale images
+        const scaleFactor = Math.min(scaleWidth, scaleHeight, 1);
 
         fabric.Image.fromURL(image.src, (img) => {
           const canvasCenterX = fabricCanvas.getWidth() / 2;
@@ -327,6 +327,13 @@ const Canvas: React.FC<CanvasProps> = ({
               flipY: img.flipY,
             });
             fabricCanvas?.renderAll();
+
+            // Call the onResize function with the new dimensions
+            if (img.width && img.scaleX && img.height && img.scaleY) {
+              const widthInCm = (img.width * img.scaleX) / 37.795;
+              const heightInCm = (img.height * img.scaleY) / 37.795;
+              onResize(widthInCm, heightInCm);
+            }
           }
 
           img.on("moving", updateSilhouetteTransform);
@@ -356,6 +363,12 @@ const Canvas: React.FC<CanvasProps> = ({
             gradientColor2,
             useGradient
           );
+
+          if (img.width && img.scaleX && img.height && img.scaleY) {
+            const widthInCm = (img.width * img.scaleX) / 37.795;
+            const heightInCm = (img.height * img.scaleY) / 37.795;
+            onResize(widthInCm, heightInCm);
+          }
         });
       };
     }

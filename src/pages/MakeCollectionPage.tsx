@@ -16,6 +16,7 @@ import ImageIcon from '@mui/icons-material/Image';
 
 function MakeCollection() {
 	const [selectedImages, setSelectedImages] = useState<string[]>([]);
+	const [selectedImageName, setSelectedImageName] = useState<string>('');
 	const [color, setColor] = useState('#000000');
 	const [gradientColor1, setGradientColor1] = useState('#ffffff');
 	const [gradientColor2, setGradientColor2] = useState('#000000');
@@ -24,17 +25,15 @@ function MakeCollection() {
 	const [triggerDownload, setTriggerDownload] = useState(false);
 	const [selectedView, setSelectedView] = useState('canvas');
 	const [value, setValue] = React.useState(0);
+	const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
 
 	function createData(detalle: string, valor: string) {
-		return { detalle, valor };	}
+		return { detalle, valor };
+	}
 
-	const rows = [
-		createData('Nombre', 'Papel'),
-		createData('Tamaño', 'A4'),
-	];
-
-	const handleSelectImage = (src: string) => {
+	const handleSelectImage = (src: string, name: string) => {
 		setSelectedImages((prevImages) => [...prevImages, src]);
+		setSelectedImageName(name);
 	};
 
 	const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,6 +55,15 @@ function MakeCollection() {
 	const activateGradient = () => {
 		setUseGradient(true);
 	};
+
+	const handleImageResize = (width: number, height: number) => {
+		setImageDimensions({ width, height });
+	};
+
+	const rows = [
+		createData('Nombre', selectedImageName),
+		createData('Tamaño', `${imageDimensions.width.toFixed(2)} cm x ${imageDimensions.height.toFixed(2)} cm`),
+	];
 
 	return (
 		<main className="main bg-color">
@@ -114,6 +122,7 @@ function MakeCollection() {
 						width={500}
 						height={700}
 						triggerDownload={triggerDownload}
+						onResize={handleImageResize}  // Add this line
 					/>
 				</div>
 				<div className={`container-catalog flex direction-column justify-between ${selectedView === 'catalog' ? 'show' : 'hide'}`}>

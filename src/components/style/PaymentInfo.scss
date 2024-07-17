@@ -9,7 +9,7 @@
     transition: filter 0.3s ease-in-out;
 
     &.active {
-      filter: grayscale(100%);
+      filter: brightness(1) invert(0.01);
     }
   }
 }
