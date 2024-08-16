@@ -56,7 +56,10 @@ function CartPage() {
             <main className="bg-color mt-h main">
                 <h2 className="title text-center m-b">Carrito</h2>
                 {cart.length === 0 ? (
-                    <p className="text-center">Tu carrito está vacío</p>
+                    <div className='text-center'> 
+                    <img src="../img/cart-empty.png" alt="" />
+                    </div>
+
                 ) : (
                     cart.map((product, index) => (
                         <div className="item-product" key={index}>
