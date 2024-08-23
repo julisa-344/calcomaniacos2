@@ -4,9 +4,9 @@ import { CartContext, CartContextType } from "../CartContext";
 
 interface CanvasProps {
   color: string;
-  gradientColor1: string;
-  gradientColor2: string;
-  useGradient: boolean;
+  gradientColor1?: string;
+  gradientColor2?: string;
+  useGradient?: boolean;
   imageSrcs: string[];
   width: number | string;
   height: number | string;
@@ -22,9 +22,9 @@ interface ImageItem {
 
 const Canvas: React.FC<CanvasProps> = ({
   color,
-  gradientColor1,
-  gradientColor2,
-  useGradient,
+  gradientColor1 = "",
+  gradientColor2 = "",
+  useGradient = false,
   imageSrcs,
   width,
   height,
@@ -354,15 +354,7 @@ const Canvas: React.FC<CanvasProps> = ({
             }
           });
 
-          fabricCanvas.add(silhouetteImg);
           fabricCanvas.add(img);
-          updateSilhouette(
-            img,
-            color,
-            gradientColor1,
-            gradientColor2,
-            useGradient
-          );
 
           if (img.width && img.scaleX && img.height && img.scaleY) {
             const widthInCm = (img.width * img.scaleX) / 37.795;
