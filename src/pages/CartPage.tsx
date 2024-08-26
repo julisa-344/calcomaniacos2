@@ -25,32 +25,6 @@ function CartPage() {
     }, [cart, counts]);
 
 
-    const sendEmailWithCanvasImage = (imageData: string) => {
-        const templateParams = {
-          to_name: 'Nombre del destinatario',
-          from_name: 'Nombre del remitente',
-          message: 'Aquí está el diseño de tu sticker.',
-          attachment: imageData,
-        };
-      
-        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, 'YOUR_USER_ID')
-          .then((response) => {
-            console.log('Correo enviado con éxito!', response.status, response.text);
-          })
-          .catch((err) => {
-            console.error('Error al enviar el correo:', err);
-          });
-      };
-      
-      // Manejar la acción del botón de compra
-      const handlePurchase = () => {
-        const imageData = "";
-        if (imageData) {
-          sendEmailWithCanvasImage(imageData);
-        } else {
-          console.error('No se pudo capturar la imagen del canvas.');
-        }
-      };
 
     const increment = (index: number) => {
         setCounts(prevCounts => ({
@@ -116,7 +90,6 @@ function CartPage() {
                         <p className="sub-title">S/. {total}</p>
                     </div>
                     <Button className="text-end" text="Finalizar compra" onClick={handleCheckout} />
-                    <Button className="text-end" text="enviar correro" onClick={handlePurchase} />
                 </div>
                 <section>
                     <h2 className="title m-4 text-center">Productos que te pueden interesar</h2>
