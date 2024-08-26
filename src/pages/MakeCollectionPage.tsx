@@ -14,7 +14,7 @@ import ImageIcon from '@mui/icons-material/Image';
 function MakeCollection() {
 	const [selectedImages, setSelectedImages] = useState<string[]>([]);
 	const [selectedImageName, setSelectedImageName] = useState<string>('');
-	const [color, setColor] = useState('#000000');
+	const [color, setColor] = useState('#0000');
 	const [showColorPicker, setShowColorPicker] = useState(false);
 	const [triggerDownload, setTriggerDownload] = useState(false);
 	const [selectedView, setSelectedView] = useState('canvas');
