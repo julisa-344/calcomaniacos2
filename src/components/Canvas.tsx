@@ -11,8 +11,7 @@ interface CanvasProps {
   width: number | string;
   height: number | string;
   maxImageWidth?: number;
-  triggerDownload: boolean;
-  onResize: (width: number, height: number) => void;
+    onResize: (width: number, height: number) => void;
 }
 
 interface ImageItem {
@@ -29,7 +28,6 @@ const Canvas: React.FC<CanvasProps> = ({
   width,
   height,
   maxImageWidth = 300,
-  triggerDownload = false,
   onResize,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -40,6 +38,7 @@ const Canvas: React.FC<CanvasProps> = ({
   const imageMapRef = useRef(
     new Map<fabric.Image, { silhouette: fabric.Image; color: string; gradientColor1: string; gradientColor2: string; useGradient: boolean }>()
   );
+  const [triggerDownload, setTriggerDownload] = useState(false);
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -160,6 +159,7 @@ const Canvas: React.FC<CanvasProps> = ({
       };
 
       setCart([...cart, productToAdd]);
+      setTriggerDownload(false);
     }
   }, [triggerDownload, cart, setCart]);
 

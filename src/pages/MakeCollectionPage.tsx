@@ -21,7 +21,7 @@ function MakeCollection() {
 	const [value, setValue] = React.useState(0);
 	const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
 
-	console.log(triggerDownload, "triggerDownload");
+	// console.log(triggerDownload, "triggerDownload");
 	function createData(detalle: string, valor: string) {
 		return { detalle, valor };
 	}
@@ -62,7 +62,6 @@ function MakeCollection() {
 						imageSrcs={selectedImages}
 						width={500}
 						height={700}
-						triggerDownload={triggerDownload}
 						onResize={handleImageResize}
 					/>
 				</div>
@@ -93,14 +92,14 @@ function MakeCollection() {
 					<Button
 						className="text-center"
 						text="Descargar"
-						onClick={() => setTriggerDownload((prev) => !prev)}
+						onClick={() => setTriggerDownload(true)}
 					/>
 				</div>
 			</section>
 			<Button
 				className="text-center btn-mobile"
 				text="Descargar"
-				onClick={() => setTriggerDownload((prev) => !prev)}
+				onClick={() => setTriggerDownload(true)}
 			/>
 
 			<Box className="bottom-bar" sx={{ width: "100%" }}>

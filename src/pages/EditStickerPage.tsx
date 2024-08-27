@@ -120,7 +120,6 @@ function EditStickerPage() {
             width={1000}
             height={700}
             maxImageWidth={300}
-            triggerDownload={triggerDownload}
             onResize={handleResize} // Add this line
           />
           <div className="action-canvas ml-4">
@@ -172,7 +171,7 @@ function EditStickerPage() {
             <Button
               className="text-center m-t"
               text="Comprar"
-              onClick={() => setTriggerDownload((prev) => !prev)}
+              onClick={() => setTriggerDownload(true)}
             />
           </div>
         </section>
