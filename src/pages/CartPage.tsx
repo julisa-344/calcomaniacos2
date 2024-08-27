@@ -10,6 +10,12 @@ import { CartContext, CartContextType } from '../CartContext';
 import DeleteIcon from "@mui/icons-material/Delete";
 import emailjs from 'emailjs-com';
 
+// import the required functions to store collections in Firestore
+import { collection, addDoc } from 'firebase/firestore';
+import { firestore, auth } from "../firebase-config";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+// import { firestore, auth } from './firebase-config';
+
 function CartPage() {
     const { cart, setCart } = useContext<CartContextType>(CartContext);
     const [counts, setCounts] = useState<{ [key: number]: number }>({});
@@ -51,7 +57,126 @@ function CartPage() {
     };
 
     const handleCheckout = () => {
-        navigate('/payment', { state: { total } });
+      console.log("Products to buy: ", cart);
+      // Send the data to firestore:
+      // 1. Create a new collection in Firestore (purchase)
+      // The payload should be as follows:
+      /*
+            For each purchase:
+            {
+                "purchaseId": "purchase-123",
+                "userId": "user-456",
+                "timestamp": "2020-01-01T00:00:00Z",
+                "items": [
+                    {
+                    "acabado": "glossy",
+                    "tamanio": "gs://your-bucket/stickers/sticker-789.png",
+                    "price": 2.99,
+                    "quantity": 2
+                    },
+                    {
+                    "acabado": "sticker-101",
+                    "tamanio": "gs://your-bucket/stickers/sticker-101.png",
+                    "price": 1.99,
+                    "quantity": 1
+                    }
+                ]
+            }
+
+            ** Keep in mind that if the user has created a custom collection, we first have to upload that to cloud storage. Then, we can add the URL (image source) to the collection.
+        */
+      // 2. Updload the purchase and set it into the 'purchases' firestore collection
+      // 3. Send an email to the user with the purchase details
+      // 4. Redirect the user to the payment page
+
+      // The 'cart' object has the producuts, with the following structure:
+      // acabado,
+      // img,
+      // name,
+      // price,
+      // tamano
+
+      // First, identify if the sticker is a custom one (it should have the 'data' string at the start of the img attribute)
+
+      // Then, for each product in the cart, upload the image to the cloud storage
+
+      // Define the timestamp
+      const timestamp = new Date().toISOString();
+
+      // First, validate that the user is logged in
+        if (!auth.currentUser) {
+            console.error("User is not logged in");
+            return;
+        }
+
+      // Define the userId
+      const uid = auth.currentUser?.uid;
+
+
+
+      // Define the purchaseId
+      const purchaseId = `${uid}-${timestamp}-${Math.floor(
+        Math.random() * 1000
+      )}`;
+
+      const customStickers = cart.filter((product) =>
+        product.img.startsWith("data:")
+      );
+
+      console.log("Custom stickers: ", customStickers);
+
+      const storage = getStorage();
+
+      // Upload the custom stickers to the cloud storage
+      customStickers.forEach(async (product, index) => {
+        const image = product.img;
+        const response = await fetch(image);
+        const blob = await response.blob();
+        const storageRef = ref(
+          storage,
+          `user-content/${uid}/${purchaseId}-${index}.png`
+        );
+        await uploadBytes(storageRef, blob);
+        //   .then((snapshot) => {
+        //     console.log("Uploaded file successfully!");
+        //     // Get the download URL
+        //     getDownloadURL(snapshot.ref)
+        //       .then((url) => {
+        //         console.log("File available at", url);
+        //         // Use the URL to display the image or store it in your database
+        //       })
+        //       .catch((error) => {
+        //         console.error("Error getting download URL:", error);
+        //       });
+        //   })
+        //   .catch((error) => {
+        //     console.error("Error uploading file:", error);
+        //   });
+        const url = await getDownloadURL(storageRef);
+        cart[index].img = url;
+      });
+
+      // Define the items
+      const items = cart.map((product, index) => ({
+        acabado: product.acabado,
+        tamanio: product.img,
+        price: product.price,
+        quantity: counts[index] || 1,
+      }));
+
+      // Define the purchase object
+      const purchase = {
+        purchaseId,
+        // userId,
+        timestamp,
+        items,
+      };
+
+      // Send the data to Firestore
+      const purchaseRef = collection(firestore, "purchases");
+      addDoc(purchaseRef, purchase);
+
+      navigate("/payment", { state: { total } });
     };
 
     return (
