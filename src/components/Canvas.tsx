@@ -12,7 +12,7 @@ interface CanvasProps {
   height: number | string;
   triggerDownload: boolean;
   maxImageWidth?: number;
-    onResize: (width: number, height: number) => void;
+  onResize: (width: number, height: number) => void;
 }
 
 interface ImageItem {
@@ -152,7 +152,6 @@ const Canvas: React.FC<CanvasProps> = ({
           quality: 1.0,
         });
 
-		// now add the image to the cart
 		const productToAdd = {
 			img: dataURL,
 			name: 'Collection personalizada',
@@ -194,6 +193,13 @@ const Canvas: React.FC<CanvasProps> = ({
           fabricCanvas.add(fabricImg);
           fabricCanvas.setActiveObject(fabricImg);
           fabricCanvas.renderAll();
+
+          if (fabricImg.width && fabricImg.scaleX && fabricImg.height && fabricImg.scaleY) {
+            const widthInCm = (fabricImg.width * fabricImg.scaleX) / 37.795;
+            const heightInCm = (fabricImg.height * fabricImg.scaleY) / 37.795;
+            onResize(widthInCm, heightInCm);
+          }
+
         });
       };
     }
