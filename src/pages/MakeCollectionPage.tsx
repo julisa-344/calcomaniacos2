@@ -62,6 +62,7 @@ function MakeCollection() {
 						imageSrcs={selectedImages}
 						width={500}
 						height={700}
+						triggerDownload={triggerDownload}
 						onResize={handleImageResize}
 					/>
 				</div>

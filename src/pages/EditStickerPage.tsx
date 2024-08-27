@@ -120,6 +120,7 @@ function EditStickerPage() {
             width={1000}
             height={700}
             maxImageWidth={300}
+            triggerDownload={triggerDownload}
             onResize={handleResize} // Add this line
           />
           <div className="action-canvas ml-4">

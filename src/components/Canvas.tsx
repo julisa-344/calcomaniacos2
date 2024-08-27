@@ -10,6 +10,7 @@ interface CanvasProps {
   imageSrcs: string[];
   width: number | string;
   height: number | string;
+  triggerDownload: boolean;
   maxImageWidth?: number;
     onResize: (width: number, height: number) => void;
 }
@@ -28,6 +29,7 @@ const Canvas: React.FC<CanvasProps> = ({
   width,
   height,
   maxImageWidth = 300,
+  triggerDownload,
   onResize,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -38,7 +40,6 @@ const Canvas: React.FC<CanvasProps> = ({
   const imageMapRef = useRef(
     new Map<fabric.Image, { silhouette: fabric.Image; color: string; gradientColor1: string; gradientColor2: string; useGradient: boolean }>()
   );
-  const [triggerDownload, setTriggerDownload] = useState(false);
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -144,24 +145,28 @@ const Canvas: React.FC<CanvasProps> = ({
   }, [color, gradientColor1, gradientColor2, useGradient]);
 
   useEffect(() => {
-    if (triggerDownload && fabricCanvasRef.current) {
-      const dataURL = fabricCanvasRef.current.toDataURL({
-        format: "png",
-        quality: 1.0,
-      });
+    if (triggerDownload) {
+      if (fabricCanvasRef.current) {
+        const dataURL = fabricCanvasRef.current.toDataURL({
+          format: "png",
+          quality: 1.0,
+        });
 
-      const productToAdd = {
-        img: dataURL,
-        name: 'Collection personalizada',
-        price: 10,
-        tamano: '10x10',
-        acabado: 'vinil',
-      };
+		// now add the image to the cart
+		const productToAdd = {
+			img: dataURL,
+			name: 'Collection personalizada',
+			price: 10,
+			tamano: '10x10',
+			acabado: 'vinil',
+		};
 
-      setCart([...cart, productToAdd]);
-      setTriggerDownload(false);
+		setCart([...cart, productToAdd]);
+		const link = document.createElement("a");
+		
+      }
     }
-  }, [triggerDownload, cart, setCart]);
+  }, [triggerDownload]);
 
   const addImageToCanvas = (image: ImageItem) => {
     const fabricCanvas = fabricCanvasRef.current;
