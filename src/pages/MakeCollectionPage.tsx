@@ -15,13 +15,12 @@ function MakeCollection() {
 	const [selectedImages, setSelectedImages] = useState<string[]>([]);
 	const [selectedImageName, setSelectedImageName] = useState<string>('');
 	const [color, setColor] = useState('#0000');
-	const [showColorPicker, setShowColorPicker] = useState(false);
 	const [triggerDownload, setTriggerDownload] = useState(false);
 	const [selectedView, setSelectedView] = useState('canvas');
 	const [value, setValue] = React.useState(0);
 	const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
 
-	// console.log(triggerDownload, "triggerDownload");
+	console.log(setColor);
 	function createData(detalle: string, valor: string) {
 		return { detalle, valor };
 	}
@@ -30,15 +29,6 @@ function MakeCollection() {
 		setSelectedImages((prevImages) => [...prevImages, src]);
 		setSelectedImageName(name);
 	};
-
-	const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setColor(event.target.value);
-	};
-
-	const toggleColorPicker = () => {
-		setShowColorPicker(!showColorPicker);
-	};
-
 
 	const handleImageResize = (width: number, height: number) => {
 		setImageDimensions({ width, height });
@@ -60,8 +50,8 @@ function MakeCollection() {
 					<Canvas
 						color={color}
 						imageSrcs={selectedImages}
-						width={500}
-						height={700}
+						width={1681}
+						height={2362}
 						triggerDownload={triggerDownload}
 						onResize={handleImageResize}
 					/>

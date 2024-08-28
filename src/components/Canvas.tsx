@@ -46,7 +46,16 @@ const Canvas: React.FC<CanvasProps> = ({
       fabricCanvasRef.current = new fabric.Canvas(canvasRef.current, {
         preserveObjectStacking: true,
         selection: false,
+
       });
+
+            // Escala visualmente usando Fabric.js
+            fabricCanvasRef.current.setDimensions({
+              width: 500 + 'px',  // Tamaño visible en pantalla
+              height: 700 + 'px',
+            }, {
+              cssOnly: true  // Importante: solo afecta la visualización en CSS, no la resolución interna
+            });
 
       fabricCanvasRef.current.on("mouse:down", (options) => {
         if (options.target && options.target.type === "image") {
@@ -152,17 +161,15 @@ const Canvas: React.FC<CanvasProps> = ({
           quality: 1.0,
         });
 
-		const productToAdd = {
-			img: dataURL,
-			name: 'Collection personalizada',
-			price: 10,
-			tamano: '10x10',
-			acabado: 'vinil',
-		};
+        const productToAdd = {
+          img: dataURL,
+          name: 'Collection personalizada',
+          price: 22,
+          tamano: '14x20',
+          acabado: 'Transferible',
+        };
 
-		setCart([...cart, productToAdd]);
-		const link = document.createElement("a");
-		
+        setCart([...cart, productToAdd]);
       }
     }
   }, [triggerDownload]);
