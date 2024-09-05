@@ -124,16 +124,6 @@ const Canvas: React.FC<CanvasProps> = ({
     }
   }, [maxImageWidth]);
 
-  useEffect(() => {
-    if (imageSrcs.length > 0) {
-      const newImageSrc = imageSrcs[imageSrcs.length - 1];
-      const newImage = {
-        id: `${newImageSrc}-${Date.now()}-${Math.random()}`,
-        src: newImageSrc,
-      };
-      addImageToCanvas(newImage);
-    }
-  }, [imageSrcs]);
 
   useEffect(() => {
     if (selectedImageRef.current) {
@@ -169,11 +159,11 @@ const Canvas: React.FC<CanvasProps> = ({
         setCart([...cart, productToAdd]);
       }
     }
-  }, [triggerDownload]);
+  }, [triggerDownload, cart, setCart]);
 
   const addImageToCanvas = useCallback((image: ImageItem) => {
     const fabricCanvas = fabricCanvasRef.current;
-
+  
     if (fabricCanvas) {
       const imgElement = new Image();
       imgElement.src = image.src;
@@ -183,7 +173,7 @@ const Canvas: React.FC<CanvasProps> = ({
         const scaleWidth = maxDimension / imgElement.width;
         const scaleHeight = maxDimension / imgElement.height;
         const scaleFactor = Math.min(scaleWidth, scaleHeight, 1);
-
+  
         fabric.Image.fromURL(image.src, (fabricImg) => {
           fabricImg.set({
             left: fabricCanvas.width! / 2,
@@ -193,21 +183,33 @@ const Canvas: React.FC<CanvasProps> = ({
             scaleX: scaleFactor,
             scaleY: scaleFactor,
           });
-
+  
           fabricCanvas.add(fabricImg);
           fabricCanvas.setActiveObject(fabricImg);
           fabricCanvas.renderAll();
-
+  
           if (fabricImg.width && fabricImg.scaleX && fabricImg.height && fabricImg.scaleY) {
             const widthInCm = (fabricImg.width * fabricImg.scaleX) / 37.795;
             const heightInCm = (fabricImg.height * fabricImg.scaleY) / 37.795;
             onResize(widthInCm, heightInCm);
           }
-
         });
       };
     }
   }, [maxImageWidth, onResize]);
+  
+  // Ahora el useEffect que usa addImageToCanvas
+  useEffect(() => {
+    if (imageSrcs.length > 0) {
+      const newImageSrc = imageSrcs[imageSrcs.length - 1];
+      const newImage = {
+        id: `${newImageSrc}-${Date.now()}-${Math.random()}`,
+        src: newImageSrc,
+      };
+      addImageToCanvas(newImage);
+    }
+  }, [imageSrcs, addImageToCanvas]);  // Añade addImageToCanvas como dependencia
+  
 
   return (
     <canvas
