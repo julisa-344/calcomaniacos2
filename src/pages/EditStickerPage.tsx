@@ -34,6 +34,7 @@ function EditStickerPage() {
   const [image, setImage] = useState<string | null>(initialImageUrl);
   const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
 
+  console.log("imageDimensions", imageDimensions);
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file && file.type.match('image.*')) {
@@ -172,7 +173,7 @@ function EditStickerPage() {
             <Button
               className="text-center m-t"
               text="Comprar"
-              onClick={() => setTriggerDownload((prev) => !prev)}
+              onClick={() => setTriggerDownload(true)}
             />
           </div>
         </section>

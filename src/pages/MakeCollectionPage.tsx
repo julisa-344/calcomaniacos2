@@ -4,10 +4,7 @@ import { useState } from "react";
 import "./style/MakeCollection.scss";
 import Canvas from "../components/Canvas";
 import ImageCatalog from "../components/ImgCatalog";
-import { IconButton, TableContainer, Table, TableBody, TableRow, TableCell, Paper, Box } from '@mui/material';
-import ColorLensIcon from "@mui/icons-material/ColorLens";
-import GestureIcon from "@mui/icons-material/Gesture";
-import GradientIcon from "@mui/icons-material/Gradient";
+import { TableContainer, Table, TableBody, TableRow, TableCell, Paper, Box } from '@mui/material';
 import Button from "../components/Button";
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
@@ -17,16 +14,13 @@ import ImageIcon from '@mui/icons-material/Image';
 function MakeCollection() {
 	const [selectedImages, setSelectedImages] = useState<string[]>([]);
 	const [selectedImageName, setSelectedImageName] = useState<string>('');
-	const [color, setColor] = useState('#000000');
-	const [gradientColor1, setGradientColor1] = useState('#ffffff');
-	const [gradientColor2, setGradientColor2] = useState('#000000');
-	const [showColorPicker, setShowColorPicker] = useState(false);
-	const [useGradient, setUseGradient] = useState(false);
+	const [color, setColor] = useState('#0000');
 	const [triggerDownload, setTriggerDownload] = useState(false);
 	const [selectedView, setSelectedView] = useState('canvas');
 	const [value, setValue] = React.useState(0);
 	const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
 
+	console.log(setColor);
 	function createData(detalle: string, valor: string) {
 		return { detalle, valor };
 	}
@@ -34,26 +28,6 @@ function MakeCollection() {
 	const handleSelectImage = (src: string, name: string) => {
 		setSelectedImages((prevImages) => [...prevImages, src]);
 		setSelectedImageName(name);
-	};
-
-	const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setColor(event.target.value);
-	};
-
-	const handleGradientColor1Change = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setGradientColor1(event.target.value);
-	};
-
-	const handleGradientColor2Change = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setGradientColor2(event.target.value);
-	};
-
-	const toggleColorPicker = () => {
-		setShowColorPicker(!showColorPicker);
-	};
-
-	const activateGradient = () => {
-		setUseGradient(true);
 	};
 
 	const handleImageResize = (width: number, height: number) => {
@@ -70,59 +44,16 @@ function MakeCollection() {
 			<h2 className="title mb-4 text-center">Crea tu colección</h2>
 			<section className="container">
 				<div className={`content-canvas ${selectedView === 'canvas' ? 'show' : 'hide'}`}>
-					<div className="action-canvas">
-						<div className="color-picker-container">
-							<IconButton onClick={toggleColorPicker}>
-								<ColorLensIcon />
-							</IconButton>
-							<IconButton>
-								<GestureIcon />
-							</IconButton>
-							<IconButton onClick={activateGradient}>
-								<GradientIcon />
-							</IconButton>
-							{showColorPicker && (
-								<div>
-									<label htmlFor="colorPicker"></label>
-									<input
-										type="color"
-										id="colorPicker"
-										value={color}
-										onChange={handleColorChange}
-										disabled={useGradient}
-									/>
-								</div>
-							)}
-							{useGradient && (
-								<div>
-									<label htmlFor="gradientColor1Picker"></label>
-									<input
-										type="color"
-										id="gradientColor1Picker"
-										value={gradientColor1}
-										onChange={handleGradientColor1Change}
-									/>
-									<label htmlFor="gradientColor2Picker"></label>
-									<input
-										type="color"
-										id="gradientColor2Picker"
-										value={gradientColor2}
-										onChange={handleGradientColor2Change}
-									/>
-								</div>
-							)}
-						</div>
+					<div className="">
+				
 					</div>
 					<Canvas
 						color={color}
-						gradientColor1={gradientColor1}
-						gradientColor2={gradientColor2}
-						useGradient={useGradient}
 						imageSrcs={selectedImages}
-						width={500}
-						height={700}
+						width={1681}
+						height={2362}
 						triggerDownload={triggerDownload}
-						onResize={handleImageResize}  // Add this line
+						onResize={handleImageResize}
 					/>
 				</div>
 				<div className={`container-catalog flex direction-column justify-between ${selectedView === 'catalog' ? 'show' : 'hide'}`}>
@@ -152,14 +83,14 @@ function MakeCollection() {
 					<Button
 						className="text-center"
 						text="Descargar"
-						onClick={() => setTriggerDownload((prev) => !prev)}
+						onClick={() => setTriggerDownload(true)}
 					/>
 				</div>
 			</section>
 			<Button
 				className="text-center btn-mobile"
 				text="Descargar"
-				onClick={() => setTriggerDownload((prev) => !prev)}
+				onClick={() => setTriggerDownload(true)}
 			/>
 
 			<Box className="bottom-bar" sx={{ width: "100%" }}>
