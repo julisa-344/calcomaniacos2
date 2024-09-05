@@ -34,13 +34,11 @@ const Canvas: React.FC<CanvasProps> = ({
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
-  const [loadedImages, setLoadedImages] = useState<ImageItem[]>([]);
   const selectedImageRef = useRef<fabric.Image | null>(null);
   const { cart, setCart } = useContext<CartContextType>(CartContext);
   const imageMapRef = useRef(
     new Map<fabric.Image, { silhouette: fabric.Image; color: string; gradientColor1: string; gradientColor2: string; useGradient: boolean }>()
   );
-
   useEffect(() => {
     if (canvasRef.current) {
       fabricCanvasRef.current = new fabric.Canvas(canvasRef.current, {
@@ -134,7 +132,6 @@ const Canvas: React.FC<CanvasProps> = ({
         src: newImageSrc,
       };
       addImageToCanvas(newImage);
-      setLoadedImages((prev) => [...prev, newImage]);
     }
   }, [imageSrcs]);
 

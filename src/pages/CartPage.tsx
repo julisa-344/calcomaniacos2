@@ -8,7 +8,6 @@ import Box from '@mui/material/Box';
 import Button from '../components/Button';
 import { CartContext, CartContextType } from '../CartContext';
 import DeleteIcon from "@mui/icons-material/Delete";
-import emailjs from 'emailjs-com';
 
 // import the required functions to store collections in Firestore
 import { collection, addDoc } from 'firebase/firestore';
