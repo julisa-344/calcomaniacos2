@@ -17,4 +17,4 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TRUE_PIPE_423601_N6 }}
           channelId: live
-          projectId: true-pipe-423601-n6
+          projectId: calcomaniacos-e3d70
