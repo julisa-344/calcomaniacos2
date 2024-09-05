@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useCallback } from "react";
 import { fabric } from "fabric";
 import { CartContext, CartContextType } from "../CartContext";
 
@@ -171,7 +171,7 @@ const Canvas: React.FC<CanvasProps> = ({
     }
   }, [triggerDownload]);
 
-  const addImageToCanvas = (image: ImageItem) => {
+  const addImageToCanvas = useCallback((image: ImageItem) => {
     const fabricCanvas = fabricCanvasRef.current;
 
     if (fabricCanvas) {
@@ -207,7 +207,7 @@ const Canvas: React.FC<CanvasProps> = ({
         });
       };
     }
-  };
+  }, [maxImageWidth, onResize]);
 
   return (
     <canvas
