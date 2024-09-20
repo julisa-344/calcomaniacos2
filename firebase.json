@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "calcomaniacos",
+    "site": "calcomaniacos-e3d70",
     "public": "build",
     "ignore": [
       "firebase.json",

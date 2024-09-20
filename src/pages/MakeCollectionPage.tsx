@@ -82,14 +82,14 @@ function MakeCollection() {
 					</div>
 					<Button
 						className="text-center"
-						text="Descargar"
+						text="Agregar al carrito"
 						onClick={() => setTriggerDownload(true)}
 					/>
 				</div>
 			</section>
 			<Button
 				className="text-center btn-mobile"
-				text="Descargar"
+				text="Agregar al carrito"
 				onClick={() => setTriggerDownload(true)}
 			/>
 

@@ -42,15 +42,15 @@ const Header: React.FC = () => {
       <ListItem button component={Link} to="/" onClick={toggleDrawer(false)}>
         <ListItemText primary="Home" />
       </ListItem>
-      <ListItem button component={Link} to="/shop" onClick={toggleDrawer(false)}>
+      {/* <ListItem button component={Link} to="/shop" onClick={toggleDrawer(false)}>
         <ListItemText primary="Shop" />
-      </ListItem>
+      </ListItem> */}
       <ListItem button component={Link} to="/make-collection" onClick={toggleDrawer(false)}>
         <ListItemText primary="Crea tu colección" />
       </ListItem>
-      <ListItem button component={Link} to="/create-sticker" onClick={toggleDrawer(false)}>
+      {/* <ListItem button component={Link} to="/create-sticker" onClick={toggleDrawer(false)}>
         <ListItemText primary="Crea tu sticker" />
-      </ListItem>
+      </ListItem> */}
     </List>
   );
 
