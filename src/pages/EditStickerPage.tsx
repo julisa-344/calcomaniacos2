@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 
 import "./style/EditSticker.scss";
 import Table from '@mui/material/Table';
@@ -33,6 +33,10 @@ function EditStickerPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<string | null>(initialImageUrl);
   const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
+
+  const handleDownloadComplete = useCallback(() => {
+    setTriggerDownload(false);
+  }, []);
 
   console.log("imageDimensions", imageDimensions);
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -123,6 +127,7 @@ function EditStickerPage() {
             maxImageWidth={300}
             triggerDownload={triggerDownload}
             onResize={handleResize} // Add this line
+            onDownloadComplete={handleDownloadComplete}
           />
           <div className="action-canvas ml-4">
             <div className="color-picker-container">
