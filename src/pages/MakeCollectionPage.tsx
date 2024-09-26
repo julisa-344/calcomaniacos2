@@ -15,7 +15,6 @@ function MakeCollection() {
 	// console.log("MakeCollection");
 	const [selectedImages, setSelectedImages] = useState<string[]>([]);
 	const [selectedImageName, setSelectedImageName] = useState<string>('');
-	const [color, setColor] = useState('#0000');
 	const [triggerDownload, setTriggerDownload] = useState(false);
 	const [selectedView, setSelectedView] = useState('canvas');
 	const [value, setValue] = React.useState(0);
@@ -28,7 +27,6 @@ function MakeCollection() {
     setTriggerDownload(false);
   }, []);
 
-	console.log(color);
 	function createData(detalle: string, valor: string) {
 		return { detalle, valor };
 	}
@@ -61,7 +59,6 @@ function MakeCollection() {
         >
           <div className=""></div>
           <Canvas
-            color={color}
             imageSrcs={selectedImages}
             width={1681}
             height={2362}

@@ -117,7 +117,6 @@ function EditStickerPage() {
       <section className="flex justify-between container">
         <section className="flex">
           <Canvas
-            color={color}
             gradientColor1={gradientColor1}
             gradientColor2={gradientColor2}
             useGradient={useGradient}

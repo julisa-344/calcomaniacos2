@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useRef, useCallback, useState } from "react";
+import React, { useContext, useEffect, useRef, useCallback } from "react";
 import { fabric } from "fabric";
 import { CartContext, CartContextType } from "../CartContext";
 
 interface CanvasProps {
-  color: string;
   gradientColor1?: string;
   gradientColor2?: string;
   useGradient?: boolean;
@@ -22,7 +21,6 @@ interface ImageItem {
 }
 
 const Canvas: React.FC<CanvasProps> = ({
-  color,
   gradientColor1 = "",
   gradientColor2 = "",
   useGradient = false,
@@ -43,7 +41,6 @@ const Canvas: React.FC<CanvasProps> = ({
       fabric.Image,
       {
         silhouette: fabric.Image;
-        color: string;
         gradientColor1: string;
         gradientColor2: string;
         useGradient: boolean;
@@ -177,13 +174,12 @@ const Canvas: React.FC<CanvasProps> = ({
       )?.silhouette!;
       imageMapRef.current.set(selectedImageRef.current, {
         silhouette: currentSilhouette,
-        color: color,
         gradientColor1: gradientColor1,
         gradientColor2: gradientColor2,
         useGradient: useGradient,
       });
     }
-  }, [color, gradientColor1, gradientColor2, useGradient]);
+  }, [gradientColor1, gradientColor2, useGradient]);
 
   const handleDownload = () => {
     if (fabricCanvasRef.current) {

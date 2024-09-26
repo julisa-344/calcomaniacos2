@@ -1,7 +1,6 @@
 import './style/CartPage.scss';
 import './../theme.scss';
 import { useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Card from '../components/CardComponent';
 import { TextField } from "@mui/material";
 import Box from '@mui/material/Box';
@@ -20,7 +19,6 @@ function CartPage() {
     const [counts, setCounts] = useState<{ [key: number]: number }>({});
     const [total, setTotal] = useState(0);
     const [showModal, setShowModal] = useState(false);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const calculateTotal = () => {
