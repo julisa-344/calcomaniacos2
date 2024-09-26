@@ -12,6 +12,7 @@ import CropPortraitIcon from '@mui/icons-material/CropPortrait';
 import ImageIcon from '@mui/icons-material/Image';
 
 function MakeCollection() {
+	// console.log("MakeCollection");
 	const [selectedImages, setSelectedImages] = useState<string[]>([]);
 	const [selectedImageName, setSelectedImageName] = useState<string>('');
 	const [color, setColor] = useState('#0000');
@@ -19,12 +20,15 @@ function MakeCollection() {
 	const [selectedView, setSelectedView] = useState('canvas');
 	const [value, setValue] = React.useState(0);
 	const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
+	
+	const scaleX = 12 / 600;
+	const scaleY = 24 / 920;
 
 	const handleDownloadComplete = useCallback(() => {
     setTriggerDownload(false);
   }, []);
 
-	console.log(setColor);
+	console.log(color);
 	function createData(detalle: string, valor: string) {
 		return { detalle, valor };
 	}
@@ -35,7 +39,10 @@ function MakeCollection() {
 	};
 
 	const handleImageResize = (width: number, height: number) => {
-		setImageDimensions({ width, height });
+		const widthScaled = width * scaleX;
+		const heightScaled = height * scaleY;
+
+		setImageDimensions({ width: widthScaled , height: heightScaled });
 	};
 
 	const rows = [
@@ -128,5 +135,4 @@ function MakeCollection() {
     </main>
   );
 }
-
 export default MakeCollection;

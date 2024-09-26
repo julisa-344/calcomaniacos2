@@ -75,9 +75,9 @@ const Header: React.FC = () => {
           {!isMobile && (
             <div>
               <Link to="/" className="link-header">Home</Link>
-              <Link to="/shop" className="link-header">Shop</Link>
+              {/* <Link to="/shop" className="link-header">Shop</Link> */}
               <Link to="/make-collection" className="link-header">Crea tu colección</Link>
-              <Link to="/create-sticker" className="link-header">Crea tu sticker</Link>
+              {/* <Link to="/create-sticker" className="link-header">Crea tu sticker</Link> */}
             </div>
           )}
         </div>
