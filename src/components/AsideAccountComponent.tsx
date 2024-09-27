@@ -26,7 +26,7 @@ function AsideAccount() {
             </div>
             <Link className='sub-title-sideaccount' to='/account'>Cuenta</Link>
             <div className='flex direction-column'>
-                <Link className='text-sideaccount' to='/miscompras'>Mis compras</Link>
+                {/* <Link className='text-sideaccount' to='/miscompras'>Mis compras</Link> */}
                 <Link className='text-sideaccount' to='/lista-deseos'>Lista de deseos</Link>
                 <Link className='text-sideaccount' to='#logout' onClick={handleSignOut}>Cerrar sesión</Link>
             </div>
