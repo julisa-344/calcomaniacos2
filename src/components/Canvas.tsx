@@ -64,6 +64,18 @@ const Canvas: React.FC<CanvasProps> = ({
         }
       );
 
+
+      // WIdth y height reales del canvas
+      const canvasWidth = fabricCanvasRef.current.width ? fabricCanvasRef.current.width : 1;
+      const canvasHeight = fabricCanvasRef.current.height ? fabricCanvasRef.current.height : 1;
+
+      // Si el canvas tiene un tamano de 12 x 20 cm
+      const scaleToCmX = 12 / (canvasWidth ? canvasWidth : 1);
+      const scaleToCmY = 20 / (canvasHeight ? canvasHeight : 1);
+
+      // print real dimensions
+      console.log("Canvas real Width: ", canvasWidth, "Canvas real Height: ", canvasHeight);
+
       fabricCanvasRef.current.on("mouse:down", (options) => {
         if (options.target && options.target.type === "image") {
           selectedImageRef.current = options.target as fabric.Image;
@@ -97,11 +109,9 @@ const Canvas: React.FC<CanvasProps> = ({
                 const imgElement = new Image();
                 imgElement.src = event.target?.result as string;
                 imgElement.onload = () => {
-                  const canvasWidthPx = 1653; // 14 cm en píxeles a 300 DPI
-                  const canvasHeightPx = 2362; // 20 cm en píxeles a 300 DPI
       
-                  const scaleWidth = canvasWidthPx / imgElement.width;
-                  const scaleHeight = canvasHeightPx / imgElement.height;
+                  const scaleWidth = canvasWidth / imgElement.width;
+                  const scaleHeight = canvasHeight / imgElement.height;
                   const scaleFactor = Math.min(scaleWidth, scaleHeight, 1); // Escala proporcional sin exceder el tamaño del canvas
       
                   fabric.Image.fromURL(imgElement.src, (fabricImg) => {
@@ -113,8 +123,6 @@ const Canvas: React.FC<CanvasProps> = ({
                       scaleX: scaleFactor,
                       scaleY: scaleFactor,
                     });
-                    const scaleX = 12 / 600;
-                      const scaleY = 24 / 920;
       
                     fabricCanvasRef.current?.add(fabricImg);
                     fabricCanvasRef.current?.setActiveObject(fabricImg);
@@ -122,29 +130,42 @@ const Canvas: React.FC<CanvasProps> = ({
 
                     // Actualizar tamaño usando onResize
                     if (fabricImg.width && fabricImg.scaleX && fabricImg.height && fabricImg.scaleY) {
-                      const widthInCm = (fabricImg.width * fabricImg.scaleX);
-                      const heightInCm = (fabricImg.height * fabricImg.scaleY);
-                      // console.log("Width1: ", widthInCm, "Height: ", heightInCm);
-                      onResize(widthInCm + scaleX, heightInCm + scaleY);  // Llama a onResize con tamaño en cm
+                      const widthInCm = (fabricImg.width);
+                      const heightInCm = (fabricImg.height);
+                      console.log("Width1: ", widthInCm, "Height: ", heightInCm);
+                      onResize(widthInCm, heightInCm);  // Llama a onResize con tamaño en cm
                     }
                     // console.log("FabricImg.width: ", fabricImg.width, fabricImg.scaleX, fabricImg.height, fabricImg.scaleY);
 
                     // Añadir eventos para el escalado interactivo
                     fabricImg.on("scaling", () => {
-                     
-                      
                       // console.log("ScaleX: ", scaleX, "ScaleY: ", scaleY, "Width: ", fabricImg.width, "Height: ", fabricImg.height);
                       // const widthInCm = fabricImg.width && fabricImg.scaleX ? (fabricImg.width * fabricImg.scaleX) / 2.54 : 0;
                       // const heightInCm = fabricImg.height ? (fabricImg.height * fabricImg.scaleY!) / 2.54 : 0;
-                      const widthInCm = fabricImg.width && fabricImg.scaleX ? (fabricImg.width * fabricImg.scaleX) / 2.54 : 0;
-                      const heightInCm = fabricImg.height ? (fabricImg.height * fabricImg.scaleY!) / 2.54 : 0;
+                      const widthInCm =
+                        (fabricImg.width ?? -1) *
+                        (fabricImg.scaleX ?? -1) *
+                        scaleToCmX;
+                      const heightInCm =
+                        (fabricImg.height ?? -1) *
+                        (fabricImg.scaleY ?? -1) *
+                        scaleToCmY;
+                      
+                        console.log(
+                        "Width scaled 22: ",
+                        widthInCm,
+                        "Height: ",
+                        heightInCm
+                      );
+
+
                       onResize(widthInCm, heightInCm); // Se actualiza el tamaño en cm
                     });
 
                     fabricImg.on("scaled", () => {
                       const widthInCm = (fabricImg.width! * fabricImg.scaleX!) / 2.54
                       const heightInCm = (fabricImg.height! * fabricImg.scaleY!) / 37.795;
-                      // console.log("Width2: ", widthInCm, "Height: ", heightInCm);
+                      console.log("Width scaled: ", widthInCm, "Height: ", heightInCm);
                       onResize(widthInCm, heightInCm);  // Se actualiza después del escalado
                     });
                   });
@@ -240,6 +261,7 @@ const Canvas: React.FC<CanvasProps> = ({
             if (fabricImg.width && fabricImg.scaleX && fabricImg.height && fabricImg.scaleY) {
               const widthInCm = (fabricImg.width * fabricImg.scaleX) / 37.795;
               const heightInCm = (fabricImg.height * fabricImg.scaleY) / 37.795;
+              console.log("Width scaling: ", widthInCm, "Height: ", heightInCm);
               onResize(widthInCm, heightInCm);
             }
           });
@@ -249,6 +271,7 @@ const Canvas: React.FC<CanvasProps> = ({
             if (fabricImg.width && fabricImg.scaleX && fabricImg.height && fabricImg.scaleY) {
               const widthInCm = (fabricImg.width * fabricImg.scaleX) / 37.795;
               const heightInCm = (fabricImg.height * fabricImg.scaleY) / 37.795;
+              console.log("Width scaled: ", widthInCm, "Height: ", heightInCm);
               onResize(widthInCm, heightInCm);
             }
           });
@@ -256,6 +279,7 @@ const Canvas: React.FC<CanvasProps> = ({
           if (fabricImg.width && fabricImg.scaleX && fabricImg.height && fabricImg.scaleY) {
             const widthInCm = (fabricImg.width * fabricImg.scaleX) / 37.795;
             const heightInCm = (fabricImg.height * fabricImg.scaleY) / 37.795;
+            console.log("Uh width: ", widthInCm, "Height: ", heightInCm);
             onResize(widthInCm, heightInCm);
           }
         });
