@@ -25,7 +25,6 @@ function EditStickerPage() {
   const quantity = location.state?.quantity;
   const acabado = location.state?.material;
   const forma = location.state?.shape;
-  const [color] = useState<string>("#FFF");
   const [gradientColor1] = useState<string>("#FF0000");
   const [gradientColor2] = useState<string>("#0000FF");
   const [useGradient] = useState<boolean>(false);
