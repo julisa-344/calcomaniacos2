@@ -80,6 +80,7 @@ function CreateStickerPage() {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [modalTitle, setModalTitle] = useState('');
 	const [modalLabel, setModalLabel] = useState('');
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [customValue, setCustomValue] = useState('');
 
 	const [image, setImage] = useState<string | null>(null);
@@ -97,7 +98,6 @@ function CreateStickerPage() {
 			if (row.quantity) setSelectedQuantity(row.quantity);
 		}
 	};
-	console.log(setCustomValue);
 
 	const handleModalClose = () => {
 		setModalOpen(false);

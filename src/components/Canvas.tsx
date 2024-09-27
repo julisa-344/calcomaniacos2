@@ -34,7 +34,6 @@ const Canvas: React.FC<CanvasProps> = ({
 }) => {
   const scaleToCmX = 14 / Number(width);
   const scaleToCmY = 20 / Number(height);
-  console.log("MakeCollection render, scaling", scaleToCmX, scaleToCmY);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
   const selectedImageRef = useRef<fabric.Image | null>(null);
@@ -52,7 +51,6 @@ const Canvas: React.FC<CanvasProps> = ({
   );
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    console.log(e.key);
     if ((e.key === "Backspace" || e.key === "Delete") && selectedImageRef.current) {
       const silhouette = imageMapRef.current.get(
         selectedImageRef.current
@@ -106,14 +104,6 @@ const Canvas: React.FC<CanvasProps> = ({
         fabricImg.height &&
         fabricImg.scaleY
       ) {
-        console.log(
-          "updating image dimensions: ",
-          fabricImg.width,
-          fabricImg.height,
-          fabricImg.scaleX,
-          fabricImg.scaleY,
-          scaleToCmX
-        );
         const widthInCm = (fabricImg.width * fabricImg.scaleX) * scaleToCmX;
         const heightInCm = (fabricImg.height * fabricImg.scaleY) * scaleToCmY;
         onResize(widthInCm, heightInCm);

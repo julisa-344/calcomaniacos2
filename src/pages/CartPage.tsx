@@ -54,7 +54,6 @@ function CartPage() {
     };
 
     const handleCheckout = () => {
-        console.log("Products to buy: ", cart);
         setShowModal(true);
 
         // Send the data to firestore:
