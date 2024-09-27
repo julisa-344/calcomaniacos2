@@ -1,51 +1,68 @@
 import "./../theme.scss";
-import * as React from 'react';
+import * as React from "react";
 import { useState, useCallback } from "react";
 import "./style/MakeCollection.scss";
 import Canvas from "../components/Canvas";
 import ImageCatalog from "../components/ImgCatalog";
-import { TableContainer, Table, TableBody, TableRow, TableCell, Paper, Box } from '@mui/material';
+import {
+  TableContainer,
+  Table,
+  TableBody,
+  TableRow,
+  TableCell,
+  Paper,
+  Box,
+} from "@mui/material";
 import Button from "../components/Button";
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import CropPortraitIcon from '@mui/icons-material/CropPortrait';
-import ImageIcon from '@mui/icons-material/Image';
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import CropPortraitIcon from "@mui/icons-material/CropPortrait";
+import ImageIcon from "@mui/icons-material/Image";
 
 function MakeCollection() {
-	// console.log("MakeCollection");
-	const [selectedImages, setSelectedImages] = useState<string[]>([]);
-	const [selectedImageName, setSelectedImageName] = useState<string>('');
-	const [triggerDownload, setTriggerDownload] = useState(false);
-	const [selectedView, setSelectedView] = useState('canvas');
-	const [value, setValue] = React.useState(0);
-	const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
+  const [selectedImages, setSelectedImages] = useState<string[]>([]);
+  const [selectedImageName, setSelectedImageName] = useState<string>("");
+  const [triggerDownload, setTriggerDownload] = useState(false);
+  const [selectedView, setSelectedView] = useState("canvas");
+  const [value, setValue] = React.useState(0);
+  const [imageDimensions, setImageDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
 
-	const handleDownloadComplete = useCallback(() => {
+  console.log("MakeCollection render");
+
+  const handleDownloadComplete = useCallback(() => {
     setTriggerDownload(false);
   }, []);
 
-	function createData(detalle: string, valor: string) {
-		return { detalle, valor };
-	}
+  function createData(detalle: string, valor: string) {
+    return { detalle, valor };
+  }
 
-	const handleSelectImage = (src: string, name: string) => {
-		setSelectedImages((prevImages) => [...prevImages, src]);
-		setSelectedImageName(name);
-	};
+  const handleSelectImage = (src: string, name: string) => {
+    setSelectedImages((prevImages) => [...prevImages, src]);
+    setSelectedImageName(name);
+  };
 
-	const handleImageResize = (width: number, height: number) => {
-		const widthScaled = width;
-		const heightScaled = height;
+  const handleImageResize = (width: number, height: number) => {
+    const widthScaled = width;
+    const heightScaled = height;
 
-		setImageDimensions({ width: widthScaled , height: heightScaled });
-	};
+    setImageDimensions({ width: widthScaled, height: heightScaled });
+  };
 
-	const rows = [
-		createData('Nombre', selectedImageName),
-		createData('Tamaño', `${imageDimensions.width.toFixed(2)} cm x ${imageDimensions.height.toFixed(2)} cm`),
-	];
+  const rows = [
+    createData("Nombre", selectedImageName),
+    createData(
+      "Tamaño",
+      `${imageDimensions.width.toFixed(
+        2
+      )} cm x ${imageDimensions.height.toFixed(2)} cm`
+    ),
+  ];
 
-	return (
+  return (
     <main className="main bg-color">
       <h2 className="title mb-4 text-center">Crea tu colección</h2>
       <section className="container">
@@ -61,8 +78,7 @@ function MakeCollection() {
             height={2362}
             triggerDownload={triggerDownload}
             onResize={handleImageResize}
-            // onDownloadTrigger={handleDownloadTrigger}
-			onDownloadComplete={handleDownloadComplete}
+            onDownloadComplete={handleDownloadComplete}
           />
         </div>
         <div
