@@ -9,10 +9,9 @@ import { CartContext, CartContextType } from '../CartContext';
 import DeleteIcon from "@mui/icons-material/Delete";
 
 // import the required functions to store collections in Firestore
-// import { collection, addDoc } from 'firebase/firestore';
-// import { firestore, auth } from "../firebase-config";
-// import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-// import { firestore, auth } from './firebase-config';
+import { collection, addDoc } from 'firebase/firestore';
+import { firestore, auth } from "../firebase-config";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 function CartPage() {
     const { cart, setCart } = useContext<CartContextType>(CartContext);
@@ -101,80 +100,80 @@ function CartPage() {
         // Then, for each product in the cart, upload the image to the cloud storage
 
         // Define the timestamp
-        // const timestamp = new Date().toISOString();
+        const timestamp = new Date().toISOString();
 
-        // // First, validate that the user is logged in
-        // if (!auth.currentUser) {
-        //     console.error("User is not logged in");
-        //     return;
-        // }
+        // First, validate that the user is logged in
+        if (!auth.currentUser) {
+            console.error("User is not logged in");
+            return;
+        }
 
-        // // Define the userId
-        // const uid = auth.currentUser?.uid;
+        // Define the userId
+        const uid = auth.currentUser?.uid;
 
 
 
-        // // Define the purchaseId
-        // const purchaseId = `${uid}-${timestamp}-${Math.floor(
-        //     Math.random() * 1000
-        // )}`;
+        // Define the purchaseId
+        const purchaseId = `${uid}-${timestamp}-${Math.floor(
+            Math.random() * 1000
+        )}`;
 
-        // const customStickers = cart.filter((product) =>
-        //     product.img.startsWith("data:")
-        // );
+        const customStickers = cart.filter((product) =>
+            product.img.startsWith("data:")
+        );
 
-        // console.log("Custom stickers: ", customStickers);
+        console.log("Custom stickers: ", customStickers);
 
-        // const storage = getStorage();
+        const storage = getStorage();
 
-        // // Upload the custom stickers to the cloud storage
-        // customStickers.forEach(async (product, index) => {
-        //     const image = product.img;
-        //     const response = await fetch(image);
-        //     const blob = await response.blob();
-        //     const storageRef = ref(
-        //         storage,
-        //         `user-content/${uid}/${purchaseId}-${index}.png`
-        //     );
-        //     await uploadBytes(storageRef, blob);
-        //     //   .then((snapshot) => {
-        //     //     console.log("Uploaded file successfully!");
-        //     //     // Get the download URL
-        //     //     getDownloadURL(snapshot.ref)
-        //     //       .then((url) => {
-        //     //         console.log("File available at", url);
-        //     //         // Use the URL to display the image or store it in your database
-        //     //       })
-        //     //       .catch((error) => {
-        //     //         console.error("Error getting download URL:", error);
-        //     //       });
-        //     //   })
-        //     //   .catch((error) => {
-        //     //     console.error("Error uploading file:", error);
-        //     //   });
-        //     const url = await getDownloadURL(storageRef);
-        //     cart[index].img = url;
-        // });
+        // Upload the custom stickers to the cloud storage
+        customStickers.forEach(async (product, index) => {
+            const image = product.img;
+            const response = await fetch(image);
+            const blob = await response.blob();
+            const storageRef = ref(
+                storage,
+                `user-content/${uid}/${purchaseId}-${index}.png`
+            );
+            await uploadBytes(storageRef, blob);
+            //   .then((snapshot) => {
+            //     console.log("Uploaded file successfully!");
+            //     // Get the download URL
+            //     getDownloadURL(snapshot.ref)
+            //       .then((url) => {
+            //         console.log("File available at", url);
+            //         // Use the URL to display the image or store it in your database
+            //       })
+            //       .catch((error) => {
+            //         console.error("Error getting download URL:", error);
+            //       });
+            //   })
+            //   .catch((error) => {
+            //     console.error("Error uploading file:", error);
+            //   });
+            const url = await getDownloadURL(storageRef);
+            cart[index].img = url;
+        });
 
-        // // Define the items
-        // const items = cart.map((product, index) => ({
-        //     acabado: product.acabado,
-        //     tamanio: product.img,
-        //     price: product.price,
-        //     quantity: counts[index] || 1,
-        // }));
+        // Define the items
+        const items = cart.map((product, index) => ({
+            acabado: product.acabado,
+            tamanio: product.img,
+            price: product.price,
+            quantity: counts[index] || 1,
+        }));
 
-        // // Define the purchase object
-        // const purchase = {
-        //     purchaseId,
-        //     // userId,
-        //     timestamp,
-        //     items,
-        // };
+        // Define the purchase object
+        const purchase = {
+            purchaseId,
+            // userId,
+            timestamp,
+            items,
+        };
 
-        // // Send the data to Firestore
-        // const purchaseRef = collection(firestore, "purchases");
-        // addDoc(purchaseRef, purchase);
+        // Send the data to Firestore
+        const purchaseRef = collection(firestore, "purchases");
+        addDoc(purchaseRef, purchase);
 
         // navigate("/payment", { state: { total } });
     };
@@ -220,9 +219,15 @@ function CartPage() {
                     {showModal && (
                         <div className="modal">
                             <div className="modal-content">
-                                <h2>Compra satisfactoria</h2>
-                                <p>Gracias por tu compra. Recibirás un correo con los detalles.</p>
-                                <button onClick={() => setShowModal(false)}>Cerrar</button>
+                                <div className="start-content">
+                                    <img className="" src="/start2.png" alt="" />
+                                </div>
+                                <div className="modal-content_text"> 
+                                    <h2 className="title primary-color">Compra exitosa!</h2>
+                                    <br />
+                                    <p className=" color-grey">Gracias por tu compra. Recibirás un correo con los detalles.</p>
+                                </div>
+                                <Button text="Cerrar" onClick={() => setShowModal(false)} />
                             </div>
                         </div>
                     )}
