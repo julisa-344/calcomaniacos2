@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useCallback } from "react";
 import { fabric } from "fabric";
 import { CartContext, CartContextType } from "../CartContext";
+import './style/Canvas.scss';
 
 interface CanvasProps {
   gradientColor1?: string;
@@ -233,15 +234,20 @@ const Canvas: React.FC<CanvasProps> = ({
   }, [imageSrcs, addImageToCanvas]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      width={typeof width === "number" ? width : undefined}
-      height={typeof height === "number" ? height : undefined}
-      style={{
-        width: typeof width === "string" ? width : undefined,
-        height: typeof height === "string" ? height : undefined,
-      }}
-    />
+    <div>
+
+        <div className="cuadricula-canvas">
+        <canvas
+          ref={canvasRef}
+          width={typeof width === "number" ? width : undefined}
+          height={typeof height === "number" ? height : undefined}
+          style={{
+            width: typeof width === "string" ? width : undefined,
+            height: typeof height === "string" ? height : undefined,
+          }}
+        />
+    </div>
+    </div>
   );
 };
 

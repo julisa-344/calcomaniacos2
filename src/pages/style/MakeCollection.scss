@@ -23,6 +23,7 @@ canvas {
 }
 
 .container {
+    margin-top: 80px;
     display: flex;
     justify-content: space-around;
     gap: 20px;
@@ -89,6 +90,22 @@ canvas {
 
 .bottom-bar {
     display: none;
+}
+.container-ruler{
+    margin-top: 32px;
+    position: relative;
+    .ruler12{
+        position: absolute;
+        top: -2px;
+        left: -17px;
+        width: 500px;
+    }
+    .ruler20{
+        position: absolute;
+        top: 43px;
+        left: -43px;
+        height: 700px;
+    }
 }
 
 @media (max-width: 768px) {
