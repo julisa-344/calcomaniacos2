@@ -51,8 +51,78 @@ const Canvas: React.FC<CanvasProps> = ({
     >()
   );
 
+  // Cropping logic
+  const cropImage = (image: fabric.Image): Promise<fabric.Image> => {
+    return new Promise((resolve) => {
+      const canvasElement = document.createElement("canvas");
+      const context = canvasElement.getContext("2d");
+      if (!context) return;
+
+      canvasElement.width = image.width!;
+      canvasElement.height = image.height!;
+      context.drawImage(image.getElement() as HTMLImageElement, 0, 0);
+
+      const imageData = context.getImageData(
+        0,
+        0,
+        canvasElement.width,
+        canvasElement.height
+      );
+      const { data, width, height } = imageData;
+
+      let minX = width,
+        minY = height,
+        maxX = 0,
+        maxY = 0;
+
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+          const index = (y * width + x) * 4;
+          const alpha = data[index + 3];
+          if (alpha > 0) {
+            if (x < minX) minX = x;
+            if (y < minY) minY = y;
+            if (x > maxX) maxX = x;
+            if (y > maxY) maxY = y;
+          }
+        }
+      }
+
+      const croppedWidth = maxX - minX + 1;
+      const croppedHeight = maxY - minY + 1;
+
+      const croppedCanvas = document.createElement("canvas");
+      const croppedContext = croppedCanvas.getContext("2d");
+      if (!croppedContext) return;
+
+      croppedCanvas.width = croppedWidth;
+      croppedCanvas.height = croppedHeight;
+      croppedContext.drawImage(
+        canvasElement,
+        minX,
+        minY,
+        croppedWidth,
+        croppedHeight,
+        0,
+        0,
+        croppedWidth,
+        croppedHeight
+      );
+
+      const croppedImage = new Image();
+      croppedImage.src = croppedCanvas.toDataURL();
+      croppedImage.onload = () => {
+        const fabricCroppedImage = new fabric.Image(croppedImage);
+        resolve(fabricCroppedImage);
+      };
+    });
+  };
+
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if ((e.key === "Backspace" || e.key === "Delete") && selectedImageRef.current) {
+    if (
+      (e.key === "Backspace" || e.key === "Delete") &&
+      selectedImageRef.current
+    ) {
       const silhouette = imageMapRef.current.get(
         selectedImageRef.current
       )?.silhouette;
@@ -85,7 +155,7 @@ const Canvas: React.FC<CanvasProps> = ({
         }
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const calculateScaleFactor = useCallback(
@@ -105,8 +175,8 @@ const Canvas: React.FC<CanvasProps> = ({
         fabricImg.height &&
         fabricImg.scaleY
       ) {
-        const widthInCm = (fabricImg.width * fabricImg.scaleX) * scaleToCmX;
-        const heightInCm = (fabricImg.height * fabricImg.scaleY) * scaleToCmY;
+        const widthInCm = fabricImg.width * fabricImg.scaleX * scaleToCmX;
+        const heightInCm = fabricImg.height * fabricImg.scaleY * scaleToCmY;
         onResize(widthInCm, heightInCm);
       }
     },
@@ -122,7 +192,7 @@ const Canvas: React.FC<CanvasProps> = ({
         imgElement.crossOrigin = "anonymous";
         imgElement.onload = () => {
           const scaleFactor = calculateScaleFactor(imgElement, maxImageWidth);
-          fabric.Image.fromURL(imgElement.src, (fabricImg) => {
+          fabric.Image.fromURL(imgElement.src, async (fabricImg) => {
             fabricImg.set({
               left: fabricCanvas.width! / 2,
               top: fabricCanvas.height! / 2,
@@ -136,14 +206,21 @@ const Canvas: React.FC<CanvasProps> = ({
               hasRotatingPoint: true,
             });
 
-            fabricCanvas.add(fabricImg);
-            fabricCanvas.setActiveObject(fabricImg);
+            const croppedImage = await cropImage(fabricImg);
+
+
+            fabricCanvas.add(croppedImage);
+            fabricCanvas.setActiveObject(croppedImage);
             fabricCanvas.renderAll();
 
-            updateImageDimensions(fabricImg);
+            updateImageDimensions(croppedImage);
 
-            fabricImg.on("scaling", () => updateImageDimensions(fabricImg));
-            fabricImg.on("scaled", () => updateImageDimensions(fabricImg));
+            croppedImage.on("scaling", () =>
+              updateImageDimensions(croppedImage)
+            );
+            croppedImage.on("scaled", () =>
+              updateImageDimensions(croppedImage)
+            );
           });
         };
       }
@@ -235,8 +312,7 @@ const Canvas: React.FC<CanvasProps> = ({
 
   return (
     <div>
-
-        <div className="cuadricula-canvas">
+      <div className="cuadricula-canvas">
         <canvas
           ref={canvasRef}
           width={typeof width === "number" ? width : undefined}
@@ -246,7 +322,7 @@ const Canvas: React.FC<CanvasProps> = ({
             height: typeof height === "string" ? height : undefined,
           }}
         />
-    </div>
+      </div>
     </div>
   );
 };
