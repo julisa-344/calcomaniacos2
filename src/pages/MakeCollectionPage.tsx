@@ -72,8 +72,6 @@ function MakeCollection() {
         <img className="ruler20" src="/20.png" alt="" />
       </div> */}
       <section className="container">
-
-
         <div
           className={`content-canvas ${
             selectedView === "canvas" ? "show" : "hide"
@@ -87,6 +85,11 @@ function MakeCollection() {
             triggerDownload={triggerDownload}
             onResize={handleImageResize}
             onDownloadComplete={handleDownloadComplete}
+          />
+
+          <Button 
+            text="Quitar fondo" 
+            onClick={() => window.location.href = 'https://www.remove.bg/upload'} 
           />
 
         </div>

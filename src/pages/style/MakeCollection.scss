@@ -14,6 +14,8 @@
 .content-canvas {
     width: fit-content;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
 }
 
@@ -29,7 +31,6 @@ canvas {
     gap: 20px;
     width: 100%;
     min-height: 705px;
-    max-height: 80vh;
     overflow: hidden;
 }
 
