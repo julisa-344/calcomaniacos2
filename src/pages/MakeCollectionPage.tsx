@@ -73,9 +73,8 @@ function MakeCollection() {
       </div> */}
       <section className="container">
         <div
-          className={`content-canvas ${
-            selectedView === "canvas" ? "show" : "hide"
-          }`}
+          className={`content-canvas ${selectedView === "canvas" ? "show" : "hide"
+            }`}
         >
 
           <Canvas
@@ -87,16 +86,16 @@ function MakeCollection() {
             onDownloadComplete={handleDownloadComplete}
           />
 
-          <Button 
-            text="Quitar fondo" 
-            onClick={() => window.location.href = 'https://www.remove.bg/upload'} 
+          <Button
+            text="Quitar fondo"
+            onClick={() => window.open('https://www.remove.bg/upload', '_blank')}
           />
+
 
         </div>
         <div
-          className={`container-catalog flex direction-column justify-between ${
-            selectedView === "catalog" ? "show" : "hide"
-          }`}
+          className={`container-catalog flex direction-column justify-between ${selectedView === "catalog" ? "show" : "hide"
+            }`}
         >
           {/* <ImageCatalog onSelectImage={handleSelectImage} /> */}
         </div>
