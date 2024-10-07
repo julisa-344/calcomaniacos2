@@ -28,7 +28,7 @@ canvas {
     justify-content: space-around;
     gap: 20px;
     width: 100%;
-    height: 705px;
+    min-height: 705px;
     max-height: 80vh;
     overflow: hidden;
 }
