@@ -33,7 +33,8 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const querySnapshot = await getDocs(collection(firestore, 'images'));
+			const querySnapshot = await getDocs(collection(firestore, 'stickers'));
+			console.log("querySnapshot", querySnapshot)
 			const data: ImageData[] = querySnapshot.docs.map((doc: QueryDocumentSnapshot): ImageData => ({
 				id: doc.id,
 				nombre: doc.data().nombre,
@@ -63,6 +64,8 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 
 		fetchData();
 	}, []);
+
+	console.log(setImages, "setImages")
 
 	const filteredImages = images.filter(image => {
 		const selectedSubs = selectedSubcategorias[image.categoria] || [];
@@ -125,6 +128,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 						onClick={() => handleImageClick(image)}
 					/>
 				))}
+				<p>jola</p>
 			</div>
 		</>
 	);

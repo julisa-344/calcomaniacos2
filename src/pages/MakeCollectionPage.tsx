@@ -3,7 +3,8 @@ import * as React from "react";
 import { useState, useCallback } from "react";
 import "./style/MakeCollection.scss";
 import Canvas from "../components/Canvas";
-// import ImageCatalog from "../components/ImgCatalog";
+import ImageCatalog from "../components/ImgCatalog";
+
 import {
   TableContainer,
   Table,
@@ -66,11 +67,6 @@ function MakeCollection() {
   return (
     <main className="main bg-color">
       <h2 className="title mb-4 text-center">Crea tu colección</h2>
-      {/* <div className="container-ruler">
-
-        <img className="ruler12" src="/12.png" alt="" />
-        <img className="ruler20" src="/20.png" alt="" />
-      </div> */}
       <section className="container">
         <div
           className={`content-canvas ${selectedView === "canvas" ? "show" : "hide"
@@ -97,7 +93,7 @@ function MakeCollection() {
           className={`container-catalog flex direction-column justify-between ${selectedView === "catalog" ? "show" : "hide"
             }`}
         >
-          {/* <ImageCatalog onSelectImage={handleSelectImage} /> */}
+        <ImageCatalog onSelectImage={handleSelectImage} />
         </div>
         <div className="aside-detail_sticker">
           <div>
