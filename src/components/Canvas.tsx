@@ -203,16 +203,7 @@ const Canvas: React.FC<CanvasProps> = ({
               selectable: true,
               hasControls: true,
               hasBorders: false,
-              hasRotatingPoint: true,
-
-              // Personalizar los controladores
-              cornerSize: 40, // Tamaño de las esquinas
-              borderColor: 'blue', // Color del borde alrededor del objeto
-              cornerColor: 'red', // Color de las esquinas
-              cornerStrokeColor: 'black', // Color del borde alrededor de la esquina
-              transparentCorners: false, // Hacer que las esquinas no sean transparentes
-
-              
+              hasRotatingPoint: true,              
             });
 
             const croppedImage = await cropImage(fabricImg);
@@ -240,15 +231,6 @@ const Canvas: React.FC<CanvasProps> = ({
   const initializeCanvas = useCallback(() => {
     if (canvasRef.current) {
 
-      // fabric.Object.prototype.set({
-      //   cornerSize: 30, // Tamaño de los controladores
-      //   cornerStyle: 'circle', // Estilo de las esquinas (puede ser 'circle' o 'rect')
-      //   cornerColor: 'red', // Color de las esquinas
-      //   borderColor: 'blue', // Color del borde alrededor del objeto seleccionado
-      //   cornerStrokeColor: 'black', // Color del borde de las esquinas
-      //   transparentCorners: false // Para que las esquinas no sean transparentes
-      // });
-
       fabricCanvasRef.current = new fabric.Canvas(canvasRef.current, {
         preserveObjectStacking: true,
         selection: true, // Allow selection
@@ -258,6 +240,30 @@ const Canvas: React.FC<CanvasProps> = ({
         { width: "500px", height: "700px" },
         { cssOnly: true }
       );
+
+      // Customize control points
+      fabric.Object.prototype.controls = fabric.Object.prototype.controls || {};
+      Object.keys(fabric.Object.prototype.controls).forEach((controlKey) => {
+        const control = fabric.Object.prototype.controls[controlKey];
+        control.sizeX = 28; // Increase the size of the control points
+        control.sizeY = 32; // Increase the size of the control points
+        control.render = (ctx, left, top, styleOverride, fabricObject) => {
+          ctx.save();
+          ctx.fillStyle = "white"; // Color of the control points
+          ctx.strokeStyle = "red"; // Border color of the control points
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.rect(
+            left - (control.sizeX ?? 40) / 2,
+            top - (control.sizeY ?? 40) / 2,
+            control.sizeX ?? 40,
+            control.sizeY ?? 40
+          );
+          ctx.fill();
+          ctx.stroke();
+          ctx.restore();
+        };
+      });
 
       fabricCanvasRef.current.on("mouse:down", (options) => {
         selectedImageRef.current = (options.target as fabric.Image) || null;
