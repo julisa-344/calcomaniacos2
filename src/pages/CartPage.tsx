@@ -98,8 +98,6 @@ function CartPage() {
       product.img.startsWith("data:")
     );
 
-    console.log("Custom stickers: ", customStickers);
-
     const storage = getStorage();
 
     // Upload the custom stickers to the cloud storage
