@@ -33,11 +33,12 @@ function FooterComponent() {
         <div className='paymentFooter'>
           <h2>Formas de Pago</h2>
           <div className='paymentIcons'>
-            <img src='/payments/visa-svgrepo-com.svg' alt='Visa' />
+            {/* <img src='/payments/visa-svgrepo-com.svg' alt='Visa' />
             <img src='/payments/master-card-svgrepo-com.svg' alt='Mastercard' />
             <img src='/payments/american-express-logo-svgrepo-com.svg' alt='American Express' />
-            <img src='/payments/paypal-svgrepo-com.svg' alt='PayPal' />
-          </div>
+            <img src='/payments/paypal-svgrepo-com.svg' alt='PayPal' /> */}
+            <img className='icon-footer' src='/payments/yape.webp' alt='yape' />
+            </div>
         </div>
       </div>
       <p>Copyright © Calcomaniacos. 2024. Todos los derechos reservados</p>
