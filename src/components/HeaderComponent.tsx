@@ -56,7 +56,7 @@ const Header: React.FC = () => {
 
   return (
     <AppBar position="fixed" sx={{ backgroundColor: 'rgb(122, 17, 249)' }} className='header'>
-      <Toolbar>
+      <Toolbar className='header-contend'>
         {isMobile && (
           <IconButton
             edge="start"
@@ -68,10 +68,8 @@ const Header: React.FC = () => {
             <MenuIcon />
           </IconButton>
         )}
-        <Typography variant="h6" className="header-title" noWrap>
-          Calcomaniacos
-        </Typography>
-        <div className="nav-links">
+        <img className='logo' src="/CALCOMANIACOS.png" alt="logo" />
+        <div className="nav-links w-300">
           {!isMobile && (
             <div>
               <Link to="/" className="link-header">Home</Link>
@@ -81,7 +79,7 @@ const Header: React.FC = () => {
             </div>
           )}
         </div>
-        <div className="header-nav">
+        <div className="header-nav ">
           <IconButton component={Link} to="/cart" color="inherit" aria-label="Cart">
             <Badge badgeContent={cart.length} color="secondary">
               <ShoppingCartIcon />

@@ -84,7 +84,7 @@ function MakeCollection() {
 
           <Button
             text="Quitar fondo"
-            onClick={() => window.open('https://www.remove.bg/upload', '_blank')}
+            onClick={() => window.open('https://www.slazzer.com/upload', '_blank')}
           />
 
 

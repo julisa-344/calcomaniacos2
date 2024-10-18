@@ -1,26 +1,32 @@
 @import '../../theme.scss';
 
+.logo{
+  width: 300px;
+}
+
+.w-300{
+  width: 300px;
+}
 .header {
   box-sizing: border-box;
   background: rgb(128, 0, 128); /* Color morado */
   display: flex;
   align-items: center;
   height: 70px;
-  padding: 0 32px;
+  padding: 0 42px;
   z-index: 100;
-
+  .header-contend{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
   .menu-button {
     margin-right: 16px;
   }
-
-  .header-title {
-    text-align: left;
-  }
-
   .nav-links {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
+    // flex-grow: 1;
+    // display: flex;
+    // justify-content: center;
 
     .link-header {
       font-size: 16px;

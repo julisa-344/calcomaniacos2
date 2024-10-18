@@ -17,7 +17,7 @@ function FooterComponent() {
           </div>
           <div className='adressFooter'>
             <h2>Dirección:</h2>
-            <p>Cieneguills </p>
+            <p>Miraflores </p>
             <p>Lima - Perú</p>
           </div>
         </div>

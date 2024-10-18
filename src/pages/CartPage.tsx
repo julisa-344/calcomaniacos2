@@ -242,7 +242,7 @@ function CartPage() {
             />
           )}
         </section>
-        <section>
+        {/* <section>
           <h2 className="title m-4 text-center">
             Productos que te pueden interesar
           </h2>
@@ -269,7 +269,7 @@ function CartPage() {
               img="../assets/RM3.png"
             />
           </section>
-        </section>
+        </section> */}
       </main>
     </>
   );
