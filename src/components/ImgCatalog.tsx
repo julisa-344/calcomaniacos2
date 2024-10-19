@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { FormControl, InputLabel, Select, MenuItem, OutlinedInput } from '@mui/material';
 import { collection, getDocs, QueryDocumentSnapshot } from 'firebase/firestore';
-import { firestore } from '../firebase-config';
 import { SelectChangeEvent } from '@mui/material';
+
+import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { firestore, auth } from '../firebase-config';
+
 
 interface ImageData {
 	id: string;
 	nombre: string;
 	src: string;
+	visualizeUrl?: string;
 	categoria: string;
 	sub_categoria: string;
 	tags: string[];
@@ -33,38 +37,62 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 
 	useEffect(() => {
 		const fetchData = async () => {
+		  try {
 			const querySnapshot = await getDocs(collection(firestore, 'stickers'));
-			console.log("querySnapshot", querySnapshot)
 			const data: ImageData[] = querySnapshot.docs.map((doc: QueryDocumentSnapshot): ImageData => ({
-				id: doc.id,
-				nombre: doc.data().nombre,
-				src: doc.data().src,
-				categoria: doc.data().categoria,
-				sub_categoria: doc.data().sub_categoria,
-				tags: doc.data().tags,
+			  id: doc.id,
+			  nombre: doc.data().nombre,
+			  src: doc.data().visualizeUrl || doc.data().imageSrc,
+			  categoria: doc.data().categoria,
+			  sub_categoria: doc.data().sub_categoria,
+			  tags: doc.data().tags,
 			}));
-
+	
 			const categoriasSet = new Set<string>();
 			const subcategoriasMap: { [key: string]: string[] } = {};
-
+	
 			data.forEach((image: ImageData) => {
-				categoriasSet.add(image.categoria);
-				if (!subcategoriasMap[image.categoria]) {
-					subcategoriasMap[image.categoria] = [];
-				}
-				if (!subcategoriasMap[image.categoria].includes(image.sub_categoria)) {
-					subcategoriasMap[image.categoria].push(image.sub_categoria);
-				}
+			  categoriasSet.add(image.categoria);
+			  if (!subcategoriasMap[image.categoria]) {
+				subcategoriasMap[image.categoria] = [];
+			  }
+			  if (!subcategoriasMap[image.categoria].includes(image.sub_categoria)) {
+				subcategoriasMap[image.categoria].push(image.sub_categoria);
+			  }
 			});
-
+	
 			setCategorias(Array.from(categoriasSet));
 			setSubcategorias(subcategoriasMap);
 			setImages(data);
+	
+			console.log(data, "images"); // Mueve el console.log aquí para asegurarte de que los datos se han cargado
+		  } catch (error) {
+			console.log("Error fetching data: ", error);
+		  }
 		};
+	
+		const authenticateAndFetchData = async () => {
+			onAuthStateChanged(auth, (user) => {
+			  if (user) {
+				// User is signed in, fetch data
+				fetchData();
+			  } else {
+				// No user is signed in, sign in anonymously or with email/password
+				signInWithEmailAndPassword(auth, 'your-email@example.com', 'your-password')
+				  .then(() => {
+					fetchData();
+				  })
+				  .catch((error) => {
+					console.error("Error signing in: ", error);
+				  });
+			  }
+			});
+		  };
+	  
+		  authenticateAndFetchData();
+		}, []);
 
-		fetchData();
-	}, []);
-
+	console.log(images, "images")	
 	console.log(setImages, "setImages")
 
 	const filteredImages = images.filter(image => {
@@ -78,7 +106,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 
 	return (
 		<>
-			<div className='flex'>
+			{/* <div className='flex'>
 				{categorias.map((categoria) => (
 					<FormControl
 						key={categoria}
@@ -116,13 +144,13 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 						</Select>
 					</FormControl>
 				))}
-			</div>
+			</div> */}
 
 			<div id="catalog" className="container_catalog-img">
 				{filteredImages.map((image) => (
 					<img
 						key={image.id}
-						src={image.src}
+						src={image.src || ''}
 						alt={`Imagen de ${image.categoria}`}
 						className="catalog-img"
 						onClick={() => handleImageClick(image)}
