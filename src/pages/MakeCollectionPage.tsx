@@ -31,8 +31,6 @@ function MakeCollection() {
     height: 0,
   });
 
-  console.log("MakeCollection render");
-
   const handleDownloadComplete = useCallback(() => {
     setTriggerDownload(false);
   }, []);

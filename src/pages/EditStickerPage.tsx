@@ -31,13 +31,13 @@ function EditStickerPage() {
   const [triggerDownload, setTriggerDownload] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<string | null>(initialImageUrl);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
 
   const handleDownloadComplete = useCallback(() => {
     setTriggerDownload(false);
   }, []);
 
-  console.log("imageDimensions", imageDimensions);
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file && file.type.match('image.*')) {

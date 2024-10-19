@@ -12,6 +12,9 @@
 /firebase.json
 /firebase-debug.log
 
+# VSCODE
+.vscode/
+
 # testing
 /coverage
 

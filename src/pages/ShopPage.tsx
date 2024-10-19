@@ -44,6 +44,7 @@ function ShopPage() {
 	const [searchTerm, setSearchTerm] = useState<string>('');
 	const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 	const [age, setAge] = useState<string>('');
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
@@ -60,7 +61,6 @@ function ShopPage() {
 		fetchData();
 	}, []);
 
-	console.log(isLoading);
 	const filteredProducts = products.filter(
 		(product) =>
 			product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
