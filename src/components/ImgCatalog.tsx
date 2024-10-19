@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FormControl, InputLabel, Select, MenuItem, OutlinedInput } from '@mui/material';
+// import { FormControl, InputLabel, Select, MenuItem, OutlinedInput } from '@mui/material';
 import { collection, getDocs, QueryDocumentSnapshot } from 'firebase/firestore';
 import { SelectChangeEvent } from '@mui/material';
 
@@ -28,6 +28,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 	const [subcategorias, setSubcategorias] = useState<{ [key: string]: string[] }>({});
 	const [selectedSubcategorias, setSelectedSubcategorias] = useState<{ [key: string]: string[] }>({});
 
+	console.log(categorias, subcategorias)
 	const handleChangeSubcategoria = (categoria: string) => (event: SelectChangeEvent<string[]>) => {
 		setSelectedSubcategorias({
 			...selectedSubcategorias,
@@ -35,6 +36,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 		});
 	};
 
+	console.log(handleChangeSubcategoria)
 	useEffect(() => {
 		const fetchData = async () => {
 		  try {

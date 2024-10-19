@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { IconButton, AppBar, Toolbar, Drawer, List, ListItem, ListItemText, Typography, Badge, useMediaQuery } from '@mui/material';
+import { IconButton, AppBar, Toolbar, Drawer, List, ListItem, ListItemText, Badge, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
