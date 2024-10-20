@@ -13,7 +13,7 @@ interface ImageData {
 	src: string;
 	visualizeUrl?: string;
 	categoria: string;
-	sub_categoria: string;
+	subcategory: string;
 	tags: string[];
 }
 
@@ -46,7 +46,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 			  nombre: doc.data().nombre,
 			  src: doc.data().visualizeUrl || doc.data().imageSrc,
 			  categoria: doc.data().categoria,
-			  sub_categoria: doc.data().sub_categoria,
+			  subcategory: doc.data().subcategory,
 			  tags: doc.data().tags,
 			}));
 	
@@ -58,8 +58,8 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 			  if (!subcategoriasMap[image.categoria]) {
 				subcategoriasMap[image.categoria] = [];
 			  }
-			  if (!subcategoriasMap[image.categoria].includes(image.sub_categoria)) {
-				subcategoriasMap[image.categoria].push(image.sub_categoria);
+			  if (!subcategoriasMap[image.categoria].includes(image.subcategory)) {
+				subcategoriasMap[image.categoria].push(image.subcategory);
 			  }
 			});
 	
@@ -99,7 +99,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 
 	const filteredImages = images.filter(image => {
 		const selectedSubs = selectedSubcategorias[image.categoria] || [];
-		return selectedSubs.length === 0 || selectedSubs.includes(image.sub_categoria);
+		return selectedSubs.length === 0 || selectedSubs.includes(image.subcategory);
 	});
 
 	const handleImageClick = (image: ImageData) => {
