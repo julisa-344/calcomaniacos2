@@ -28,7 +28,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 	const [subcategorias, setSubcategorias] = useState<{ [key: string]: string[] }>({});
 	const [selectedSubcategorias, setSelectedSubcategorias] = useState<{ [key: string]: string[] }>({});
 
-	console.log(categorias, subcategorias)
+	// console.log(categorias, subcategorias)
 	const handleChangeSubcategoria = (categoria: string) => (event: SelectChangeEvent<string[]>) => {
 		setSelectedSubcategorias({
 			...selectedSubcategorias,
@@ -36,7 +36,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 		});
 	};
 
-	console.log(handleChangeSubcategoria)
+	// console.log(handleChangeSubcategoria)
 	useEffect(() => {
 		const fetchData = async () => {
 		  try {
@@ -67,7 +67,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 			setSubcategorias(subcategoriasMap);
 			setImages(data);
 	
-			console.log(data, "images"); // Mueve el console.log aquí para asegurarte de que los datos se han cargado
+			// console.log(data, "images"); // Mueve el console.log aquí para asegurarte de que los datos se han cargado
 		  } catch (error) {
 			console.log("Error fetching data: ", error);
 		  }
@@ -94,8 +94,8 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 		  authenticateAndFetchData();
 		}, []);
 
-	console.log(images, "images")	
-	console.log(setImages, "setImages")
+	// console.log(images, "images")	
+	// console.log(setImages, "setImages")
 
 	const filteredImages = images.filter(image => {
 		const selectedSubs = selectedSubcategorias[image.categoria] || [];

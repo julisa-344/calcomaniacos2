@@ -15,6 +15,20 @@ import { firestore, auth } from "../firebase-config";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import ModalComponent from "../components/ModalComponent";
 
+interface PurchaseItem {
+  imageSrc: string;
+  price: number;
+  quantity: number;
+  style: string;
+}
+
+interface Purchase {
+  id: string;
+  items: PurchaseItem[];
+  timestamp: string;
+  userId: string;
+}
+
 function CartPage() {
   const { cart, setCart } = useContext<CartContextType>(CartContext);
   const [counts, setCounts] = useState<{ [key: number]: number }>({});
@@ -63,9 +77,7 @@ function CartPage() {
     setCounts(updatedCounts);
   };
 
-  const handleCheckout = () => {
-    // setShowModal(true);
-
+  const handleCheckout = async () => {
     // Define the timestamp
     const timestamp = new Date().toISOString();
 
@@ -76,13 +88,6 @@ function CartPage() {
         img: "/login.jpeg", // Replace with an appropriate image path
       });
       setShowModal(true);
-      return;
-    }
-
-
-    // First, validate that the user is logged in
-    if (!auth.currentUser) {
-      console.error("User is not logged in");
       return;
     }
 
@@ -100,49 +105,40 @@ function CartPage() {
 
     const storage = getStorage();
 
-    // Upload the custom stickers to the cloud storage
-    customStickers.forEach(async (product, index) => {
-      const image = product.img;
-      const response = await fetch(image);
-      const blob = await response.blob();
-      const storageRef = ref(
-        storage,
-        `user-content/${uid}/${purchaseId}-${index}.png`
-      );
-      await uploadBytes(storageRef, blob);
-      //   .then((snapshot) => {
-      //     console.log("Uploaded file successfully!");
-      //     // Get the download URL
-      //     getDownloadURL(snapshot.ref)
-      //       .then((url) => {
-      //         console.log("File available at", url);
-      //         // Use the URL to display the image or store it in your database
-      //       })
-      //       .catch((error) => {
-      //         console.error("Error getting download URL:", error);
-      //       });
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error uploading file:", error);
-      //   });
-      const url = await getDownloadURL(storageRef);
-      cart[index].img = url;
-    });
+  // Upload the custom stickers to the cloud storage
+  const uploadPromises = customStickers.map(async (product, index) => {
+    const image = product.img;
+    const response = await fetch(image);
+    const blob = await response.blob();
+    const storageRef = ref(
+      storage,
+      `user-content/${uid}/${purchaseId}-${index}.png`
+    );
+    await uploadBytes(storageRef, blob);
+
+    const url = await getDownloadURL(storageRef);
+
+    cart[index].img = url;
+  });
+
+    // Wait for all uploads to complete
+    await Promise.all(uploadPromises);
 
     // Define the items
     const items = cart.map((product, index) => ({
-      acabado: product.acabado,
-      tamanio: product.img,
+      style: product.acabado,
+      imageSrc: product.img,
       price: product.price,
       quantity: counts[index] || 1,
     }));
 
-    // Define the purchase object
-    const purchase = {
-      purchaseId,
-      // userId,
-      timestamp,
-      items,
+
+    // Create the purchase object with the typed structure
+    const purchase: Purchase = {
+      id: purchaseId,
+      items: items,
+      timestamp: timestamp,
+      userId: uid || "",
     };
 
     // Send the data to Firestore
