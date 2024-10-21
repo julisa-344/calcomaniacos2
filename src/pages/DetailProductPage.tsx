@@ -116,7 +116,7 @@ function DetailProductPage() {
           </div>
         </section>
 
-        <h2 className="title m-4 text-center">
+        {/* <h2 className="title m-4 text-center">
           Productos que te pueden interesar
         </h2>
 
@@ -124,7 +124,7 @@ function DetailProductPage() {
           <Card id="" name="Product" price={12} img="../assets/RM1.png" />
           <Card id="" name="Product" price={12} img="../assets/RM2.png" />
           <Card id="" name="Product" price={12} img="../assets/RM3.png" />
-        </section>
+        </section> */}
       </main>
     </>
   );
