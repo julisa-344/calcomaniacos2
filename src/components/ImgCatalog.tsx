@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 // import { FormControl, InputLabel, Select, MenuItem, OutlinedInput } from '@mui/material';
 import { collection, getDocs, QueryDocumentSnapshot } from 'firebase/firestore';
@@ -25,6 +26,7 @@ interface ImageCatalogProps {
 
 const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 	const [images, setImages] = useState<ImageData[]>([]);
+	
 	const [categorias, setCategorias] = useState<string[]>([]);
 	const [subcategorias, setSubcategorias] = useState<{ [key: string]: string[] }>({});
 	const [selectedSubcategorias, setSelectedSubcategorias] = useState<{ [key: string]: string[] }>({});

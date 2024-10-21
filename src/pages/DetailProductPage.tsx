@@ -1,6 +1,6 @@
 import "./style/DetailProduct.scss";
 import { useContext, useState } from "react";
-import Card from "../components/CardComponent";
+// import Card from "../components/CardComponent";
 import Button from "../components/Button";
 import { CartContext, CartContextType } from '../CartContext';
 import { useLocation } from "react-router-dom";
