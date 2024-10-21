@@ -12,6 +12,7 @@ interface ImageData {
 	nombre: string;
 	src: string;
 	visualizeUrl?: string;
+	imageSrc?: string;
 	categoria: string;
 	subcategory: string;
 	tags: string[];
@@ -152,7 +153,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 				{filteredImages.map((image) => (
 					<img
 						key={image.id}
-						src={image.src || ''}
+						src={image.src || image.imageSrc||''}
 						alt={`Imagen de ${image.categoria}`}
 						className="catalog-img"
 						onClick={() => handleImageClick(image)}
