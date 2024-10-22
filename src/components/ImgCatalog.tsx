@@ -10,11 +10,11 @@ import { firestore, auth } from '../firebase-config';
 
 interface ImageData {
 	id: string;
-	nombre: string;
+	name: string;
 	src: string;
 	visualizeUrl?: string;
 	imageSrc?: string;
-	categoria: string;
+	category: string;
 	subcategory: string;
 	tags: string[];
 }
@@ -31,24 +31,22 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 	const [subcategorias, setSubcategorias] = useState<{ [key: string]: string[] }>({});
 	const [selectedSubcategorias, setSelectedSubcategorias] = useState<{ [key: string]: string[] }>({});
 
-	// console.log(categorias, subcategorias)
-	const handleChangeSubcategoria = (categoria: string) => (event: SelectChangeEvent<string[]>) => {
+	const handleChangeSubcategoria = (category: string) => (event: SelectChangeEvent<string[]>) => {
 		setSelectedSubcategorias({
 			...selectedSubcategorias,
-			[categoria]: event.target.value as string[],
+			[category]: event.target.value as string[],
 		});
 	};
 
-	// console.log(handleChangeSubcategoria)
 	useEffect(() => {
 		const fetchData = async () => {
 		  try {
 			const querySnapshot = await getDocs(collection(firestore, 'stickers'));
 			const data: ImageData[] = querySnapshot.docs.map((doc: QueryDocumentSnapshot): ImageData => ({
 			  id: doc.id,
-			  nombre: doc.data().nombre,
+			  name: doc.data().name,
 			  src: doc.data().visualizeUrl || doc.data().imageSrc,
-			  categoria: doc.data().categoria,
+			  category: doc.data().category,
 			  subcategory: doc.data().subcategory,
 			  tags: doc.data().tags,
 			}));
@@ -57,12 +55,12 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 			const subcategoriasMap: { [key: string]: string[] } = {};
 	
 			data.forEach((image: ImageData) => {
-			  categoriasSet.add(image.categoria);
-			  if (!subcategoriasMap[image.categoria]) {
-				subcategoriasMap[image.categoria] = [];
+			  categoriasSet.add(image.category);
+			  if (!subcategoriasMap[image.category]) {
+				subcategoriasMap[image.category] = [];
 			  }
-			  if (!subcategoriasMap[image.categoria].includes(image.subcategory)) {
-				subcategoriasMap[image.categoria].push(image.subcategory);
+			  if (!subcategoriasMap[image.category].includes(image.subcategory)) {
+				subcategoriasMap[image.category].push(image.subcategory);
 			  }
 			});
 	
@@ -76,45 +74,25 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 		  }
 		};
 	
-		const authenticateAndFetchData = async () => {
-			onAuthStateChanged(auth, (user) => {
-			  if (user) {
-				// User is signed in, fetch data
-				fetchData();
-			  } else {
-				// No user is signed in, sign in anonymously or with email/password
-				signInWithEmailAndPassword(auth, 'your-email@example.com', 'your-password')
-				  .then(() => {
-					fetchData();
-				  })
-				  .catch((error) => {
-					console.error("Error signing in: ", error);
-				  });
-			  }
-			});
-		  };
-	  
-		  authenticateAndFetchData();
-		}, []);
+		fetchData();
+	}, []);
 
-	// console.log(images, "images")	
-	// console.log(setImages, "setImages")
 
 	const filteredImages = images.filter(image => {
-		const selectedSubs = selectedSubcategorias[image.categoria] || [];
+		const selectedSubs = selectedSubcategorias[image.category] || [];
 		return selectedSubs.length === 0 || selectedSubs.includes(image.subcategory);
 	});
 
 	const handleImageClick = (image: ImageData) => {
-		onSelectImage(image.src, image.nombre);
+		onSelectImage(image.imageSrc ? image.imageSrc : image.src, image.name);
 	};
 
 	return (
 		<>
 			{/* <div className='flex'>
-				{categorias.map((categoria) => (
+				{categorias.map((category) => (
 					<FormControl
-						key={categoria}
+						key={category}
 						sx={{
 							m: 1,
 							width: '180px',
@@ -131,17 +109,17 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 							},
 						}}
 					>
-						<InputLabel id={`${categoria}-label`} sx={{ color: 'white' }}>
-							{categoria}
+						<InputLabel id={`${category}-label`} sx={{ color: 'white' }}>
+							{category}
 						</InputLabel>
 						<Select
-							labelId={`${categoria}-label`}
+							labelId={`${category}-label`}
 							multiple
-							value={selectedSubcategorias[categoria] || []}
-							onChange={handleChangeSubcategoria(categoria)}
-							input={<OutlinedInput id={`${categoria}-select`} label="Subcategoría" />}
+							value={selectedSubcategorias[category] || []}
+							onChange={handleChangeSubcategoria(category)}
+							input={<OutlinedInput id={`${category}-select`} label="Subcategoría" />}
 						>
-							{subcategorias[categoria].map((subcategoria) => (
+							{subcategorias[category].map((subcategoria) => (
 								<MenuItem key={subcategoria} value={subcategoria}>
 									{subcategoria}
 								</MenuItem>
@@ -156,7 +134,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
 					<img
 						key={image.id}
 						src={image.src || image.imageSrc||''}
-						alt={`Imagen de ${image.categoria}`}
+						alt={`Imagen de ${image.category}`}
 						className="catalog-img"
 						onClick={() => handleImageClick(image)}
 					/>

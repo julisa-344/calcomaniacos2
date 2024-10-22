@@ -50,70 +50,95 @@ const Canvas: React.FC<CanvasProps> = ({
       }
     >()
   );
+  const previousImageSrcsRef = useRef<string[]>([]);
 
   // Cropping logic
   const cropImage = (image: fabric.Image): Promise<fabric.Image> => {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       const canvasElement = document.createElement("canvas");
       const context = canvasElement.getContext("2d");
-      if (!context) return;
-
-      canvasElement.width = image.width!;
-      canvasElement.height = image.height!;
-      context.drawImage(image.getElement() as HTMLImageElement, 0, 0);
-
-      const imageData = context.getImageData(
-        0,
-        0,
-        canvasElement.width,
-        canvasElement.height
-      );
-      const { data, width, height } = imageData;
-
-      let minX = width,
-        minY = height,
-        maxX = 0,
-        maxY = 0;
-
-      for (let y = 0; y < height; y++) {
-        for (let x = 0; x < width; x++) {
-          const index = (y * width + x) * 4;
-          const alpha = data[index + 3];
-          if (alpha > 0) {
-            if (x < minX) minX = x;
-            if (y < minY) minY = y;
-            if (x > maxX) maxX = x;
-            if (y > maxY) maxY = y;
-          }
-        }
+      if (!context) {
+        console.log("Failed to get canvas context");
+        reject(new Error("Failed to get canvas context"));
+        return;
       }
 
-      const croppedWidth = maxX - minX + 1;
-      const croppedHeight = maxY - minY + 1;
+      const imgElement = new Image();
+      imgElement.src = image.getSrc();
+      imgElement.crossOrigin = "anonymous"; // Ensure this line is present
 
-      const croppedCanvas = document.createElement("canvas");
-      const croppedContext = croppedCanvas.getContext("2d");
-      if (!croppedContext) return;
+      imgElement.onload = () => {
+        canvasElement.width = imgElement.width;
+        canvasElement.height = imgElement.height;
+        context.drawImage(imgElement, 0, 0);
 
-      croppedCanvas.width = croppedWidth;
-      croppedCanvas.height = croppedHeight;
-      croppedContext.drawImage(
-        canvasElement,
-        minX,
-        minY,
-        croppedWidth,
-        croppedHeight,
-        0,
-        0,
-        croppedWidth,
-        croppedHeight
-      );
+        try {
+          const imageData = context.getImageData(
+            0,
+            0,
+            canvasElement.width,
+            canvasElement.height
+          );
+          const { data, width, height } = imageData;
 
-      const croppedImage = new Image();
-      croppedImage.src = croppedCanvas.toDataURL();
-      croppedImage.onload = () => {
-        const fabricCroppedImage = new fabric.Image(croppedImage);
-        resolve(fabricCroppedImage);
+          let minX = width,
+            minY = height,
+            maxX = 0,
+            maxY = 0;
+
+          for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
+              const index = (y * width + x) * 4;
+              const alpha = data[index + 3];
+              if (alpha > 0) {
+                if (x < minX) minX = x;
+                if (y < minY) minY = y;
+                if (x > maxX) maxX = x;
+                if (y > maxY) maxY = y;
+              }
+            }
+          }
+
+          const croppedWidth = maxX - minX + 1;
+          const croppedHeight = maxY - minY + 1;
+
+          const croppedCanvas = document.createElement("canvas");
+          const croppedContext = croppedCanvas.getContext("2d");
+          if (!croppedContext) {
+            reject(new Error("Failed to get cropped canvas context"));
+            return;
+          }
+
+          croppedCanvas.width = croppedWidth;
+          croppedCanvas.height = croppedHeight;
+          croppedContext.drawImage(
+            canvasElement,
+            minX,
+            minY,
+            croppedWidth,
+            croppedHeight,
+            0,
+            0,
+            croppedWidth,
+            croppedHeight
+          );
+
+          const croppedImage = new Image();
+          croppedImage.src = croppedCanvas.toDataURL();
+          croppedImage.onload = () => {
+            const fabricCroppedImage = new fabric.Image(croppedImage);
+            resolve(fabricCroppedImage);
+          };
+          croppedImage.onerror = (error) => {
+            reject(error);
+          };
+        } catch (error) {
+          reject(error);
+        }
+      };
+
+      imgElement.onerror = (error) => {
+        reject(error);
       };
     });
   };
@@ -206,8 +231,8 @@ const Canvas: React.FC<CanvasProps> = ({
               hasRotatingPoint: true,              
             });
 
+            console.log("Adding image to canvas fabricImg: ", image.src);
             const croppedImage = await cropImage(fabricImg);
-
 
             fabricCanvas.add(croppedImage);
             fabricCanvas.setActiveObject(croppedImage);
@@ -247,7 +272,7 @@ const Canvas: React.FC<CanvasProps> = ({
         const control = fabric.Object.prototype.controls[controlKey];
         control.sizeX = 28; // Increase the size of the control points
         control.sizeY = 32; // Increase the size of the control points
-        control.render = (ctx, left, top, styleOverride, fabricObject) => {
+        control.render = (ctx, left, top) => { // Removed unused parameters
           ctx.save();
           ctx.fillStyle = "white"; // Color of the control points
           ctx.strokeStyle = "red"; // Border color of the control points
@@ -325,13 +350,19 @@ const Canvas: React.FC<CanvasProps> = ({
   }, [triggerDownload, handleDownload, onDownloadComplete]);
 
   useEffect(() => {
-    if (imageSrcs.length > 0) {
-      const newImageSrc = imageSrcs[imageSrcs.length - 1];
+    const newImages = imageSrcs.filter(
+      (src) => !previousImageSrcsRef.current.includes(src)
+    );
+
+    if (newImages.length > 0) {
+      const newImageSrc = newImages[newImages.length - 1];
       const newImage = {
         id: `${newImageSrc}-${Date.now()}-${Math.random()}`,
         src: newImageSrc,
       };
+      console.log("Adding image to canvas: ", newImage);
       addImageToCanvas(newImage);
+      previousImageSrcsRef.current = [...previousImageSrcsRef.current, newImageSrc];
     }
   }, [imageSrcs, addImageToCanvas]);
 

@@ -21,6 +21,7 @@ import CropPortraitIcon from "@mui/icons-material/CropPortrait";
 import ImageIcon from "@mui/icons-material/Image";
 
 function MakeCollection() {
+  console.log("MaeCollection Rendered");
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const [selectedImageName, setSelectedImageName] = useState<string>("");
   const [triggerDownload, setTriggerDownload] = useState(false);
@@ -41,6 +42,8 @@ function MakeCollection() {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSelectImage = (src: string, name: string) => {
+    console.log("adding: ", src, name);
+    console.log("selectedImages: ", selectedImages);
     setSelectedImages((prevImages) => [...prevImages, src]);
     setSelectedImageName(name);
   };
