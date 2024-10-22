@@ -58,7 +58,6 @@ const Canvas: React.FC<CanvasProps> = ({
       const canvasElement = document.createElement("canvas");
       const context = canvasElement.getContext("2d");
       if (!context) {
-        console.log("Failed to get canvas context");
         reject(new Error("Failed to get canvas context"));
         return;
       }
@@ -231,7 +230,6 @@ const Canvas: React.FC<CanvasProps> = ({
               hasRotatingPoint: true,              
             });
 
-            console.log("Adding image to canvas fabricImg: ", image.src);
             const croppedImage = await cropImage(fabricImg);
 
             fabricCanvas.add(croppedImage);
@@ -360,7 +358,6 @@ const Canvas: React.FC<CanvasProps> = ({
         id: `${newImageSrc}-${Date.now()}-${Math.random()}`,
         src: newImageSrc,
       };
-      console.log("Adding image to canvas: ", newImage);
       addImageToCanvas(newImage);
       previousImageSrcsRef.current = [...previousImageSrcsRef.current, newImageSrc];
     }
