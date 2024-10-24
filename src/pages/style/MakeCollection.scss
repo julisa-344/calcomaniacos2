@@ -27,7 +27,6 @@ canvas {
 .container {
     margin-top: 80px;
     display: flex;
-    justify-content: space-around;
     gap: 20px;
     width: 100%;
     min-height: 705px;
@@ -38,14 +37,16 @@ canvas {
     width: 50%;
     height: 70vh;
 }
-
+.containier_img-catalog{
+    width: 50%;
+}
 .container_catalog-img {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 15px;
     width: 100%;
-    height:auto;
+    height:630px;
     overflow-x: hidden;
     overflow-y: scroll;
     scrollbar-width: thin;
