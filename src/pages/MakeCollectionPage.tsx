@@ -45,12 +45,9 @@ function MakeCollection() {
     setSelectedImageName(name);
   };
 
-  const handleImageResize = (width: number, height: number) => {
-    const widthScaled = width;
-    const heightScaled = height;
-
-    setImageDimensions({ width: widthScaled, height: heightScaled });
-  };
+  const handleImageResize = useCallback((width: number, height: number) => {
+    setImageDimensions({ width, height });
+  }, []);
 
   const rows = [
     createData("Nombre", selectedImageName),

@@ -348,9 +348,8 @@ const Canvas: React.FC<CanvasProps> = ({
   }, [triggerDownload, handleDownload, onDownloadComplete]);
 
   useEffect(() => {
-    const newImages = imageSrcs.filter(
-      (src) => !previousImageSrcsRef.current.includes(src)
-    );
+    
+    const newImages = imageSrcs;
 
     if (newImages.length > 0) {
       const newImageSrc = newImages[newImages.length - 1];
