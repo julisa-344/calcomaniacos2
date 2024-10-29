@@ -87,7 +87,7 @@ function MakeCollection() {
         <div
           // className={`container-catalog flex direction-column justify-between ${selectedView === "catalog" ? "show" : "hide"
           //   }`}
-          className="containier_img-catalog"
+          className="containier_imageCatalog"
         >
         <ImageCatalog onSelectImage={handleSelectImage} />
         </div>

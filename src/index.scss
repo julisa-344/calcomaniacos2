@@ -1,5 +1,7 @@
 @import './theme.scss';
-
+*{
+  box-sizing: border-box;
+}
 html{
   scrollbar-width: thin;
   scrollbar-color: $color-primary $color-neutral-500;
