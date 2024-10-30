@@ -54,8 +54,8 @@ function MakeCollection() {
     createData(
       "Tamaño",
       `Ancho: ${imageDimensions.width.toFixed(
-        2
-      )} cm x Alto: ${imageDimensions.height.toFixed(2)} cm`
+        1
+      )} cm x Alto: ${imageDimensions.height.toFixed(1)} cm`
     ),
   ];
 
