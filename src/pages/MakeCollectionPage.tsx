@@ -34,7 +34,7 @@ function MakeCollection() {
     setTriggerDownload(false);
   }, []);
 
-  function createData(detalle: string, valor: string) {
+  function createData(detalle: string, valor: React.ReactNode) {
     return { detalle, valor };
   }
 
@@ -51,9 +51,10 @@ function MakeCollection() {
     // createData("Nombre", selectedImageName),
     createData(
       "Tamaño",
-      `Ancho: ${imageDimensions.width.toFixed(
-        1
-      )} cm x Alto: ${imageDimensions.height.toFixed(1)} cm`
+      <>
+        Ancho: {imageDimensions.width.toFixed(1)} cm <br />
+        Alto: {imageDimensions.height.toFixed(1)} cm
+      </>
     ),
   ];
 
