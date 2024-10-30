@@ -22,7 +22,6 @@ import ImageIcon from "@mui/icons-material/Image";
 
 function MakeCollection() {
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
-  const [selectedImageName, setSelectedImageName] = useState<string>("");
   const [triggerDownload, setTriggerDownload] = useState(false);
   const [selectedView, setSelectedView] = useState("canvas");
   const [value, setValue] = React.useState(0);
@@ -42,7 +41,6 @@ function MakeCollection() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSelectImage = (src: string, name: string) => {
     setSelectedImages((prevImages) => [...prevImages, src]);
-    setSelectedImageName(name);
   };
 
   const handleImageResize = useCallback((width: number, height: number) => {
