@@ -50,12 +50,12 @@ function MakeCollection() {
   }, []);
 
   const rows = [
-    createData("Nombre", selectedImageName),
+    // createData("Nombre", selectedImageName),
     createData(
       "Tamaño",
-      `${imageDimensions.width.toFixed(
+      `Ancho: ${imageDimensions.width.toFixed(
         2
-      )} cm x ${imageDimensions.height.toFixed(2)} cm`
+      )} cm x Alto: ${imageDimensions.height.toFixed(2)} cm`
     ),
   ];
 
