@@ -69,8 +69,6 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
         ...prev,
         [category]: newSelected,
       }));
-
-      console.log(newSelected, "Subcategorías seleccionadas para", category);
     };
 
   useEffect(() => {
@@ -105,8 +103,6 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
         setCategorias(Array.from(categoriasSet));
         setSubcategorias(subcategoriasMap);
         setImages(data);
-
-        // console.log(data, "images"); // Mueve el console.log aquí para asegurarte de que los datos se han cargado
       } catch (error) {
         console.log("Error fetching data: ", error);
       }
@@ -134,9 +130,6 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
   //     // Filtrar solo las imágenes que coincidan con alguna subcategoría seleccionada
   //     return selectedForCategory.includes(image.subcategory);
   // });
-
-  console.log(filteredImages, "filteredImages");
-
   const handleImageClick = (image: ImageData) => {
     onSelectImage(image.imageSrc ? image.imageSrc : image.src, image.name);
   };

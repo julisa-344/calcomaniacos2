@@ -20,7 +20,6 @@ const Header: React.FC = () => {
 
   const handleAccountClick = () => {
     if (loading) {
-      console.log('Header - still loading');
       return;
     }
     if (user) {
