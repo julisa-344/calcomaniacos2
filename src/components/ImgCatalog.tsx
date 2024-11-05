@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   FormControl,
   InputLabel,
@@ -13,6 +13,9 @@ import { Checkbox, ListItemText } from "@mui/material"; // Importamos Checkbox y
 
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { firestore, auth } from "../firebase-config";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 interface ImageData {
   id: string;
@@ -40,23 +43,6 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
   const [selectedSubcategorias, setSelectedSubcategorias] = useState<{
     [key: string]: string[];
   }>({});
-
-  //   const handleChangeSubcategoria =
-  //     (category: string) => (event: SelectChangeEvent<string[]>) => {
-  //       const {
-  //         target: { value },
-  //       } = event;
-  //       setSelectedSubcategorias({
-  //         ...selectedSubcategorias,
-  //         [category]: typeof value === "string" ? value.split(",") : value,
-  //       });
-  //       console.log(
-  //         selectedSubcategorias,
-  //         "selectedSubcategorias",
-  //         categorias,
-  //         "categorias"
-  //       );
-  //     };
 
   const handleChangeSubcategoria =
     (category: string) => (event: SelectChangeEvent<string[]>) => {
@@ -121,69 +107,77 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
     return selectedForCategory.includes(image.subcategory);
   });
 
-  // const filteredImages = images.filter((image) => {
-  //     const selectedForCategory = selectedSubcategorias[image.category] || [];
-
-  //     // Mostrar todas las imágenes si no hay ninguna subcategoría seleccionada para esta categoría
-  //     if (selectedForCategory.length === 0) return true;
-
-  //     // Filtrar solo las imágenes que coincidan con alguna subcategoría seleccionada
-  //     return selectedForCategory.includes(image.subcategory);
-  // });
   const handleImageClick = (image: ImageData) => {
     onSelectImage(image.imageSrc ? image.imageSrc : image.src, image.name);
   };
 
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    draggable: true,
+    nextArrow: <div className="custom-next">→</div>,  // Icono personalizado para el botón "next"
+    prevArrow: <div className="custom-prev">←</div>,  // Icono personalizado para el botón "prev"
+  };
+
   return (
     <>
-      <div className="flex">
-        {categorias.map((category) => (
-          <FormControl
-            key={category}
-            sx={{
-              m: 1,
-              width: "180px",
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "white",
-                },
-                "&:hover fieldset": {
-                  borderColor: "gray",
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "gray",
-                },
-              },
-            }}
-          >
-            <InputLabel id={`${category}-label`} sx={{ color: "white" }}>
-              {category}
-            </InputLabel>
-            <Select
-              labelId={`${category}-label`}
-              multiple
-              value={selectedSubcategorias[category] || []}
-              onChange={handleChangeSubcategoria(category)}
-              input={
-                <OutlinedInput id={`${category}-select`} label="Subcategoría" />
-              }
-              renderValue={(selected) => selected.join(", ")}
-            >
-              {subcategorias[category].map((subcategoria) => (
-                <MenuItem key={subcategoria} value={subcategoria}>
-                  <Checkbox
-                    checked={(selectedSubcategorias[category] || []).includes(
-                      subcategoria
-                    )}
-                  />
-                  <ListItemText primary={subcategoria} />
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        ))}
+      <div className="slider-container">
+        <Slider {...settings} className="contend-slider">
+          {categorias.map((category) => (
+            <div key={category}>
+              <FormControl
+                sx={{
+                  m: 1,
+                  width: "180px",
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "white",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "gray",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "gray",
+                    },
+                  },
+                }}
+              >
+                <InputLabel id={`${category}-label`} sx={{ color: "white" }}>
+                  {category}
+                </InputLabel>
+                <Select
+                  labelId={`${category}-label`}
+                  multiple
+                  value={selectedSubcategorias[category] || []}
+                  onChange={handleChangeSubcategoria(category)}
+                  input={
+                    <OutlinedInput
+                      id={`${category}-select`}
+                      label="Subcategoría"
+                    />
+                  }
+                  renderValue={(selected) => selected.join(", ")}
+                >
+                  {subcategorias[category].map((subcategoria) => (
+                    <MenuItem key={subcategoria} value={subcategoria}>
+                      <Checkbox
+                        checked={(
+                          selectedSubcategorias[category] || []
+                        ).includes(subcategoria)}
+                      />
+                      <ListItemText primary={subcategoria} />
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+          ))}
+        </Slider>
+        <div className="fade-effect"></div>
       </div>
-
       <div id="catalog" className="container_catalog-img">
         {filteredImages.map((image) => (
           <img
