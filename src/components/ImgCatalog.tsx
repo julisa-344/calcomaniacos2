@@ -115,7 +115,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
     draggable: true,
     nextArrow: <div className="custom-next">→</div>,  // Icono personalizado para el botón "next"
