@@ -82,54 +82,41 @@ canvas {
 
 .slider-container {
   position: relative;
-  padding-right: 30px; /* Espacio para el desvanecimiento */
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
-.fade-effect {
+.contend-slider .slick-slide {
+  display: inline-flex; /* Hace que los selects sean flexibles y ocupen solo el espacio necesario */
+  justify-content: center;
+}
+
+// .fade-effect {
+//     position: absolute;
+//     z-index: 1; /* Un valor menor que el z-index del botón prev */
+//     top: 0;
+//     right: 0;
+//     height: 100%;
+//     width: 50px; /* Ajusta el ancho según el efecto deseado */
+//     background: linear-gradient(to left, #150c3e, rgba(255, 255, 255, 0));
+//     pointer-events: none; /* Permite arrastrar sin interferencia del efecto */
+//   }
+
+  .custom-prev, .custom-next {
     position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 50px; /* Ajusta el ancho según el efecto deseado */
-    background: linear-gradient(to left, #150c3e, rgba(255, 255, 255, 0));
-    pointer-events: none; /* Permite arrastrar sin interferencia del efecto */
+    z-index: 10; /* Un valor mayor que el z-index del div fade-effect */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  .custom-prev {
+    left: 10px; /* Ajusta según sea necesario */
   }
   
+  .custom-next {
+    right: 10px; /* Ajusta según sea necesario */
+  }
 
-.custom-next,
-.custom-prev {
-  z-index: 100;
-  color: white;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    1
-  ); /* Fondo blanco semitransparente */
-  width: 30px; /* Ajusta el tamaño según lo que prefieras */
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%; /* Redondea el botón */
-  cursor: pointer;
-}
-
-/* Posición del botón de "next" */
-.custom-next {
-  right: -15px; /* Ajusta según el margen que desees */
-  top: 50%;
-  transform: translateY(-50%);
-  position: absolute;
-}
-
-/* Posición del botón de "prev" */
-.custom-prev {
-  left: -15px;
-  top: 50%;
-  transform: translateY(-50%);
-  position: absolute;
-}
 
 @media (max-width: 768px) {
   canvas {
