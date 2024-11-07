@@ -78,7 +78,7 @@ function MakeCollection() {
 
           <Button
             text="Quitar fondo"
-            onClick={() => window.open('https://www.slazzer.com/upload', '_blank')}
+            onClick={() => window.open('https://app.photoroom.com/create', '_blank')}
           />
 
 
