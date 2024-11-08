@@ -77,7 +77,7 @@ function MakeCollection() {
           />
 
           <Button
-            text="Quitar fondo"
+            text="Remover fondo"
             onClick={() => window.open('https://app.photoroom.com/create', '_blank')}
           />
 
