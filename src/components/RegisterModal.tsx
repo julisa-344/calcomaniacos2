@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Button, TextField, Typography, Container, Box, Grid } from '@mui/material';
+import { Button, TextField, Typography, Grid } from '@mui/material';
 import { Google as GoogleIcon } from '@mui/icons-material';
 import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase-config';
-// import './style/RegisterModal.scss';
 
 interface RegisterModalProps {
   onClose: () => void;
@@ -36,7 +35,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose }) => {
     <div className="modal">
       <div className="modal-content">
         <Typography variant="h5" gutterBottom>
-          Register
+          Regìstrate
         </Typography>
         <TextField
           label="Email"
