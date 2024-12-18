@@ -6,35 +6,17 @@ import { TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "../components/Button";
 import { CartContext, CartContextType } from "../CartContext";
-import { CouponContext } from "../CouponContext";
-import { validateCoupon } from "../CouponContext";
+import { CouponContext, validateCoupon } from "../CouponContext";
 import DeleteIcon from "@mui/icons-material/Delete";
-// import the required functions to store collections in Firestore
-import { collection, addDoc, doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { firestore, auth } from "../firebase-config";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import ModalComponent from "../components/ModalComponent";
 
-interface PurchaseItem {
-  imageSrc: string;
-  price: number;
-  quantity: number;
-  style: string;
-}
-
-interface Purchase {
-  id: string;
-  items: PurchaseItem[];
-  timestamp: string;
-  userId: string;
-}
-
 function CartPage() {
   const { cart, setCart } = useContext<CartContextType>(CartContext);
-  const { setCoupon, discount, setDiscount } =
-    useContext(CouponContext);
+  const { coupon, setCoupon, discount, setDiscount } = useContext(CouponContext);
   const [couponCode, setCouponCode] = useState("");
-
   const [counts, setCounts] = useState<{ [key: number]: number }>({});
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
@@ -51,7 +33,6 @@ function CartPage() {
         (sum, product, index) => sum + product.price * (counts[index] || 1),
         0
       );
-      // Apply discount if there is one
       const discountedTotal = initialTotal * (1 - discount / 100);
       setTotal(discountedTotal);
     };
@@ -87,38 +68,19 @@ function CartPage() {
       alert("Por favor, inicia sesión para aplicar un cupón.");
       return;
     }
-  
-    const uid = auth.currentUser.uid;
-    const usedCouponsRef = doc(firestore, "usedCoupons", `${uid}_${couponCode}`);
-    
-    try {
-      // Revisa si el cupón ya ha sido usado por el usuario
-      const usedCouponDoc = await getDoc(usedCouponsRef);
-      if (usedCouponDoc.exists()) {
-        alert("Ya has usado este cupón.");
-        return;
-      }
-  
-      // Validar el cupón
-      const discountValue = await validateCoupon(couponCode);
-      if (discountValue > 0) {
-        setCoupon(couponCode);
-        setDiscount(discountValue);
-  
-        // Guardar el cupón como utilizado en Firestore
-        await setDoc(usedCouponsRef, {
-          userId: uid,
-          coupon: couponCode,
-          usedAt: new Date().toISOString(),
-        });
-  
-        alert(`Cupón aplicado! Descuento del ${discountValue}%`);
-      } else {
-        alert("Cupón inválido");
-      }
-    } catch (error) {
-      console.error("Error al aplicar el cupón:", error);
-      alert("Ocurrió un error al aplicar el cupón.");
+
+    if (coupon) {
+      alert("El cupón ya está aplicado. No se puede usar más de un cupón por compra.");
+      return;
+    }
+
+    const discountValue = await validateCoupon(couponCode);
+    if (discountValue > 0) {
+      setCoupon(couponCode);
+      setDiscount(discountValue);
+      alert(`Cupón aplicado! Descuento del ${discountValue}%`);
+    } else {
+      alert("Cupón inválido");
     }
   };
 
@@ -128,27 +90,20 @@ function CartPage() {
       setModalContent({
         title: "Inicia sesión",
         content: "Debes iniciar sesión para realizar una compra.",
-        img: "/login.jpeg", // Replace with an appropriate image path
+        img: "/login.jpeg",
       });
       setShowModal(true);
       return;
     }
     const uid = auth.currentUser?.uid;
-    const purchaseId = `${uid}-${timestamp}-${Math.floor(
-      Math.random() * 1000
-    )}`;
-    const customStickers = cart.filter((product) =>
-      product.img.startsWith("data:")
-    );
+    const purchaseId = `${uid}-${timestamp}-${Math.floor(Math.random() * 1000)}`;
+    const customStickers = cart.filter((product) => product.img.startsWith("data:"));
     const storage = getStorage();
     const uploadPromises = customStickers.map(async (product, index) => {
       const image = product.img;
       const response = await fetch(image);
       const blob = await response.blob();
-      const storageRef = ref(
-        storage,
-        `user-content/${uid}/${purchaseId}-${index}.png`
-      );
+      const storageRef = ref(storage, `user-content/${uid}/${purchaseId}-${index}.png`);
       await uploadBytes(storageRef, blob);
       const url = await getDownloadURL(storageRef);
       cart[index].img = url;
@@ -161,7 +116,7 @@ function CartPage() {
       quantity: counts[index] || 1,
     }));
 
-    const purchase: Purchase = {
+    const purchase = {
       id: purchaseId,
       items: items,
       timestamp: timestamp,
@@ -169,14 +124,12 @@ function CartPage() {
     };
 
     const purchaseRef = collection(firestore, "purchases");
-    addDoc(purchaseRef, purchase);
+    await addDoc(purchaseRef, purchase);
 
-    // navigate("/payment", { state: { total } });
     setModalContent({
       title: "¡Compra exitosa!",
-      content:
-        "Tu compra ha sido realizada con éxito. En breve recibirás un correo con los detalles de tu compra.",
-      img: "/start2.png",
+      content: "Tu compra ha sido realizada con éxito. En breve recibirás un correo con los detalles de tu compra.",
+      img: "/success.png",
     });
     setShowModal(true);
   };
@@ -217,8 +170,7 @@ function CartPage() {
                 <DeleteIcon onClick={() => removeItem(index)} />
               </div>
             ))}
-  
-            {/* Adicionar Cupon, Precio y Finalizar compra solo si el carrito no está vacío */}
+
             <div>
               <h2 className="sub-title">Adicionar Cupon</h2>
               <div className="flex justify-between">
@@ -268,14 +220,13 @@ function CartPage() {
               title={modalContent.title}
               content={modalContent.content}
               img={modalContent.img}
-              onClose={() => handleCloseModal()}
+              onClose={handleCloseModal}
             />
           )}
         </section>
       </main>
     </>
   );
-  
 }
 
 export default CartPage;
