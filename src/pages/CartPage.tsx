@@ -8,7 +8,7 @@ import Button from "../components/Button";
 import { CartContext, CartContextType } from "../CartContext";
 import { CouponContext, validateCoupon } from "../CouponContext";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { firestore, auth } from "../firebase-config";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import ModalComponent from "../components/ModalComponent";
@@ -96,6 +96,7 @@ function CartPage() {
       return;
     }
     const uid = auth.currentUser?.uid;
+    const userEmail = auth.currentUser?.email;
     const purchaseId = `${uid}-${timestamp}-${Math.floor(Math.random() * 1000)}`;
     const customStickers = cart.filter((product) => product.img.startsWith("data:"));
     const storage = getStorage();
@@ -115,17 +116,18 @@ function CartPage() {
       price: product.price,
       quantity: counts[index] || 1,
     }));
-
+  
     const purchase = {
       id: purchaseId,
       items: items,
       timestamp: timestamp,
       userId: uid || "",
+      userEmail: userEmail || "",
     };
-
+  
     const purchaseRef = collection(firestore, "purchases");
     await addDoc(purchaseRef, purchase);
-
+  
     setModalContent({
       title: "¡Compra exitosa!",
       content: "Tu compra ha sido realizada con éxito. En breve recibirás un correo con los detalles de tu compra.",

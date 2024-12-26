@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Button, TextField, Typography, Grid } from '@mui/material';
 import { Google as GoogleIcon } from '@mui/icons-material';
 import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase-config';
+import { auth, firestore } from '../firebase-config';
+import { doc, setDoc } from 'firebase/firestore';
 
 interface RegisterModalProps {
   onClose: () => void;
@@ -14,7 +15,13 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose }) => {
 
   const handleRegister = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      await setDoc(doc(firestore, 'users', user.uid), {
+        email: user.email,
+        displayName: user.displayName || '',
+        photoURL: user.photoURL || '',
+      });
       onClose();
     } catch (error) {
       console.error('Error registering:', error);
@@ -24,7 +31,13 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose }) => {
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
+      const userCredential = await signInWithPopup(auth, provider);
+      const user = userCredential.user;
+      await setDoc(doc(firestore, 'users', user.uid), {
+        email: user.email,
+        displayName: user.displayName || '',
+        photoURL: user.photoURL || '',
+      });
       onClose();
     } catch (error) {
       console.error('Error logging in with Google:', error);
@@ -35,7 +48,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose }) => {
     <div className="modal">
       <div className="modal-content">
         <Typography variant="h5" gutterBottom>
-          Regìstrate
+          Regístrate
         </Typography>
         <TextField
           label="Email"
