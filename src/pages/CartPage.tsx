@@ -12,6 +12,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { firestore, auth } from "../firebase-config";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import ModalComponent from "../components/ModalComponent";
+import emailjs from 'emailjs-com';
 
 function CartPage() {
   const { cart, setCart } = useContext<CartContextType>(CartContext);
@@ -116,7 +117,7 @@ function CartPage() {
       price: product.price,
       quantity: counts[index] || 1,
     }));
-  
+
     const purchase = {
       id: purchaseId,
       items: items,
@@ -124,10 +125,28 @@ function CartPage() {
       userId: uid || "",
       userEmail: userEmail || "",
     };
-  
+
     const purchaseRef = collection(firestore, "purchases");
     await addDoc(purchaseRef, purchase);
-  
+
+    // Enviar correo electrónico usando EmailJS
+    const templateParams = {
+      to_name: auth.currentUser?.displayName || 'Cliente',
+      user_email: userEmail,
+      admin_email: 'calcomaniacos.pe@gmail.com',
+      purchase_id: purchaseId,
+      items: JSON.stringify(items, null, 2),
+      total: total.toFixed(2),
+      message: 'Gracias por tu compra! Aquí tienes el resumen de tu compra.',
+    };
+
+    emailjs.send('service_l7nw92b', 'template_f0psaxe', templateParams, 'KgLmLp1EAALkSW72J')
+      .then((response) => {
+        console.log('Correo enviado con éxito:', response.status, response.text);
+      }, (error) => {
+        console.error('Error al enviar el correo:', error);
+      });
+
     setModalContent({
       title: "¡Compra exitosa!",
       content: "Tu compra ha sido realizada con éxito. En breve recibirás un correo con los detalles de tu compra.",
