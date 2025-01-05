@@ -4,7 +4,6 @@ import { useState, useCallback } from "react";
 import "./style/MakeCollection.scss";
 import Canvas from "../components/Canvas";
 import ImageCatalog from "../components/ImgCatalog";
-
 import {
   TableContainer,
   Table,
@@ -13,12 +12,20 @@ import {
   TableCell,
   Paper,
   Box,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
 } from "@mui/material";
 import Button from "../components/Button";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import CropPortraitIcon from "@mui/icons-material/CropPortrait";
 import ImageIcon from "@mui/icons-material/Image";
+
+function createData(detalle: string, valor: React.ReactNode) {
+  return { detalle, valor };
+}
 
 function MakeCollection() {
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
@@ -29,16 +36,12 @@ function MakeCollection() {
     width: 0,
     height: 0,
   });
+  const [selectedType, setSelectedType] = useState("trasferible");
 
   const handleDownloadComplete = useCallback(() => {
     setTriggerDownload(false);
   }, []);
 
-  function createData(detalle: string, valor: React.ReactNode) {
-    return { detalle, valor };
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSelectImage = (src: string, name: string) => {
     setSelectedImages((prevImages) => [...prevImages, src]);
   };
@@ -47,14 +50,84 @@ function MakeCollection() {
     setImageDimensions({ width, height });
   }, []);
 
+  const handleTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedType((event.target as HTMLInputElement).value);
+  };
+
   const rows = [
-    // createData("Nombre", selectedImageName),
+    createData(
+      "Acabado",
+      <FormControl component="fieldset">
+        <RadioGroup
+          aria-label="tipo"
+          name="tipo"
+          value={selectedType}
+          onChange={handleTypeChange}
+        >
+          <FormControlLabel
+            value="trasferible"
+            control={<Radio sx={{ color: '#150C3E', '&.Mui-checked': { color: '#150C3E' } }} />}
+            label="Trasferible"
+            sx={{
+              "& .MuiFormControlLabel-label": {
+                fontSize: "14px",
+                textAlign: "start",
+              },
+            }}
+          />{" "}
+          <FormControlLabel
+            value="vinil"
+            control={<Radio sx={{ color: '#150C3E', '&.Mui-checked': { color: '#150C3E' } }} />}
+            label="Vinil"
+            sx={{
+              "& .MuiFormControlLabel-label": {
+                fontSize: "14px",
+                textAlign: "start",
+              },
+            }}
+          />
+          <FormControlLabel
+            value="vinil hologràfico"
+            control={<Radio sx={{ color: '#150C3E', '&.Mui-checked': { color: '#150C3E' } }} />}
+            label="Vinil Hologràfico"
+            sx={{
+              "& .MuiFormControlLabel-label": {
+                fontSize: "14px",
+                textAlign: "start",
+              },
+            }}
+          />
+          <FormControlLabel
+            value="tatto"
+            control={<Radio sx={{ color: '#150C3E', '&.Mui-checked': { color: '#150C3E' } }} />}
+            label="Tatto"
+            sx={{
+              "& .MuiFormControlLabel-label": {
+                fontSize: "14px",
+                textAlign: "start",
+              },
+            }}
+          />
+          <FormControlLabel
+            value="tatto fotoluminiscente"
+            control={<Radio sx={{ color: '#150C3E', '&.Mui-checked': { color: '#150C3E' } }} />}
+            label="Tatto Fotoluminiscente"
+            sx={{
+              "& .MuiFormControlLabel-label": {
+                fontSize: "14px",
+                textAlign: "start",
+              },
+            }}
+          />
+        </RadioGroup>
+      </FormControl>
+    ),
     createData(
       "Tamaño",
-      <>
+      <Box sx={{ fontSize: '14px', textAlign: 'start' }}>
         Ancho: {imageDimensions.width.toFixed(1)} cm <br />
         Alto: {imageDimensions.height.toFixed(1)} cm
-      </>
+      </Box>
     ),
   ];
 
@@ -63,10 +136,10 @@ function MakeCollection() {
       <h2 className="title mb-4 text-center">Crea tu colección</h2>
       <section className="container">
         <div
-          className={`content-canvas ${selectedView === "canvas" ? "show" : "hide"
-            }`}
+          className={`content-canvas ${
+            selectedView === "canvas" ? "show" : "hide"
+          }`}
         >
-
           <Canvas
             imageSrcs={selectedImages}
             width={1681}
@@ -74,37 +147,34 @@ function MakeCollection() {
             triggerDownload={triggerDownload}
             onResize={handleImageResize}
             onDownloadComplete={handleDownloadComplete}
+            acabado={selectedType} 
           />
 
           <Button
             text="Remover fondo"
-            onClick={() => window.open('https://app.photoroom.com/create', '_blank')}
+            onClick={() =>
+              window.open("https://app.photoroom.com/create", "_blank")
+            }
           />
-
-
         </div>
-        <div
-          // className={`container-catalog flex direction-column justify-between ${selectedView === "catalog" ? "show" : "hide"
-          //   }`}
-          className="containier_imageCatalog"
-        >
-        <ImageCatalog onSelectImage={handleSelectImage} />
+        <div className="containier_imageCatalog">
+          <ImageCatalog onSelectImage={handleSelectImage} />
         </div>
         <div className="aside-detail_sticker">
           <div>
             <h2 className="">Detalles</h2>
-            <TableContainer sx={{ Width: "fit-content" }} component={Paper}>
+            <TableContainer sx={{ Width: "fit-content", overflowX: "hidden"  }} component={Paper}>
               <Table aria-label="simple table">
                 <TableBody>
                   {rows.map((row) => (
                     <TableRow
                       key={row.detalle}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                      sx={{ "th": { border: 0 }, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}
                     >
-                      <TableCell component="th" scope="row">
+                      <TableCell component="th" scope="row" sx={{ width: '100%' }}>
                         {row.detalle}
                       </TableCell>
-                      <TableCell align="right">{row.valor}</TableCell>
+                      <TableCell align="left" sx={{ width: '100%' }}>{row.valor}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -147,4 +217,5 @@ function MakeCollection() {
     </main>
   );
 }
+
 export default MakeCollection;

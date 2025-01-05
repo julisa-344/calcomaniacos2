@@ -28,25 +28,75 @@ function CartPage() {
     img: "",
   });
 
+  const calculatePrice = (type: string, quantity: number): number => {
+    switch (type) {
+      case "trasferible":
+        if (quantity === 1) return 22.5;
+        if (quantity === 2) return 20;
+        return 18;
+      case "vinil":
+        if (quantity === 1) return 20;
+        if (quantity === 2) return 18;
+        return 16;
+      case "vinil hologràfico":
+        if (quantity === 1) return 23;
+        if (quantity === 2) return 20;
+        return 18;
+      case "tatto":
+        if (quantity === 1) return 24;
+        if (quantity === 2) return 23;
+        return 20;
+      case "tatto fotoluminiscente":
+        if (quantity === 1) return 25;
+        if (quantity === 2) return 22;
+        return 21;
+      default:
+        return 0;
+    }
+  };
+
   useEffect(() => {
     const calculateTotal = () => {
-      const initialTotal = cart.reduce(
-        (sum, product, index) => sum + product.price * (counts[index] || 1),
-        0
-      );
+      const itemCounts: { [key: string]: number } = {};
+  
+      // Contar la cantidad de cada tipo de acabado
+      cart.forEach((product, index) => {
+        const count = counts[index] || 1;
+        if (itemCounts[product.acabado]) {
+          itemCounts[product.acabado] += count;
+        } else {
+          itemCounts[product.acabado] = count;
+        }
+      });
+  
+      // Calcular el total basado en el tipo y la cantidad
+      const updatedCart = cart.map((product, index) => {
+        const quantity = itemCounts[product.acabado];
+        const price = calculatePrice(product.acabado, quantity);
+        return { ...product, price };
+      });
+  
+      setCart(updatedCart);
+  
+      const initialTotal = updatedCart.reduce((sum, product, index) => {
+        const count = counts[index] || 1;
+        return sum + product.price * count;
+      }, 0);
+  
       const discountedTotal = initialTotal * (1 - discount / 100);
       setTotal(discountedTotal);
     };
+  
     calculateTotal();
-  }, [cart, counts, discount]);
+  }, [cart, discount, counts, setCart]);
 
   const increment = (index: number) => {
     setCounts((prevCounts) => ({
       ...prevCounts,
       [index]: (prevCounts[index] || 1) + 1,
     }));
-  };
-
+  }
+  
   const decrement = (index: number) => {
     setCounts((prevCounts) => ({
       ...prevCounts,
@@ -112,7 +162,7 @@ function CartPage() {
     });
     await Promise.all(uploadPromises);
     const items = cart.map((product, index) => ({
-      style: product.acabado,
+      acabado: product.acabado,
       imageSrc: product.img,
       price: product.price,
       quantity: counts[index] || 1,
@@ -129,8 +179,8 @@ function CartPage() {
     const purchaseRef = collection(firestore, "purchases");
     await addDoc(purchaseRef, purchase);
 
-    // Enviar correo electrónico usando EmailJS
-    const templateParams = {
+    // Enviar correo electrónico al usuario usando EmailJS
+    const userTemplateParams = {
       to_name: auth.currentUser?.displayName || 'Cliente',
       user_email: userEmail,
       admin_email: 'calcomaniacos.pe@gmail.com',
@@ -140,11 +190,27 @@ function CartPage() {
       message: 'Gracias por tu compra! Aquí tienes el resumen de tu compra.',
     };
 
-    emailjs.send('service_l7nw92b', 'template_f0psaxe', templateParams, 'KgLmLp1EAALkSW72J')
+    emailjs.send('service_zrba569', 'template_f0psaxe', userTemplateParams, 'KgLmLp1EAALkSW72J')
       .then((response) => {
-        console.log('Correo enviado con éxito:', response.status, response.text);
+        console.log('Correo enviado con éxito al usuario:', response.status, response.text);
       }, (error) => {
-        console.error('Error al enviar el correo:', error);
+        console.error('Error al enviar el correo al usuario:', error);
+      });
+
+    // Enviar correo electrónico al administrador usando EmailJS
+    const adminTemplateParams = {
+      to_name: auth.currentUser?.displayName || 'Cliente',
+      user_id: uid,
+      purchase_id: purchaseId,
+      items: JSON.stringify(items, null, 2),
+      total: total.toFixed(2),
+    };
+
+    emailjs.send('service_zrba569', 'template_l9bu4lf', adminTemplateParams, 'KgLmLp1EAALkSW72J')
+      .then((response) => {
+        console.log('Correo enviado con éxito al administrador:', response.status, response.text);
+      }, (error) => {
+        console.error('Error al enviar el correo al administrador:', error);
       });
 
     setModalContent({
@@ -185,8 +251,8 @@ function CartPage() {
                   </button>
                   <span>{counts[index] || 1}</span>
                   <button onClick={() => increment(index)} className="btn-small">
-                    +
-                  </button>
+                  +
+                </button>
                 </div>
                 <DeleteIcon onClick={() => removeItem(index)} />
               </div>

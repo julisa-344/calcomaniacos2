@@ -47,8 +47,6 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
   const handleChangeSubcategoria =
     (category: string) => (event: SelectChangeEvent<string[]>) => {
       const { value } = event.target;
-
-      // Aseguramos que se actualice correctamente el estado con las subcategorías seleccionadas
       const newSelected = typeof value === "string" ? value.split(",") : value;
 
       setSelectedSubcategorias((prev) => ({
@@ -116,7 +114,7 @@ const ImageCatalog: React.FC<ImageCatalogProps> = ({ onSelectImage }) => {
     infinite: false,
     speed: 500,
     variableWidth: true, // Habilita el ancho variable
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     draggable: true,
     nextArrow: <div className="custom-next">→</div>, // Icono personalizado para el botón "next"
     prevArrow: <div className="custom-prev">←</div>, // Icono personalizado para el botón "prev"

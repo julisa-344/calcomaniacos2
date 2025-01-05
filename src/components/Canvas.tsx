@@ -12,6 +12,7 @@ interface CanvasProps {
   height: number | string;
   triggerDownload: boolean;
   maxImageWidth?: number;
+  acabado: string;
   onResize: (width: number, height: number) => void;
   onDownloadComplete: () => void;
 }
@@ -30,6 +31,7 @@ const Canvas: React.FC<CanvasProps> = ({
   height,
   maxImageWidth = 300,
   triggerDownload,
+  acabado,
   onResize,
   onDownloadComplete,
 }) => {
@@ -313,14 +315,14 @@ const Canvas: React.FC<CanvasProps> = ({
       const productToAdd = {
         img: dataURL,
         name: "Collection personalizada",
-        price: 22,
         tamano: "14x20",
-        acabado: "Transferible",
+        price: 0,
+        acabado: acabado, 
       };
 
       setCart([...cart, productToAdd]);
     }
-  }, [cart, setCart]);
+  }, [cart, setCart, acabado]);
 
   useEffect(() => {
     initializeCanvas();

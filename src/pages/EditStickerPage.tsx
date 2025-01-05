@@ -126,6 +126,7 @@ function EditStickerPage() {
             triggerDownload={triggerDownload}
             onResize={handleResize} // Add this line
             onDownloadComplete={handleDownloadComplete}
+            acabado=''
           />
           <div className="action-canvas ml-4">
             <div className="color-picker-container">
