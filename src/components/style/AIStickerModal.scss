@@ -1,0 +1,126 @@
+.ai-sticker-modal {
+  .MuiDialog-paper {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .modal-title {
+    background: linear-gradient(90deg, #0f3460 0%, #533483 100%);
+    padding: 20px;
+    
+    h5 {
+      color: white;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    
+    .MuiTypography-subtitle1 {
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  .modal-content {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+
+  .image-preview-container {
+    flex: 1;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    
+    .empty-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      color: #666;
+      text-align: center;
+      padding: 20px;
+      background-image: 
+        radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+    }
+    
+    .loading-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      color: #333;
+      
+      .MuiCircularProgress-root {
+        color: #533483;
+      }
+    }
+    
+    .generated-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .prompt-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    
+    .MuiTextField-root {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      
+      .MuiOutlinedInput-root {
+        border-radius: 8px;
+      }
+    }
+    
+    .error-message {
+      margin-top: 8px;
+    }
+  }
+
+  .modal-actions {
+    padding: 16px 24px;
+    background-color: rgba(0, 0, 0, 0.1);
+    
+    button {
+      margin-left: 8px;
+    }
+  }
+
+  // Stars background effect
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 2px),
+      radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 1px);
+    background-size: 50px 50px, 30px 30px;
+    background-position: 0 0, 15px 15px;
+    pointer-events: none;
+    opacity: 0.1;
+  }
+} 

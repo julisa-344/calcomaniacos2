@@ -1,47 +1,83 @@
-# Getting Started with Create React App
+# Calcomaniacos - Sticker Creator App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
 
-## Available Scripts
+### AI Sticker Generator
 
-In the project directory, you can run:
+The app now includes an AI-powered sticker generator that allows users to create unique stickers using text prompts. This feature uses the FLUX.1-schnell-Free model from Together.ai to generate high-quality images based on user descriptions.
 
-### `npm start`
+#### How to Use
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Navigate to the "Make Collection" page
+2. Click on the "Generar con IA" button or use the "AI Sticker" tab in the bottom navigation
+3. Enter a descriptive prompt for your sticker
+4. Click "Generate Sticker" to create your custom sticker
+5. Once generated, click "Add to Canvas" to add it to your collection
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+#### Technical Implementation
 
-### `npm test`
+The AI Sticker Generator feature consists of:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- A React modal component for the user interface
+- A Firebase Cloud Function that securely calls the Together.ai API
+- Integration with the existing Canvas component for adding generated stickers
 
-### `npm run build`
+#### Setup Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To set up the AI Sticker Generator feature:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Set up Firebase Cloud Functions:
+   ```bash
+   cd functions
+   ./setup.sh
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Update the `.env` file in the `functions` directory with your Together.ai API key:
+   ```
+   TOGETHER_API_KEY=your_together_api_key_here
+   ```
 
-### `npm run eject`
+3. Set up Firebase Functions environment variables:
+   ```bash
+   firebase functions:config:set together.apikey="your_together_api_key_here"
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. Deploy the Firebase Functions:
+   ```bash
+   cd functions
+   npm run deploy
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Development
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Local Development
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To run the app locally:
 
-## Learn More
+```bash
+npm install
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To run the Firebase Functions locally:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-# calcomaniacos2
+```bash
+cd functions
+npm run serve
+```
+
+### Deployment
+
+To deploy the app to Firebase Hosting:
+
+```bash
+npm run build
+firebase deploy --only hosting
+```
+
+To deploy the Firebase Functions:
+
+```bash
+cd functions
+npm run deploy
+```

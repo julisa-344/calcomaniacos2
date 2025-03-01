@@ -6,6 +6,9 @@
 /.pnp
 .pnp.js
 
+# env subdirs
+functions/node_modules/*
+
 # Firebase
 /.firebaserc
 /.firebase
