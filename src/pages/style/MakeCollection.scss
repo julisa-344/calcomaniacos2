@@ -10,12 +10,8 @@
   box-sizing: border-box; /* Asegura que el padding y el border se incluyan en el tamaño total del elemento */
 }
 
-.content-canvas {
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+.canvas-container{
+  height: 700px;
 }
 
 canvas {
