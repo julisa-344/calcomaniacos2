@@ -22,6 +22,8 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import CropPortraitIcon from "@mui/icons-material/CropPortrait";
 import ImageIcon from "@mui/icons-material/Image";
+import AIStickerModal from "../components/AIStickerModal";
+import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 
 function createData(detalle: React.ReactNode, valor: React.ReactNode) {
   return { detalle, valor };
@@ -37,9 +39,16 @@ function MakeCollection() {
     height: 0,
   });
   const [selectedType, setSelectedType] = useState("trasferible");
-  const [addTextToCanvas, setAddTextToCanvas] = useState<((fn: () => void) => void) | null>(null);
+  const [addTextToCanvas, setAddTextToCanvas] = useState<
+    ((fn: () => void) => void) | null
+  >(null);
+  const [aiModalOpen, setAiModalOpen] = useState(false);
 
-  console.log(selectedView)
+  console.log(selectedView);
+
+  const handleAIImageGenerated = (imageUrl: string) => {
+    setSelectedImages((prevImages) => [...prevImages, imageUrl]);
+  };
 
   const handleDownloadComplete = useCallback(() => {
     setTriggerDownload(false);
@@ -59,7 +68,9 @@ function MakeCollection() {
 
   const rows = [
     createData(
-      <Box sx={{ fontSize: "16px", textAlign: "start", marginBottom: "-23px" }}>Elige el tipo de material</Box>,
+      <Box sx={{ fontSize: "16px", textAlign: "start", marginBottom: "-23px" }}>
+        Elige el tipo de material
+      </Box>,
       <FormControl component="fieldset">
         <RadioGroup
           aria-label="tipo"
@@ -146,7 +157,9 @@ function MakeCollection() {
       </FormControl>
     ),
     createData(
-      <Box sx={{ fontSize: "16px", textAlign: "start", marginBottom: "-23px" }}>Tamaño</Box>,
+      <Box sx={{ fontSize: "16px", textAlign: "start", marginBottom: "-23px" }}>
+        Tamaño
+      </Box>,
       <Box sx={{ fontSize: "14px", textAlign: "start" }}>
         Ancho: {imageDimensions.width.toFixed(1)} cm <br />
         Alto: {imageDimensions.height.toFixed(1)} cm
@@ -164,33 +177,43 @@ function MakeCollection() {
         // }`}
         >
           <div className="canvas-container">
-          <Canvas
-            imageSrcs={selectedImages}
-            width={1681}
-            height={2362}
-            triggerDownload={triggerDownload}
-            onResize={handleImageResize}
-            onDownloadComplete={handleDownloadComplete}
-            onAddText={(fn) => setAddTextToCanvas(() => fn)} // Ahora es type-safe
-            acabado={selectedType}
-          />
+            <Canvas
+              imageSrcs={selectedImages}
+              width={1681}
+              height={2362}
+              triggerDownload={triggerDownload}
+              onResize={handleImageResize}
+              onDownloadComplete={handleDownloadComplete}
+              onAddText={(fn) => setAddTextToCanvas(() => fn)} // Ahora es type-safe
+              acabado={selectedType}
+            />
           </div>
           <div className="flex justify-between m-t">
-          <Button
-            className="btn"
-            text="Remover fondo"
-            onClick={() =>
-              window.open("https://app.photoroom.com/create", "_blank")
-            }
-          />
             <Button
-            className="btn"
-            text="Agregar texto" 
-            onClick={() => addTextToCanvas && addTextToCanvas(() => {})}
-          />
+              className="btn"
+              text="Remover fondo"
+              onClick={() =>
+                window.open("https://app.photoroom.com/create", "_blank")
+              }
+            />
+            <Button
+              className="btn"
+              text="Generar con IA"
+              onClick={() => setAiModalOpen(true)}
+            />
+            <Button
+              className="btn"
+              text="Agregar texto"
+              onClick={() => addTextToCanvas && addTextToCanvas(() => {})}
+            />
           </div>
-
         </div>
+        {/* AI Sticker Generator Modal */}
+        <AIStickerModal
+          open={aiModalOpen}
+          onClose={() => setAiModalOpen(false)}
+          onImageGenerated={handleAIImageGenerated}
+        />
         <div className="containier_imageCatalog">
           <ImageCatalog onSelectImage={handleSelectImage} />
         </div>
@@ -254,6 +277,11 @@ function MakeCollection() {
             label="Canva"
             icon={<CropPortraitIcon />}
             onClick={() => setSelectedView("canvas")}
+          />
+          <BottomNavigationAction
+            label="AI Sticker"
+            icon={<AutoFixHighIcon />}
+            onClick={() => setAiModalOpen(true)}
           />
           <BottomNavigationAction
             label="Catalogo"

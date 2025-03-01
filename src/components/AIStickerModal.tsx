@@ -79,7 +79,7 @@ const AIStickerModal: React.FC<AIStickerModalProps> = ({
     >
       <DialogTitle className="modal-title">
         <Typography variant="h5">AI Sticker Generator</Typography>
-        <Typography variant="subtitle1">Create unique stickers with AI</Typography>
+        <Typography variant="subtitle1">Crea un sticker unico con AI</Typography>
       </DialogTitle>
       
       <DialogContent>

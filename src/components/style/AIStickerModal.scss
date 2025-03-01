@@ -4,7 +4,6 @@
     color: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   }
 
   .modal-title {
@@ -27,15 +26,16 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    
-    @media (min-width: 768px) {
-      flex-direction: row;
-    }
+    width: 100%;
+    margin-top: 58px;
+    // @media (min-width: 768px) {
+    //   flex-direction: row;
+    // }
   }
 
   .image-preview-container {
     flex: 1;
-    min-height: 300px;
+    min-height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,7 +87,8 @@
     .MuiTextField-root {
       background-color: rgba(255, 255, 255, 0.9);
       border-radius: 8px;
-      
+      width: 600px;
+      margin-top: 30px;
       .MuiOutlinedInput-root {
         border-radius: 8px;
       }
