@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useCallback } from "react";
 import { fabric } from "fabric";
 import { CartContext, CartContextType } from "../CartContext";
-import './style/Canvas.scss';
+import "./style/Canvas.scss";
 
 interface CanvasProps {
   gradientColor1?: string;
@@ -13,6 +13,7 @@ interface CanvasProps {
   triggerDownload: boolean;
   maxImageWidth?: number;
   acabado: string;
+  onAddText?: (fn: () => void) => void;
   onResize: (width: number, height: number) => void;
   onDownloadComplete: () => void;
 }
@@ -32,6 +33,7 @@ const Canvas: React.FC<CanvasProps> = ({
   maxImageWidth = 300,
   triggerDownload,
   acabado,
+  onAddText,
   onResize,
   onDownloadComplete,
 }) => {
@@ -53,6 +55,31 @@ const Canvas: React.FC<CanvasProps> = ({
     >()
   );
   const previousImageSrcsRef = useRef<string[]>([]);
+
+  const addText = useCallback(() => {
+    if (fabricCanvasRef.current) {
+      const text = new fabric.IText('Doble click para editar', {
+        left: fabricCanvasRef.current.width! / 2,
+        top: fabricCanvasRef.current.height! / 2,
+        fontSize: 80,
+        fill: '#000',
+        fontFamily: 'Arial',
+        originX: 'center',
+        originY: 'center',
+        textAlign: 'center',
+      });
+      
+      fabricCanvasRef.current.add(text);
+      fabricCanvasRef.current.setActiveObject(text);
+      fabricCanvasRef.current.renderAll();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (onAddText) {
+      onAddText(addText);
+    }
+  }, [addText, onAddText]);
 
   // Cropping logic
   const cropImage = (image: fabric.Image): Promise<fabric.Image> => {
@@ -229,7 +256,7 @@ const Canvas: React.FC<CanvasProps> = ({
               selectable: true,
               hasControls: true,
               hasBorders: false,
-              hasRotatingPoint: true,              
+              hasRotatingPoint: true,
             });
 
             const croppedImage = await cropImage(fabricImg);
@@ -255,7 +282,6 @@ const Canvas: React.FC<CanvasProps> = ({
 
   const initializeCanvas = useCallback(() => {
     if (canvasRef.current) {
-
       fabricCanvasRef.current = new fabric.Canvas(canvasRef.current, {
         preserveObjectStacking: true,
         selection: true, // Allow selection
@@ -272,7 +298,8 @@ const Canvas: React.FC<CanvasProps> = ({
         const control = fabric.Object.prototype.controls[controlKey];
         control.sizeX = 28; // Increase the size of the control points
         control.sizeY = 32; // Increase the size of the control points
-        control.render = (ctx, left, top) => { // Removed unused parameters
+        control.render = (ctx, left, top) => {
+          // Removed unused parameters
           ctx.save();
           ctx.fillStyle = "white"; // Color of the control points
           ctx.strokeStyle = "red"; // Border color of the control points
@@ -317,7 +344,7 @@ const Canvas: React.FC<CanvasProps> = ({
         name: "Collection personalizada",
         tamano: "14x20",
         price: 0,
-        acabado: acabado, 
+        acabado: acabado,
       };
 
       setCart([...cart, productToAdd]);
@@ -350,7 +377,6 @@ const Canvas: React.FC<CanvasProps> = ({
   }, [triggerDownload, handleDownload, onDownloadComplete]);
 
   useEffect(() => {
-    
     const newImages = imageSrcs;
 
     if (newImages.length > 0) {
@@ -360,24 +386,26 @@ const Canvas: React.FC<CanvasProps> = ({
         src: newImageSrc,
       };
       addImageToCanvas(newImage);
-      previousImageSrcsRef.current = [...previousImageSrcsRef.current, newImageSrc];
+      previousImageSrcsRef.current = [
+        ...previousImageSrcsRef.current,
+        newImageSrc,
+      ];
     }
   }, [imageSrcs, addImageToCanvas]);
 
   return (
-    <div>
-      <div className="cuadricula-canvas">
-        <canvas
-          ref={canvasRef}
-          width={typeof width === "number" ? width : undefined}
-          height={typeof height === "number" ? height : undefined}
-          style={{
-            width: typeof width === "string" ? width : undefined,
-            height: typeof height === "string" ? height : undefined,
-          }}
-        />
-      </div>
-    </div>
+    <>
+    <img src="./img/polo1.png" alt="polera" className="polera-fondo"/>
+    <canvas
+      ref={canvasRef}
+      width={typeof width === "number" ? width : undefined}
+      height={typeof height === "number" ? height : undefined}
+      style={{
+        width: typeof width === "string" ? width : undefined,
+        height: typeof height === "string" ? height : undefined,
+      }}
+    />
+    </>
   );
 };
 

@@ -41,3 +41,12 @@
   .arrow-video{
     width: 50px;
   }
+
+  @media (max-width: 768px) {
+    .logo{
+      width: 150px;
+    }
+    .title-main {
+      font-size: 24px !important;
+    }
+  }

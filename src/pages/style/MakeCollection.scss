@@ -124,6 +124,13 @@ canvas {
     height: 600px !important;
   }
 
+  .btn{
+    display: none;
+  }
+  .aside-detail_sticker {
+    display: none;
+  }
+
   .action-canvas {
     display: none;
   }
@@ -135,9 +142,12 @@ canvas {
     display: block;
     margin-top: 24px;
   }
-
+.canvas-container{
+  height: fit-content!important;
+}
   .container {
     flex-direction: column;
+    min-height: fit-content !important;
   }
 
   .content-canvas.hide,
@@ -150,6 +160,4 @@ canvas {
     display: flex;
   }
 
-  .aside-detail_sticker {
-  }
 }
