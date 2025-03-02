@@ -288,7 +288,7 @@ const Canvas: React.FC<CanvasProps> = ({
       });
 
       fabricCanvasRef.current.setDimensions(
-        { width: "260px", height: "530px" },
+        { width: "500px", height: "700px" },
         { cssOnly: true }
       );
 
@@ -395,8 +395,6 @@ const Canvas: React.FC<CanvasProps> = ({
 
   return (
     <>
-    <div className="flex justify-center">
-    <img src="./img/polo1.png" alt="polera" className="polera-fondo"/>
     <canvas
       ref={canvasRef}
       width={typeof width === "number" ? width : undefined}
@@ -404,10 +402,8 @@ const Canvas: React.FC<CanvasProps> = ({
       style={{
         width: typeof width === "string" ? width : undefined,
         height: typeof height === "string" ? height : undefined,
-        marginTop: `120px`,
       }}
     />
-    </div>
     </>
   );
 };

@@ -176,7 +176,7 @@ function MakeCollection() {
         //   selectedView === "canvas" ? "show" : "hide"
         // }`}
         >
-          <div className="canvas-container">
+          <div >
             <Canvas
               imageSrcs={selectedImages}
               width={1681}
